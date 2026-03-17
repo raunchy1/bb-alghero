@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Room {
+  id        Int       @id @default(autoincrement())
+  slug      String    @unique
+  name      String
+  price     Float     @default(90)
+  capacity  Int       @default(2)
+  bookings  Booking[]
+  createdAt DateTime  @default(now())
+}
+
+model Booking {
+  id            Int      @id @default(autoincrement())
+  roomId        Int
+  room          Room     @relation(fields: [roomId], references: [id])
+  guestName     String   @default("")
+  guestEmail    String   @default("")
+  checkIn       DateTime
+  checkOut      DateTime
+  guests        Int      @default(1)
+  nights        Int      @default(1)
+  totalPrice    Float    @default(0)
+  paymentStatus String   @default("pending")
+  stripeSessionId String?
+  createdAt     DateTime @default(now())
+}
+
+model Settings {
+  id               Int    @id @default(1)
+  stripePublicKey  String @default("")
+  stripeSecretKey  String @default("")
+  whatsappNumber   String @default("+393478327243")
+  propertyName     String @default("La Suite N\u00b04")
+  adminEmail       String @default("admin@lasuiten4.it")
+  adminPassword    String @default("admin123")
+}

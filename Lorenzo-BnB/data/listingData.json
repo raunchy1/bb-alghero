@@ -1,0 +1,283 @@
+{
+  "title": "Lorenzo's B&B",
+  "tagline": {
+    "it": "La tua camera di lusso ad Alghero",
+    "en": "Your luxury room in Alghero"
+  },
+  "subtitle": {
+    "it": "Camera luxury · Alghero, Sassari, Sardegna",
+    "en": "Luxury room · Alghero, Sassari, Sardinia"
+  },
+  "airbnbUrl": "https://www.airbnb.it/rooms/1610343576481869093",
+  "location": {
+    "city": "Alghero",
+    "region": "Sardegna",
+    "country": "Italia",
+    "coordinates": {
+      "lat": 40.57446,
+      "lng": 8.31983
+    }
+  },
+  "rooms": {
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "maxGuests": 2,
+    "bedroomDetails": [
+      {
+        "name": "Camera luxury",
+        "bedType": "Letto matrimoniale",
+        "floor": 1,
+        "description": "Camera di design con letto matrimoniale di qualità, aria condizionata, ampia finestra con luce naturale e accesso al balcone."
+      }
+    ]
+  },
+  "description": {
+    "short": {
+      "it": "Lorenzo's B&B offre una camera di lusso per 2 persone nel cuore di Alghero, a pochi passi dal mare. Design moderno, letto matrimoniale di qualità, balcone privato e tutti i comfort per un soggiorno indimenticabile.",
+      "en": "Lorenzo's B&B offers a luxury room for 2 in the heart of Alghero, steps from the sea. Modern design, quality double bed, private balcony and all the comforts for an unforgettable stay."
+    },
+    "full": {
+      "it": "Benvenuti nel nostro B&B nel cuore di Alghero, una delle città più affascinanti della Sardegna.\n\nLa camera luxury è stata progettata per offrire il massimo comfort: letto matrimoniale con biancheria di qualità, aria condizionata, ampie finestre che lasciano entrare la luce naturale e un balcone privato dove rilassarsi.\n\nL'arredamento moderno e i dettagli di design creano un'atmosfera elegante e accogliente. A pochi passi dal mare e dal centro storico catalano di Alghero, la nostra posizione è ideale per esplorare le meraviglie della zona.\n\nColazione inclusa. Wi-Fi gratuito. Parcheggio disponibile nelle vicinanze.",
+      "en": "Welcome to our B&B in the heart of Alghero, one of Sardinia's most fascinating cities.\n\nThe luxury room has been designed to offer maximum comfort: double bed with quality linen, air conditioning, large windows letting in natural light and a private balcony to relax on.\n\nThe modern furnishings and design details create an elegant and welcoming atmosphere. Steps from the sea and the Catalan historic centre of Alghero, our location is ideal for exploring the wonders of the area.\n\nBreakfast included. Free Wi-Fi. Parking available nearby."
+    },
+    "house": {
+      "it": "La camera si trova all'interno di un B&B moderno e curato, arredato con gusto e attenzione ai dettagli. Il balcone privato è il posto perfetto per iniziare la giornata con una colazione vista mare o terminare la serata al tramonto.",
+      "en": "The room is located within a modern and well-kept B&B, furnished with taste and attention to detail. The private balcony is the perfect spot to start the day with a sea-view breakfast or end the evening at sunset."
+    },
+    "neighborhood": {
+      "it": "Alghero è una delle gemme della Sardegna nord-occidentale, famosa per la sua architettura catalana, le mura medievali e le acque cristalline. A pochi minuti a piedi si trovano il centro storico, la spiaggia di San Giovanni e i migliori ristoranti di pesce dell'isola. L'aeroporto di Alghero-Fertilia dista solo 12 km.",
+      "en": "Alghero is one of the gems of north-western Sardinia, famous for its Catalan architecture, medieval walls and crystal-clear waters. Within a few minutes' walk are the historic centre, San Giovanni beach and the island's best seafood restaurants. Alghero-Fertilia airport is only 12 km away."
+    }
+  },
+  "pricing": {
+    "basePrice": 90,
+    "currency": "EUR",
+    "cleaningFee": 30,
+    "serviceFee": 15,
+    "minimumNights": 2,
+    "seasonalPricing": [
+      { "season": "Bassa stagione", "months": [1, 2, 3, 10, 11, 12], "price": 70 },
+      { "season": "Media stagione", "months": [4, 5, 6, 9], "price": 90 },
+      { "season": "Alta stagione", "months": [7, 8], "price": 130 }
+    ]
+  },
+  "amenities": [
+    { "id": "wifi", "name": "WiFi gratuito", "icon": "Wifi", "category": "tecnologia" },
+    { "id": "ac", "name": "Aria condizionata", "icon": "Wind", "category": "comfort" },
+    { "id": "balcony", "name": "Balcone privato", "icon": "Sun", "category": "esterni" },
+    { "id": "breakfast", "name": "Colazione inclusa", "icon": "Coffee", "category": "cucina" },
+    { "id": "towels", "name": "Asciugamani inclusi", "icon": "Layers", "category": "comfort" },
+    { "id": "linen", "name": "Lenzuola incluse", "icon": "BedDouble", "category": "comfort" },
+    { "id": "tv", "name": "Smart TV", "icon": "Tv", "category": "tecnologia" },
+    { "id": "parking", "name": "Parcheggio vicino", "icon": "Car", "category": "trasporti" },
+    { "id": "seaview", "name": "Vista mare", "icon": "Waves", "category": "vista" },
+    { "id": "heating", "name": "Riscaldamento", "icon": "Zap", "category": "comfort" },
+    { "id": "fridge", "name": "Frigorifero", "icon": "Refrigerator", "category": "cucina" },
+    { "id": "iron", "name": "Ferro da stiro", "icon": "Layers", "category": "comfort" }
+  ],
+  "images": {
+    "hero": "/images/suite-tripla-camera-01.jpeg",
+    "gallery": [
+      { "id": 1, "url": "/images/suite-tripla-camera-01.jpeg", "alt": "Suite Tripla – camera con mural dorato", "category": "camera" },
+      { "id": 2, "url": "/images/stanza-2pax-camera-01.jpeg", "alt": "Stanza 2 Pax – camera luxury", "category": "camera" },
+      { "id": 3, "url": "/images/balcone-01.jpeg", "alt": "Balcone con vista sulla città", "category": "balcone" },
+      { "id": 4, "url": "/images/bagno-01.jpeg", "alt": "Bagno moderno con doccia", "category": "bagno" },
+      { "id": 5, "url": "/images/terrazza-06.jpeg", "alt": "Terrazza panoramica", "category": "esterno" },
+      { "id": 6, "url": "/images/corridoio-01.jpeg", "alt": "Corridoio con orchidee e stazione caffè", "category": "comune" },
+      { "id": 7, "url": "/images/suite-4pax-camera-01.jpeg", "alt": "Suite 4 Pax – mural artistico", "category": "camera" },
+      { "id": 8, "url": "/images/stanza-3pax-camera-03.jpeg", "alt": "Stanza 3 Pax – camera con TV", "category": "camera" },
+      { "id": 9, "url": "/images/suite-tripla-camera-02.jpeg", "alt": "Suite Tripla – scrivania e TV", "category": "camera" },
+      { "id": 10, "url": "/images/suite-tripla-camera-04.jpeg", "alt": "Suite Tripla – vista dall'alto", "category": "camera" },
+      { "id": 11, "url": "/images/suite-tripla-camera-05.jpeg", "alt": "Suite Tripla – ampia con poltrona", "category": "camera" },
+      { "id": 12, "url": "/images/suite-tripla-camera-06.jpeg", "alt": "Suite Tripla – luce naturale", "category": "camera" },
+      { "id": 13, "url": "/images/stanza-2pax-camera-02.jpeg", "alt": "Stanza 2 Pax – letto e TV", "category": "camera" },
+      { "id": 14, "url": "/images/stanza-2pax-scrivania.jpeg", "alt": "Stanza 2 Pax – scrivania e minibar", "category": "camera" },
+      { "id": 15, "url": "/images/stanza-2pax-dettaglio.jpeg", "alt": "Dettaglio comodino con USB", "category": "camera" },
+      { "id": 16, "url": "/images/suite-4pax-camera-02.jpeg", "alt": "Suite 4 Pax – vista ampia con divano letto", "category": "camera" },
+      { "id": 17, "url": "/images/suite-4pax-camera-03.jpeg", "alt": "Suite 4 Pax – vista notturna", "category": "camera" },
+      { "id": 18, "url": "/images/suite-4pax-scrivania.jpeg", "alt": "Suite 4 Pax – area TV e scrivania", "category": "camera" },
+      { "id": 19, "url": "/images/suite-4pax-dettaglio.jpeg", "alt": "Suite 4 Pax – dettaglio letto", "category": "camera" },
+      { "id": 20, "url": "/images/stanza-3pax-camera-01.jpeg", "alt": "Stanza 3 Pax – scrivania e ingresso", "category": "camera" },
+      { "id": 21, "url": "/images/stanza-3pax-camera-02.jpeg", "alt": "Stanza 3 Pax – poltrona e letto", "category": "camera" },
+      { "id": 22, "url": "/images/stanza-3pax-camera-04.jpeg", "alt": "Stanza 3 Pax – vista dall'alto", "category": "camera" },
+      { "id": 23, "url": "/images/terrazza-01.jpeg", "alt": "Terrazza con salotto outdoor", "category": "esterno" },
+      { "id": 24, "url": "/images/terrazza-02.jpeg", "alt": "Terrazza serale con illuminazione", "category": "esterno" },
+      { "id": 25, "url": "/images/terrazza-03.jpeg", "alt": "Terrazza – altra prospettiva", "category": "esterno" },
+      { "id": 26, "url": "/images/terrazza-04.jpeg", "alt": "Terrazza con vista sui tetti", "category": "esterno" },
+      { "id": 27, "url": "/images/terrazza-05.jpeg", "alt": "Terrazza panoramica dall'alto", "category": "esterno" },
+      { "id": 28, "url": "/images/balcone-02.jpeg", "alt": "Balcone lungo con vista città", "category": "balcone" },
+      { "id": 29, "url": "/images/balcone-03.jpeg", "alt": "Balcone privato", "category": "balcone" },
+      { "id": 30, "url": "/images/bagno-02.jpeg", "alt": "Bagno con doccia in vetro", "category": "bagno" },
+      { "id": 31, "url": "/images/bagno-03.jpeg", "alt": "Bagno – ingresso", "category": "bagno" },
+      { "id": 32, "url": "/images/bagno-04.jpeg", "alt": "Bagno con doccia e lavabo", "category": "bagno" },
+      { "id": 33, "url": "/images/bagno-doccia-01.jpeg", "alt": "Doccia con pannello in marmo", "category": "bagno" },
+      { "id": 34, "url": "/images/bagno-doccia-02.jpeg", "alt": "Doccia – dettaglio pannello", "category": "bagno" },
+      { "id": 35, "url": "/images/colazione-01.jpeg", "alt": "Stazione caffè e colazione", "category": "comune" },
+      { "id": 36, "url": "/images/colazione-02.jpeg", "alt": "Angolo colazione – dettaglio", "category": "comune" },
+      { "id": 37, "url": "/images/corridoio-02.jpeg", "alt": "Corridoio con specchio e orchidee", "category": "comune" },
+      { "id": 38, "url": "/images/ingresso.jpeg", "alt": "Ingresso del B&B", "category": "esterno" },
+      { "id": 39, "url": "/images/stanza-2pax-ingresso.jpeg", "alt": "Stanza 2 Pax – porta e climatizzatore", "category": "camera" },
+      { "id": 40, "url": "/images/suite-4pax-camera-04.jpeg", "alt": "Suite 4 Pax – vista completa", "category": "camera" },
+      { "id": 41, "url": "/images/suite-tripla-dettaglio.jpeg", "alt": "Suite Tripla – dettaglio design", "category": "camera" },
+      { "id": 42, "url": "/images/suite-tripla-camera-03.jpeg", "alt": "Suite Tripla – con balcone", "category": "camera" }
+    ]
+  },
+  "host": {
+    "name": "Lorenzo",
+    "avatar": "",
+    "rating": 4.95,
+    "reviewCount": 32,
+    "responseRate": "100%",
+    "responseTime": {
+      "it": "Entro un'ora",
+      "en": "Within an hour"
+    },
+    "languages": ["Italiano", "Inglese"],
+    "verified": true,
+    "superhost": true
+  },
+  "reviews": [
+    {
+      "id": 1,
+      "author": "Claire",
+      "location": "Francia",
+      "rating": 5,
+      "date": "Agosto 2024",
+      "text": {
+        "it": "Camera bellissima e accogliente. Lorenzo è un host straordinario, sempre disponibile. Il balcone con vista è un sogno. Torneremo sicuramente!",
+        "en": "Beautiful and welcoming room. Lorenzo is an extraordinary host, always available. The balcony view is a dream. We will definitely return!"
+      }
+    },
+    {
+      "id": 2,
+      "author": "Marco",
+      "location": "Milano",
+      "rating": 5,
+      "date": "Luglio 2024",
+      "text": {
+        "it": "Posizione perfetta, a due passi dal centro storico e dal mare. Camera moderna e confortevole. La colazione inclusa è ottima. Consigliatissimo!",
+        "en": "Perfect location, steps from the historic centre and the sea. Modern and comfortable room. The included breakfast is excellent. Highly recommended!"
+      }
+    },
+    {
+      "id": 3,
+      "author": "Sarah",
+      "location": "Germania",
+      "rating": 5,
+      "date": "Giugno 2024",
+      "text": {
+        "it": "Soggiorno meraviglioso. La camera è esattamente come nelle foto, curata nei minimi dettagli. Alghero è una città magica e Lorenzo ti aiuta a scoprire il meglio.",
+        "en": "Wonderful stay. The room is exactly as in the photos, detailed down to the smallest detail. Alghero is a magical city and Lorenzo helps you discover the best of it."
+      }
+    },
+    {
+      "id": 4,
+      "author": "Giulia",
+      "location": "Roma",
+      "rating": 5,
+      "date": "Settembre 2024",
+      "text": {
+        "it": "Ottimo rapporto qualità-prezzo. Camera pulitissima, letto comodissimo e Lorenzo ci ha dato consigli preziosi su ristoranti e spiagge. Perfetto!",
+        "en": "Excellent value for money. Very clean room, very comfortable bed and Lorenzo gave us invaluable tips on restaurants and beaches. Perfect!"
+      }
+    },
+    {
+      "id": 5,
+      "author": "James",
+      "location": "Inghilterra",
+      "rating": 5,
+      "date": "Agosto 2024",
+      "text": {
+        "it": "Una delle migliori esperienze di viaggio! Il B&B è in posizione ideale, la camera è elegante e il balcone è fantastico per godersi i tramonti sardi.",
+        "en": "One of the best travel experiences! The B&B is ideally located, the room is elegant and the balcony is fantastic for enjoying Sardinian sunsets."
+      }
+    },
+    {
+      "id": 6,
+      "author": "Elena",
+      "location": "Spagna",
+      "rating": 5,
+      "date": "Luglio 2024",
+      "text": {
+        "it": "Lorenzo è un host eccezionale! La camera è moderna e accogliente, il balcone ha una vista stupenda. Alghero è bellissima e questo B&B è il posto ideale per esplorarla.",
+        "en": "Lorenzo is an exceptional host! The room is modern and welcoming, the balcony has a stunning view. Alghero is beautiful and this B&B is the ideal place to explore it."
+      }
+    }
+  ],
+  "explore": {
+    "beaches": [
+      {
+        "name": "Spiaggia di San Giovanni",
+        "distance": "700 m a piedi",
+        "description": {
+          "it": "La spiaggia più vicina al B&B: sabbia dorata e acque cristalline a soli 7 minuti a piedi. Perfetta per una mattinata al mare prima di esplorare la città.",
+          "en": "The closest beach to the B&B: golden sand and crystal clear waters just 7 minutes on foot. Perfect for a morning at the sea before exploring the city."
+        },
+        "image": "/images/terrazza-06.jpeg"
+      },
+      {
+        "name": "Spiaggia Le Bombarde",
+        "distance": "8 km in auto",
+        "description": {
+          "it": "Una delle spiagge più belle di Alghero, con acque turchesi e sabbia bianca finissima. Circondata da macchia mediterranea, è ideale per chi cerca tranquillità.",
+          "en": "One of the most beautiful beaches near Alghero, with turquoise waters and very fine white sand. Surrounded by Mediterranean scrub, ideal for those seeking tranquillity."
+        },
+        "image": "/images/balcone-01.jpeg"
+      },
+      {
+        "name": "Spiaggia Lazzaretto",
+        "distance": "10 km in auto",
+        "description": {
+          "it": "Spiaggia ampia e ben attrezzata, con acque poco profonde ideali per bambini e famiglie. Uno dei lidi più frequentati della zona di Alghero.",
+          "en": "A wide and well-equipped beach, with shallow waters ideal for children and families. One of the most popular beaches in the Alghero area."
+        },
+        "image": "/images/balcone-02.jpeg"
+      }
+    ],
+    "experiences": [
+      {
+        "name": { "it": "Centro storico catalano", "en": "Catalan historic centre" },
+        "description": { "it": "Passeggia tra le mura medievali e i vicoli di Alghero, città unica in Sardegna per la sua eredità catalana.", "en": "Stroll through the medieval walls and alleys of Alghero, unique in Sardinia for its Catalan heritage." },
+        "icon": "Building2"
+      },
+      {
+        "name": { "it": "Grotte di Nettuno", "en": "Neptune's Caves" },
+        "description": { "it": "Le famose grotte marine raggiungibili in barca o tramite la scalinata Escala del Cabirol, uno spettacolo naturale imperdibile.", "en": "The famous sea caves reachable by boat or via the Escala del Cabirol stairway, a natural spectacle not to be missed." },
+        "icon": "Anchor"
+      },
+      {
+        "name": { "it": "Cucina algherese", "en": "Alghero cuisine" },
+        "description": { "it": "Ristoranti tipici con aragosta alla catalana, bottarga, pane carasau e vini Vermentino di Sardegna a pochi passi dal B&B.", "en": "Typical restaurants with Catalan lobster, bottarga, pane carasau and Vermentino di Sardegna wines steps from the B&B." },
+        "icon": "Wine"
+      },
+      {
+        "name": { "it": "Escursioni in barca", "en": "Boat excursions" },
+        "description": { "it": "Tour in barca lungo la costa di Alghero verso le grotte e le calette nascoste del Golfo di Alghero.", "en": "Boat tours along the Alghero coast towards the caves and hidden coves of the Gulf of Alghero." },
+        "icon": "Anchor"
+      }
+    ],
+    "restaurants": [
+      {
+        "name": "Il Pavone",
+        "distance": "300 m",
+        "description": { "it": "Ristorante storico di Alghero nel centro storico, famoso per l'aragosta alla catalana e i piatti di pesce fresco.", "en": "Historic Alghero restaurant in the old town, famous for Catalan lobster and fresh fish dishes." }
+      },
+      {
+        "name": "Andreini",
+        "distance": "500 m",
+        "description": { "it": "Cucina sarda creativa con ingredienti locali di stagione. Uno dei migliori ristoranti di Alghero, ideale per una cena speciale.", "en": "Creative Sardinian cuisine with local seasonal ingredients. One of Alghero's best restaurants, ideal for a special dinner." }
+      },
+      {
+        "name": "Trattoria Lo Quarter",
+        "distance": "400 m",
+        "description": { "it": "Ambiente rustico e autentico nel cuore del centro storico. Ottimi piatti tradizionali sardi a prezzi accessibili.", "en": "Rustic and authentic atmosphere in the heart of the historic centre. Excellent traditional Sardinian dishes at affordable prices." }
+      }
+    ]
+  },
+  "seo": {
+    "title": "Lorenzo's B&B · Camera luxury ad Alghero, Sardegna",
+    "description": "Camera luxury per 2 persone ad Alghero, Sardegna. Balcone privato, colazione inclusa, Wi-Fi gratuito. A pochi passi dal mare e dal centro storico catalano.",
+    "keywords": ["B&B Alghero", "camera lusso Alghero", "bed and breakfast Alghero", "alloggio Alghero Sardegna", "Lorenzo B&B Alghero"],
+    "ogImage": "/images/suite-tripla-camera-01.jpeg"
+  }
+}

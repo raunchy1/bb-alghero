@@ -1,0 +1,350 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #094730;
+    --color-secondary: #0a5a46;
+    --color-cream: #f5f4ef;
+    --color-dark: #1a1716;
+    --color-charcoal: #272220;
+    --color-light-grey: #eee7df;
+    --color-grey: #9e9790;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-cream text-dark font-sans;
+    font-size: 0.875rem;
+    line-height: 1.75;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: contain;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-cream);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-cormorant), Georgia, serif;
+  }
+
+  a {
+    text-underline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Container */
+  .container-hut {
+    @apply max-w-hut mx-auto px-4 md:px-8;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-btn px-4 py-2.5;
+    background: var(--color-cream);
+    color: var(--color-dark);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.98); }
+
+  .btn-dark {
+    @apply btn;
+    background: var(--color-charcoal);
+    color: var(--color-cream);
+  }
+
+  .btn-primary {
+    @apply btn;
+    background: var(--color-primary);
+    color: var(--color-cream);
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-btn px-4 py-2.5;
+    border: 1.5px solid var(--color-dark);
+    color: var(--color-dark);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  }
+  .btn-outline:hover {
+    background: var(--color-charcoal);
+    color: var(--color-cream);
+  }
+  .btn-outline:active { transform: scale(0.98); }
+
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center gap-2 rounded-btn px-4 py-2.5;
+    border: 1.5px solid var(--color-cream);
+    color: var(--color-cream);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  }
+  .btn-outline-light:hover {
+    background: var(--color-cream);
+    color: var(--color-dark);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-1;
+    color: var(--color-dark);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    transition: opacity 0.2s;
+  }
+  .btn-ghost:hover { opacity: 0.6; }
+
+  /* Nav link */
+  .nav-link {
+    position: relative;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    transition: opacity 0.2s ease;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  .nav-link:hover { opacity: 0.6; }
+
+  /* Section spacing */
+  .section-spacing {
+    @apply py-20 md:py-32 lg:py-44;
+  }
+
+  .section-pad {
+    @apply py-20 sm:py-28 lg:py-36;
+  }
+
+  .section-pad-lg {
+    @apply py-24 sm:py-32 lg:py-44;
+  }
+
+  /* Image */
+  .img-cover {
+    @apply object-cover w-full h-full;
+  }
+
+  /* Card */
+  .card {
+    @apply rounded-card overflow-hidden;
+    background: white;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  }
+
+  /* Clip-path image reveal */
+  .img-reveal {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+    animation: clipReveal 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-md px-2.5 py-1;
+    background: var(--color-charcoal);
+    color: var(--color-cream);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  /* Input */
+  .input-field {
+    @apply w-full rounded-btn px-4 py-3 text-sm outline-none transition-all duration-200;
+    border: 1.5px solid var(--color-light-grey);
+    background: white;
+    color: var(--color-dark);
+    letter-spacing: -0.01em;
+  }
+  .input-field:focus {
+    border-color: var(--color-primary);
+  }
+  .input-field::placeholder {
+    color: var(--color-grey);
+  }
+
+  /* Divider */
+  .divider {
+    @apply w-10 h-px my-6;
+    background: var(--color-primary);
+  }
+
+  /* Section label */
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  /* Image zoom on hover */
+  .img-zoom { @apply overflow-hidden; }
+  .img-zoom img {
+    transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .img-zoom:hover img { transform: scale(1.05); }
+
+  /* Backdrop blur */
+  .bg-blur {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f5f4ef; }
+::-webkit-scrollbar-thumb { background: #094730; border-radius: 99px; }
+
+/* DatePicker custom styles */
+.react-datepicker {
+  font-family: var(--font-jost), "Jost", system-ui, sans-serif !important;
+  border: 1.5px solid #eee7df !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.1) !important;
+}
+.react-datepicker__header {
+  background-color: #f5f4ef !important;
+  border-bottom: 1px solid #eee7df !important;
+}
+.react-datepicker__current-month {
+  color: #1a1716 !important;
+  font-weight: 700 !important;
+  font-size: 0.875rem !important;
+  letter-spacing: -0.02em !important;
+}
+.react-datepicker__day--selected,
+.react-datepicker__day--in-range {
+  background-color: #094730 !important;
+  color: #f5f4ef !important;
+  border-radius: 4px !important;
+}
+.react-datepicker__day--in-selecting-range {
+  background-color: #0a5a46 !important;
+  color: #f5f4ef !important;
+}
+.react-datepicker__day:hover {
+  background-color: #eee7df !important;
+  border-radius: 4px !important;
+}
+.react-datepicker__navigation-icon::before {
+  border-color: #094730 !important;
+}
+
+/* Premium button hover */
+.btn-premium {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #094730;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+}
+.btn-premium:hover::before {
+  width: 100%;
+}
+.btn-premium:hover {
+  color: #f5f4ef;
+  transform: scale(1.03);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+.btn-premium span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Section title decoration */
+.section-title-line {
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #094730;
+  margin: 16px auto 0;
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.section-title-line.visible {
+  width: 60px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
