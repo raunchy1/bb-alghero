@@ -5,10 +5,21 @@ export async function POST(request: NextRequest) {
   try {
     const { email, password } = await request.json()
 
-    const settings = await prisma.settings.findUnique({ where: { id: 1 } })
+    let settings = await prisma.settings.findUnique({ where: { id: 1 } })
 
     if (!settings) {
-      return NextResponse.json({ error: 'Settings not configured' }, { status: 500 })
+      // Auto-create default settings if they don't exist yet
+      settings = await prisma.settings.create({
+        data: {
+          id: 1,
+          stripePublicKey: '',
+          stripeSecretKey: '',
+          whatsappNumber: '+393478327243',
+          propertyName: 'La Suite N°4',
+          adminEmail: 'admin@lasuiten4.it',
+          adminPassword: 'admin123',
+        },
+      })
     }
 
     if (email !== settings.adminEmail || password !== settings.adminPassword) {
@@ -21,6 +32,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ token })
   } catch (error) {
     console.error('Auth error:', error)
-    return NextResponse.json({ error: 'Errore interno' }, { status: 500 })
+    const message = error instanceof Error ? error.message : 'Unknown error'
+    return NextResponse.json({ error: `Errore interno: ${message}` }, { status: 500 })
   }
 }
