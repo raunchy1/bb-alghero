@@ -130,7 +130,7 @@ export default function DashboardPage() {
       </h1>
 
       {/* Stat Cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 32 }}>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-8">
         <div style={cardStyle}>
           <p style={labelStyle}>Prenotazioni</p>
           <p style={numberStyle}>{bookings.length}</p>
@@ -152,30 +152,15 @@ export default function DashboardPage() {
       </div>
 
       {/* Quick Actions */}
-      <div style={{ display: 'flex', gap: 12, marginBottom: 32 }}>
-        <Link
-          href="/admin/suite"
-          style={actionBtnStyle}
-          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#C4935A'; e.currentTarget.style.color = '#fff' }}
-          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#C4935A' }}
-        >
-          <BedDouble size={16} strokeWidth={1.5} /> Gestisci Suite
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3 mb-8">
+        <Link href="/admin/suite" style={actionBtnStyle} className="text-center justify-center text-[11px] md:text-[12px] py-3">
+          <BedDouble size={16} strokeWidth={1.5} /> Suite
         </Link>
-        <Link
-          href="/admin/galleria"
-          style={actionBtnStyle}
-          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#C4935A'; e.currentTarget.style.color = '#fff' }}
-          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#C4935A' }}
-        >
-          <Image size={16} strokeWidth={1.5} /> Gestisci Galleria
+        <Link href="/admin/galleria" style={actionBtnStyle} className="text-center justify-center text-[11px] md:text-[12px] py-3">
+          <Image size={16} strokeWidth={1.5} /> Galleria
         </Link>
-        <Link
-          href="/admin/pagamenti"
-          style={actionBtnStyle}
-          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#C4935A'; e.currentTarget.style.color = '#fff' }}
-          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#C4935A' }}
-        >
-          <CreditCard size={16} strokeWidth={1.5} /> Configura Stripe
+        <Link href="/admin/pagamenti" style={actionBtnStyle} className="col-span-2 md:col-span-1 text-center justify-center text-[11px] md:text-[12px] py-3">
+          <CreditCard size={16} strokeWidth={1.5} /> Stripe
         </Link>
       </div>
 
@@ -192,64 +177,53 @@ export default function DashboardPage() {
             Nessuna prenotazione ancora
           </div>
         ) : (
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: "'Jost', sans-serif", fontSize: 14 }}>
-            <thead>
-              <tr style={{ borderBottom: '1px solid rgba(26,43,60,0.08)' }}>
-                {['Ospite', 'Camera', 'Check-in', 'Totale', 'Stato'].map((h) => (
-                  <th
-                    key={h}
-                    style={{
-                      textAlign: 'left',
-                      padding: '10px 24px',
-                      fontSize: 11,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.1em',
-                      color: 'rgba(26,43,60,0.4)',
-                      fontWeight: 500,
-                    }}
-                  >
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
+          <>
+            {/* Desktop table */}
+            <div className="hidden sm:block overflow-x-auto">
+              <table style={{ width: '100%', minWidth: 500, borderCollapse: 'collapse', fontFamily: "'Jost', sans-serif", fontSize: 14 }}>
+                <thead>
+                  <tr style={{ borderBottom: '1px solid rgba(26,43,60,0.08)' }}>
+                    {['Ospite', 'Camera', 'Check-in', 'Totale', 'Stato'].map((h) => (
+                      <th key={h} style={{ textAlign: 'left', padding: '10px 16px', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(26,43,60,0.4)', fontWeight: 500 }}>{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {recentBookings.map((booking) => {
+                    const s = statusLabel(booking.paymentStatus)
+                    return (
+                      <tr key={booking.id} style={{ borderBottom: '1px solid rgba(26,43,60,0.05)' }}>
+                        <td style={{ padding: '12px 16px', color: '#1A2B3C', fontWeight: 500 }}>{booking.guestName || '--'}</td>
+                        <td style={{ padding: '12px 16px', color: 'rgba(26,43,60,0.6)', maxWidth: 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{booking.room?.name || `Camera ${booking.roomId}`}</td>
+                        <td style={{ padding: '12px 16px', color: 'rgba(26,43,60,0.6)' }}>{new Date(booking.checkIn).toLocaleDateString('it-IT')}</td>
+                        <td style={{ padding: '12px 16px', color: '#1A2B3C', fontWeight: 500 }}>&euro;{booking.totalPrice.toFixed(2)}</td>
+                        <td style={{ padding: '12px 16px' }}><span style={{ display: 'inline-block', padding: '4px 10px', fontSize: 11, fontWeight: 500, backgroundColor: s.bg, color: s.color, borderRadius: 4 }}>{s.text}</span></td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+            {/* Mobile cards */}
+            <div className="sm:hidden p-4 space-y-3">
               {recentBookings.map((booking) => {
                 const s = statusLabel(booking.paymentStatus)
                 return (
-                  <tr key={booking.id} style={{ borderBottom: '1px solid rgba(26,43,60,0.05)' }}>
-                    <td style={{ padding: '12px 24px', color: '#1A2B3C', fontWeight: 500 }}>
-                      {booking.guestName || '--'}
-                    </td>
-                    <td style={{ padding: '12px 24px', color: 'rgba(26,43,60,0.6)' }}>
-                      {booking.room?.name || `Camera ${booking.roomId}`}
-                    </td>
-                    <td style={{ padding: '12px 24px', color: 'rgba(26,43,60,0.6)' }}>
-                      {new Date(booking.checkIn).toLocaleDateString('it-IT')}
-                    </td>
-                    <td style={{ padding: '12px 24px', color: '#1A2B3C', fontWeight: 500 }}>
-                      &euro;{booking.totalPrice.toFixed(2)}
-                    </td>
-                    <td style={{ padding: '12px 24px' }}>
-                      <span
-                        style={{
-                          display: 'inline-block',
-                          padding: '4px 10px',
-                          fontSize: 11,
-                          fontWeight: 500,
-                          backgroundColor: s.bg,
-                          color: s.color,
-                          borderRadius: 4,
-                        }}
-                      >
-                        {s.text}
-                      </span>
-                    </td>
-                  </tr>
+                  <div key={booking.id} style={{ background: '#FAF8F4', border: '1px solid rgba(26,43,60,0.08)', borderRadius: 4, padding: 16, fontFamily: "'Jost', sans-serif" }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                      <span style={{ fontWeight: 600, fontSize: 14, color: '#1A2B3C' }}>{booking.guestName || '--'}</span>
+                      <span style={{ color: '#C4935A', fontWeight: 600, fontSize: 14 }}>&euro;{booking.totalPrice.toFixed(2)}</span>
+                    </div>
+                    <p style={{ fontSize: 13, color: '#666', margin: '4px 0' }}>{booking.room?.name || `Camera ${booking.roomId}`}</p>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 8 }}>
+                      <span style={{ fontSize: 12, color: '#888' }}>Check-in: {new Date(booking.checkIn).toLocaleDateString('it-IT')}</span>
+                      <span style={{ padding: '3px 8px', fontSize: 10, fontWeight: 500, backgroundColor: s.bg, color: s.color, borderRadius: 4 }}>{s.text}</span>
+                    </div>
+                  </div>
                 )
               })}
-            </tbody>
-          </table>
+            </div>
+          </>
         )}
       </div>
     </div>

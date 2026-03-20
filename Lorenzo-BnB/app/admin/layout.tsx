@@ -37,7 +37,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
   }
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', maxWidth: '100vw', overflow: 'hidden' }}>
       {/* Desktop Sidebar */}
       <aside className="admin-sidebar" style={{
         width: 260, minWidth: 260, backgroundColor: '#1A2B3C',
@@ -107,7 +107,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
               gap: 4, textDecoration: 'none', minWidth: 44, minHeight: 44,
               justifyContent: 'center',
             }}>
-              <Icon size={22} strokeWidth={1.5} color={isActive ? '#C4935A' : 'rgba(255,255,255,0.4)'} />
+              <Icon size={20} strokeWidth={1.5} color={isActive ? '#C4935A' : 'rgba(255,255,255,0.4)'} />
               <span style={{
                 fontFamily: "'Jost', sans-serif", fontSize: 10,
                 color: isActive ? '#C4935A' : 'rgba(255,255,255,0.4)',

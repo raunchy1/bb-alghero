@@ -97,12 +97,12 @@ export default function PagamentiPage() {
   }
 
   return (
-    <div>
+    <div style={{ maxWidth: '100%', overflow: 'hidden', boxSizing: 'border-box' }}>
       <h1
+        className="text-[28px] md:text-[32px]"
         style={{
           fontFamily: "'Cormorant Garamond', serif",
           fontStyle: 'italic',
-          fontSize: 32,
           color: '#1A2B3C',
           fontWeight: 500,
           margin: '0 0 24px 0',
@@ -137,7 +137,7 @@ export default function PagamentiPage() {
       )}
 
       {/* Section 1: Stripe Config */}
-      <div style={{ backgroundColor: '#fff', border: '1px solid rgba(26,43,60,0.08)', padding: 24, marginBottom: 24 }}>
+      <div style={{ backgroundColor: '#fff', border: '1px solid rgba(26,43,60,0.08)', padding: 16, marginBottom: 24, boxSizing: 'border-box' as const, maxWidth: '100%' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
           <CreditCard size={20} strokeWidth={1.5} color="#C4935A" />
           <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, color: '#1A2B3C', margin: 0 }}>
@@ -223,11 +223,11 @@ export default function PagamentiPage() {
       </div>
 
       {/* Section 2: Payment Methods */}
-      <div style={{ backgroundColor: '#fff', border: '1px solid rgba(26,43,60,0.08)', padding: 24, marginBottom: 24 }}>
+      <div style={{ backgroundColor: '#fff', border: '1px solid rgba(26,43,60,0.08)', padding: 16, marginBottom: 24, boxSizing: 'border-box' as const, maxWidth: '100%' }}>
         <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, color: '#1A2B3C', margin: '0 0 20px 0' }}>
           Metodi di Pagamento
         </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
             { key: 'carta', label: 'Carta' },
             { key: 'applePay', label: 'Apple Pay' },
