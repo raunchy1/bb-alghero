@@ -1,0 +1,26 @@
+{
+  "homepage": {
+    "heroTitle": "La Suite N4",
+    "heroSubtitle": "Terrazze panoramiche private",
+    "aboutDescription": ""
+  },
+  "contact": {
+    "phone": "+393478327243",
+    "whatsapp": "393478327243",
+    "email": "info@lasuiten4.it",
+    "address": "Alghero, Sardegna",
+    "checkinTime": "15:00",
+    "checkoutTime": "11:00"
+  },
+  "partner": {
+    "name": "Sea Star Beach Restaurant",
+    "description": "",
+    "instagram": "@sea_star_alghero",
+    "discountText": "Sconto esclusivo per i nostri ospiti"
+  },
+  "seo": {
+    "title": "La Suite N4 Alghero",
+    "description": ""
+  },
+  "icalUrl": ""
+}

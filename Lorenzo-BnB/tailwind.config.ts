@@ -9,6 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        ivory: '#FAF8F4',
+        navy: '#1A2B3C',
+        gold: '#C4935A',
+        sage: '#8A9E8C',
+        sand: '#F0EDE8',
+        white: '#FFFFFF',
+        // Keep old colors for non-redesigned pages
         primary: '#094730',
         secondary: '#0a5a46',
         cream: '#f5f4ef',
@@ -17,7 +24,6 @@ const config: Config = {
         'light-grey': '#eee7df',
         grey: '#9e9790',
         'dark-grey': '#2d2725',
-        white: '#ffffff',
         error: '#940f0b',
       },
       fontFamily: {
@@ -57,6 +63,8 @@ const config: Config = {
         'fade-up': 'fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) forwards',
         'scale-in': 'scaleIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards',
         'clip-reveal': 'clipReveal 0.9s cubic-bezier(0.16,1,0.3,1) forwards',
+        'marquee': 'marquee 30s linear infinite',
+        'scroll-dot': 'scrollDot 2s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -75,9 +83,16 @@ const config: Config = {
           '0%':   { clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)' },
           '100%': { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' },
         },
-      },
-      backgroundImage: {
-        'gradient-dark': 'linear-gradient(to bottom, rgba(9,71,48,0.4) 0%, rgba(26,23,22,0.2) 50%, rgba(26,23,22,0.7) 100%)',
+        marquee: {
+          '0%':   { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        scrollDot: {
+          '0%':   { transform: 'translateY(0)', opacity: '1' },
+          '50%':  { transform: 'translateY(40px)', opacity: '0' },
+          '51%':  { transform: 'translateY(-10px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
       },
       boxShadow: {
         'card':    '0 2px 16px rgba(0,0,0,0.06)',

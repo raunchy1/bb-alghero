@@ -4,7 +4,7 @@ import { useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { CalendarDays, Users, Check, ExternalLink } from 'lucide-react'
+import { CalendarDays, Users, Check, ExternalLink, Gift } from 'lucide-react'
 import listingData from '@/data/listingData.json'
 import { useLanguage } from '@/contexts/LanguageContext'
 
@@ -114,7 +114,7 @@ function BookContent() {
       <div className="bg-white border-b border-sand-dark">
         <div className="container-luxury py-10">
           <p className="text-xs font-medium tracking-widest uppercase text-stone mb-4">{t({ it: 'Prenotazione', en: 'Booking' })}</p>
-          <h1 className="font-serif text-display-md text-ocean">{t({ it: "Prenota Lorenzo's B&B", en: "Book Lorenzo's B&B" })}</h1>
+          <h1 className="font-serif text-display-md text-ocean">{t({ it: 'Prenota La Suite N4 Alghero', en: 'Book La Suite N4 Alghero' })}</h1>
         </div>
       </div>
 
@@ -292,14 +292,14 @@ function BookContent() {
               <div className="relative aspect-[4/3] overflow-hidden mb-6">
                 <Image
                   src={listingData.images.gallery[0].url}
-                  alt="Lorenzo's B&B"
+                  alt="La Suite N4 Alghero"
                   fill
                   className="object-cover"
                   sizes="400px"
                 />
               </div>
 
-              <h3 className="font-serif text-lg text-ocean mb-1">{listingData.title}</h3>
+              <h3 className="font-serif text-lg text-ocean mb-1">La Suite N4 Alghero</h3>
               <p className="text-xs text-stone mb-4">{listingData.location.city}, {listingData.location.region}</p>
 
               <div className="border-t border-sand-dark pt-4 space-y-3 text-sm mb-6">
@@ -347,6 +347,46 @@ function BookContent() {
                 <ExternalLink size={14} />
                 {t({ it: 'Prenota via Airbnb', en: 'Book via Airbnb' })}
               </a>
+
+              {/* Payment Methods (Change 8) */}
+              {/* TODO: Enable Apple Pay and Google Pay in Stripe Dashboard → Settings → Payment methods */}
+              <div style={{
+                display: 'flex', gap: 12,
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: 16,
+                opacity: 0.6,
+                fontSize: 12,
+                fontFamily: 'var(--font-jost), Jost, sans-serif'
+              }}>
+                <span>{t({ it: 'Pagamenti sicuri:', en: 'Secure payments:' })}</span>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/icons/stripe.svg" height={20} alt="Stripe" style={{ height: 20 }} />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/icons/apple-pay.svg" height={20} alt="Apple Pay" style={{ height: 20 }} />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/icons/google-pay.svg" height={20} alt="Google Pay" style={{ height: 20 }} />
+                <span>{t({ it: 'Bonifico', en: 'Bank transfer' })}</span>
+              </div>
+
+              {/* Sconto Ristorante (Change 7) */}
+              <div
+                className="mt-4 p-4 rounded-lg text-center"
+                style={{
+                  background: 'rgba(196, 147, 90, 0.08)',
+                  border: '1px solid #C4935A',
+                }}
+              >
+                <div className="flex justify-center mb-2">
+                  <Gift size={16} color="#C4935A" />
+                </div>
+                <p className="text-xs text-[#1a1716]" style={{ fontFamily: 'var(--font-cormorant), Cormorant Garamond, serif', fontStyle: 'italic' }}>
+                  {t({
+                    it: 'Prenota direttamente e ricevi uno sconto al Sea Star Beach Restaurant.',
+                    en: 'Book directly and receive a discount at Sea Star Beach Restaurant.'
+                  })}
+                </p>
+              </div>
             </div>
           </div>
         </div>

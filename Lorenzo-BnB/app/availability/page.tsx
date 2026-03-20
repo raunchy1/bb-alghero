@@ -1,353 +1,362 @@
 'use client'
 
-import { useState, useEffect, Suspense } from 'react'
+import { useState, useEffect, Suspense, useCallback } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { CalendarDays, Users, ChevronLeft, ChevronRight, Info } from 'lucide-react'
-import clsx from 'clsx'
-import listingData from '@/data/listingData.json'
 import { useLanguage } from '@/contexts/LanguageContext'
 
-const MONTHS_IT = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
-  'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre']
-const MONTHS_EN = ['January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December']
+const MONTHS_IT = ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre']
+const DAYS_IT = ['Lu','Ma','Me','Gi','Ve','Sa','Do']
+const MONTHS_EN = ['January','February','March','April','May','June','July','August','September','October','November','December']
+const DAYS_EN = ['Mo','Tu','We','Th','Fr','Sa','Su']
 
-
-const DAYS_IT = ['Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa', 'Do']
-const DAYS_EN = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
-
-
-// Simulated booked ranges (for demo)
-const BOOKED_RANGES = [
-  { start: new Date(2025, 6, 10), end: new Date(2025, 6, 18) },
-  { start: new Date(2025, 7, 1), end: new Date(2025, 7, 12) },
-  { start: new Date(2025, 7, 20), end: new Date(2025, 7, 28) },
-  { start: new Date(2025, 8, 5), end: new Date(2025, 8, 10) },
-]
-
-function isBooked(date: Date): boolean {
-  return BOOKED_RANGES.some(
-    range => date >= range.start && date <= range.end
-  )
-}
-
-function getSeasonPrice(month: number): number {
-  const lowMonths = [0, 1, 2, 10, 11]
-  const highMonths = [6, 7]
-  if (lowMonths.includes(month)) return 320
-  if (highMonths.includes(month)) return 590
+function getSeasonPrice(month: number) {
+  if ([6, 7].includes(month)) return 590
+  if ([0, 1, 2, 10, 11].includes(month)) return 320
   return 420
 }
 
-function getDaysInMonth(year: number, month: number) {
-  return new Date(year, month + 1, 0).getDate()
+function toDateStr(d: Date) {
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`
 }
 
-function getFirstDayOfMonth(year: number, month: number) {
-  return new Date(year, month, 1).getDay()
+function nightsBetween(ci: string, co: string) {
+  return Math.round((new Date(co).getTime() - new Date(ci).getTime()) / 86400000)
 }
 
 function AvailabilityContent() {
-  const { t, lang } = useLanguage()
+  const { lang } = useLanguage()
   const searchParams = useSearchParams()
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
+  const todayDate = new Date()
+  todayDate.setHours(0,0,0,0)
 
   const MONTHS = lang === 'en' ? MONTHS_EN : MONTHS_IT
   const DAYS = lang === 'en' ? DAYS_EN : DAYS_IT
 
-  const [viewYear, setViewYear] = useState(today.getFullYear())
-  const [viewMonth, setViewMonth] = useState(today.getMonth())
-  const [checkIn, setCheckIn] = useState<Date | null>(null)
-  const [checkOut, setCheckOut] = useState<Date | null>(null)
-  const [hoverDate, setHoverDate] = useState<Date | null>(null)
+  const [viewYear, setViewYear] = useState(todayDate.getFullYear())
+  const [viewMonth, setViewMonth] = useState(todayDate.getMonth())
+  const [checkin, setCheckin] = useState<string | null>(null)
+  const [checkout, setCheckout] = useState<string | null>(null)
   const [guests, setGuests] = useState(2)
+  const [bookedDates, setBookedDates] = useState<Set<string>>(new Set())
+  const [loading, setLoading] = useState(true)
+  const [warning, setWarning] = useState<string | null>(null)
 
   useEffect(() => {
-    const ci = searchParams.get('checkIn')
-    const co = searchParams.get('checkOut')
-    const g = searchParams.get('guests')
-    if (ci) setCheckIn(new Date(ci))
-    if (co) setCheckOut(new Date(co))
+    fetch('/api/calendar').then(r => r.json()).then(d => {
+      if (d.bookedDates) setBookedDates(new Set(d.bookedDates))
+    }).catch(() => {}).finally(() => setLoading(false))
+  }, [])
+
+  useEffect(() => {
+    const ci = searchParams.get('checkIn'), co = searchParams.get('checkOut'), g = searchParams.get('guests')
+    if (ci) setCheckin(ci)
+    if (co) setCheckout(co)
     if (g) setGuests(parseInt(g))
   }, [searchParams])
 
-  const prevMonth = () => {
-    if (viewMonth === 0) { setViewYear(y => y - 1); setViewMonth(11) }
-    else setViewMonth(m => m - 1)
-  }
+  const isBooked = useCallback((d: Date) => bookedDates.has(toDateStr(d)), [bookedDates])
 
-  const nextMonth = () => {
-    if (viewMonth === 11) { setViewYear(y => y + 1); setViewMonth(0) }
-    else setViewMonth(m => m + 1)
-  }
+  const prevMonth = () => { if (viewMonth === 0) { setViewYear(y => y-1); setViewMonth(11) } else setViewMonth(m => m-1) }
+  const nextMonth = () => { if (viewMonth === 11) { setViewYear(y => y+1); setViewMonth(0) } else setViewMonth(m => m+1) }
 
-  const handleDateClick = (date: Date) => {
-    if (isBooked(date) || date < today) return
-    if (!checkIn || (checkIn && checkOut)) {
-      setCheckIn(date)
-      setCheckOut(null)
+  const handleDayClick = (dateStr: string) => {
+    setWarning(null)
+    if (!checkin || (checkin && checkout)) {
+      setCheckin(dateStr); setCheckout(null)
     } else {
-      if (date < checkIn) {
-        setCheckIn(date)
-        setCheckOut(null)
-      } else {
-        setCheckOut(date)
+      if (dateStr <= checkin) { setCheckin(dateStr); setCheckout(null); return }
+      // Check no booked dates in range
+      const ci = new Date(checkin), co = new Date(dateStr)
+      for (let d = new Date(ci); d <= co; d.setDate(d.getDate()+1)) {
+        if (bookedDates.has(toDateStr(d))) {
+          setWarning(lang === 'it' ? 'Le date selezionate includono giorni non disponibili' : 'Selected dates include unavailable days')
+          return
+        }
       }
+      setCheckout(dateStr)
     }
   }
 
-  const isInRange = (date: Date) => {
-    if (!checkIn) return false
-    const end = checkOut || hoverDate
-    if (!end) return false
-    return date > checkIn && date < end
+  const step = !checkin ? 1 : !checkout ? 1 : 3
+  const nights = checkin && checkout ? nightsBetween(checkin, checkout) : 0
+  const pricePerNight = checkin ? getSeasonPrice(new Date(checkin).getMonth()) : 0
+  const basePrice = pricePerNight * nights
+  const cleaningFee = 30
+  const serviceFee = 15
+  const discount = nights >= 7 ? Math.round(basePrice * 0.1) : 0
+  const total = basePrice - discount + cleaningFee + serviceFee
+
+  const formatDateDisplay = (str: string | null) => {
+    if (!str) return '— —'
+    const [y,m,d] = str.split('-')
+    return `${d}/${m}/${y}`
   }
 
-  const isSelected = (date: Date) => {
-    if (checkIn && date.toDateString() === checkIn.toDateString()) return 'start'
-    if (checkOut && date.toDateString() === checkOut.toDateString()) return 'end'
-    return false
-  }
-
-  const nights = checkIn && checkOut
-    ? Math.ceil((checkOut.getTime() - checkIn.getTime()) / 86400000)
-    : 0
-
-  const seasonPrice = checkIn ? getSeasonPrice(checkIn.getMonth()) : listingData.pricing.basePrice
-  const subtotal = nights * seasonPrice
-  const total = subtotal + listingData.pricing.cleaningFee + listingData.pricing.serviceFee
-
-  const renderCalendar = (year: number, month: number) => {
-    const daysInMonth = getDaysInMonth(year, month)
-    const firstDay = getFirstDayOfMonth(year, month)
-    const adjustedFirstDay = (firstDay + 6) % 7 // Monday start
+  // Render a single month
+  const renderMonth = (year: number, month: number) => {
+    const daysInMonth = new Date(year, month+1, 0).getDate()
+    let firstDow = new Date(year, month, 1).getDay()
+    firstDow = firstDow === 0 ? 6 : firstDow - 1 // Monday = 0
 
     const cells = []
+    for (let i = 0; i < firstDow; i++) cells.push(<div key={`e${month}-${i}`} className="cal-day empty" />)
 
-    // Empty cells
-    for (let i = 0; i < adjustedFirstDay; i++) {
-      cells.push(<div key={`empty-${i}`} />)
-    }
-
-    // Day cells
     for (let d = 1; d <= daysInMonth; d++) {
       const date = new Date(year, month, d)
-      const isPast = date < today
+      const dateStr = toDateStr(date)
+      const isPast = date < todayDate
       const booked = isBooked(date)
-      const selState = isSelected(date)
-      const inRange = isInRange(date)
+      const isToday = date.toDateString() === new Date().toDateString()
+
+      let cls = 'cal-day'
+      if (isToday) cls += ' today'
+      if (isPast) cls += ' past'
+      else if (booked) cls += ' booked'
+      else if (checkin && checkout) {
+        if (dateStr === checkin) cls += ' range-start'
+        else if (dateStr === checkout) cls += ' range-end'
+        else if (dateStr > checkin && dateStr < checkout) cls += ' in-range'
+      } else if (dateStr === checkin) cls += ' selected'
 
       cells.push(
-        <button
-          key={d}
-          onClick={() => handleDateClick(date)}
-          onMouseEnter={() => checkIn && !checkOut && setHoverDate(date)}
-          onMouseLeave={() => setHoverDate(null)}
-          disabled={isPast || booked}
-          className={clsx(
-            'relative h-10 w-full text-sm transition-all duration-150 font-medium',
-            isPast || booked
-              ? 'text-stone/40 cursor-not-allowed'
-              : 'cursor-pointer hover:bg-ocean hover:text-sand',
-            selState === 'start' || selState === 'end'
-              ? 'bg-ocean text-sand'
-              : inRange
-              ? 'bg-ocean/10 text-ocean'
-              : !isPast && !booked
-              ? 'text-ocean'
-              : '',
-            booked && !isPast && 'line-through'
-          )}
+        <div
+          key={`d${month}-${d}`}
+          className={cls}
+          onClick={() => !isPast && !booked && handleDayClick(dateStr)}
         >
           {d}
-        </button>
+        </div>
       )
     }
-
     return cells
   }
 
-  const formatDate = (date: Date | null) => {
-    if (!date) return '—'
-    const locale = lang === 'en' ? 'en-GB' : 'it-IT'
-    return date.toLocaleDateString(locale, { day: 'numeric', month: 'short', year: 'numeric' })
-  }
+  const nextM = viewMonth === 11 ? 0 : viewMonth + 1
+  const nextY = viewMonth === 11 ? viewYear + 1 : viewYear
 
   return (
-    <div className="min-h-screen bg-sand pt-24">
-      {/* Header */}
-      <div className="bg-white border-b border-sand-dark">
-        <div className="container-luxury py-12">
-          <p className="text-xs font-medium tracking-widest uppercase text-stone mb-4">{t({ it: 'Pianifica il soggiorno', en: 'Plan your stay' })}</p>
-          <h1 className="font-serif text-display-lg text-ocean">{t({ it: 'Verifica disponibilità', en: 'Check availability' })}</h1>
-        </div>
-      </div>
+    <div className="min-h-screen pt-24" style={{ background: '#F5EFE0', fontFamily: "'Jost', var(--font-jost), sans-serif" }}>
+      <style>{`
+        .cal-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 13px; border-radius: 8px; cursor: pointer; transition: all .15s; position: relative; user-select: none; }
+        .cal-day:hover:not(.booked):not(.past):not(.empty) { background: #F5EFE0; }
+        .cal-day.empty { cursor: default; }
+        .cal-day.past { color: rgba(92,79,58,.3); cursor: not-allowed; }
+        .cal-day.booked { background: rgba(155,34,38,.08); color: rgba(155,34,38,.5); cursor: not-allowed; text-decoration: line-through; }
+        .cal-day.booked::after { content: ''; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: rgba(155,34,38,.4); }
+        .cal-day.selected { background: #C4935A; color: #FDFAF4; font-weight: 500; }
+        .cal-day.in-range { background: rgba(196,147,90,.15); color: #2C2416; border-radius: 0; }
+        .cal-day.range-start { border-radius: 8px 0 0 8px; background: #C4935A; color: #FDFAF4; font-weight: 500; }
+        .cal-day.range-end { border-radius: 0 8px 8px 0; background: #C4935A; color: #FDFAF4; font-weight: 500; }
+        .cal-day.range-start.range-end { border-radius: 8px; }
+        .cal-day.today { font-weight: 500; box-shadow: inset 0 0 0 1.5px #C4935A; }
+      `}</style>
 
-      <div className="container-luxury py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          {/* Calendar */}
-          <div className="lg:col-span-2">
-            {/* Navigation */}
-            <div className="flex items-center justify-between mb-6">
-              <button onClick={prevMonth} className="p-2 hover:bg-sand-dark transition-colors rounded-sm">
-                <ChevronLeft size={20} className="text-ocean" />
-              </button>
-              <h2 className="font-serif text-xl text-ocean">
-                {MONTHS[viewMonth]} {viewYear}
-              </h2>
-              <button onClick={nextMonth} className="p-2 hover:bg-sand-dark transition-colors rounded-sm">
-                <ChevronRight size={20} className="text-ocean" />
-              </button>
-            </div>
+      <div style={{ maxWidth: 960, margin: '0 auto', padding: '0 24px 60px' }}>
+        {/* Header */}
+        <p style={{ fontSize: 14, color: '#5C4F3A', marginBottom: 6 }}>La Suite N4 · Alghero, Sardegna</p>
+        <h1 style={{ fontFamily: "'Cormorant Garamond', var(--font-cormorant), serif", fontSize: 40, fontWeight: 300, marginBottom: 40 }}>
+          {lang === 'it' ? 'Prenota la tua ' : 'Book your '}
+          <em style={{ color: '#C4935A' }}>{lang === 'it' ? 'vacanza' : 'vacation'}</em>
+        </h1>
 
-            {/* Day headers */}
-            <div className="grid grid-cols-7 mb-2">
-              {DAYS.map(d => (
-                <div key={d} className="text-center text-xs font-medium text-stone py-2">{d}</div>
-              ))}
-            </div>
-
-            {/* Calendar cells */}
-            <div className="grid grid-cols-7 gap-1">
-              {renderCalendar(viewYear, viewMonth)}
-            </div>
-
-            {/* Legend */}
-            <div className="flex items-center gap-6 mt-6 text-xs text-stone">
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-ocean" />
-                <span>{t({ it: 'Selezionato', en: 'Selected' })}</span>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: 32, alignItems: 'start' }} className="booking-grid">
+          {/* LEFT — Calendar */}
+          <div>
+            {/* Month 1 */}
+            <div style={{ background: '#FDFAF4', borderRadius: 16, border: '1px solid #EDE4CF', overflow: 'hidden', marginBottom: 16 }}>
+              <div style={{ padding: '24px 28px 0' }}>
+                <div style={{ fontFamily: "'Cormorant Garamond', var(--font-cormorant), serif", fontSize: 22, fontWeight: 400, marginBottom: 4 }}>
+                  {lang === 'it' ? 'Scegli le date' : 'Choose dates'}
+                </div>
+                <div style={{ fontSize: 13, color: '#5C4F3A' }}>
+                  {lang === 'it' ? 'Seleziona check-in e check-out — le date in rosso non sono disponibili' : 'Select check-in and check-out — red dates are unavailable'}
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-ocean/10" />
-                <span>{t({ it: 'Il tuo soggiorno', en: 'Your stay' })}</span>
+
+              {/* Nav */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 28px 12px' }}>
+                <button onClick={prevMonth} style={{ background: 'none', border: '1px solid #EDE4CF', borderRadius: 6, width: 32, height: 32, cursor: 'pointer', fontSize: 16, color: '#5C4F3A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>‹</button>
+                <div style={{ fontFamily: "'Cormorant Garamond', var(--font-cormorant), serif", fontSize: 20, fontWeight: 400 }}>{MONTHS[viewMonth]} {viewYear}</div>
+                <button onClick={nextMonth} style={{ background: 'none', border: '1px solid #EDE4CF', borderRadius: 6, width: 32, height: 32, cursor: 'pointer', fontSize: 16, color: '#5C4F3A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>›</button>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-sand-dark" />
-                <span>{t({ it: 'Non disponibile', en: 'Unavailable' })}</span>
+
+              <div style={{ padding: '0 20px 20px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 2, marginBottom: 4 }}>
+                  {DAYS.map(d => <div key={d} style={{ textAlign: 'center', fontSize: 11, letterSpacing: '.06em', textTransform: 'uppercase', color: '#5C4F3A', padding: '6px 0' }}>{d}</div>)}
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 3 }}>
+                  {renderMonth(viewYear, viewMonth)}
+                </div>
+              </div>
+
+              {/* Warning */}
+              {warning && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, padding: '10px 14px', borderRadius: 8, margin: '0 28px 16px', background: 'rgba(155,34,38,.08)', color: '#9B2226' }}>
+                  ⚠ {warning}
+                </div>
+              )}
+
+              {/* Legend */}
+              <div style={{ display: 'flex', gap: 20, padding: '0 28px 20px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: '#5C4F3A' }}>
+                  <div style={{ width: 10, height: 10, borderRadius: 3, background: '#F5EFE0', border: '1px solid #EDE4CF' }} />
+                  {lang === 'it' ? 'Disponibile' : 'Available'}
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: '#5C4F3A' }}>
+                  <div style={{ width: 10, height: 10, borderRadius: 3, background: 'rgba(155,34,38,.12)' }} />
+                  {lang === 'it' ? 'Non disponibile' : 'Unavailable'}
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: '#5C4F3A' }}>
+                  <div style={{ width: 10, height: 10, borderRadius: 3, background: '#C4935A' }} />
+                  {lang === 'it' ? 'Selezionato' : 'Selected'}
+                </div>
               </div>
             </div>
 
-            <div className="mt-6 p-4 bg-white border border-sand-dark flex items-start gap-3">
-              <Info size={16} className="text-ocean flex-shrink-0 mt-0.5" />
-              <p className="text-xs text-stone">
-                {t({ it: `Questo calendario mostra la disponibilità indicativa. La disponibilità confermata e il prezzo esatto verranno comunicati dopo la prenotazione. Soggiorno minimo: ${listingData.pricing.minimumNights} notti.`, en: `This calendar shows indicative availability. Confirmed availability and exact price will be communicated after booking. Minimum stay: ${listingData.pricing.minimumNights} nights.` })}
-              </p>
+            {/* Month 2 */}
+            <div style={{ background: '#FDFAF4', borderRadius: 16, border: '1px solid #EDE4CF', overflow: 'hidden' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px 28px 12px' }}>
+                <div style={{ fontFamily: "'Cormorant Garamond', var(--font-cormorant), serif", fontSize: 20, fontWeight: 400 }}>{MONTHS[nextM]} {nextY}</div>
+              </div>
+              <div style={{ padding: '0 20px 20px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 2, marginBottom: 4 }}>
+                  {DAYS.map(d => <div key={`2${d}`} style={{ textAlign: 'center', fontSize: 11, letterSpacing: '.06em', textTransform: 'uppercase', color: '#5C4F3A', padding: '6px 0' }}>{d}</div>)}
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 3 }}>
+                  {renderMonth(nextY, nextM)}
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Summary */}
-          <div>
-            <div className="bg-white border border-sand-dark p-6 sticky top-24">
-              <h3 className="font-serif text-xl text-ocean mb-6">{t({ it: 'Il tuo soggiorno', en: 'Your stay' })}</h3>
+          {/* RIGHT — Sidebar */}
+          <div style={{ background: '#FDFAF4', borderRadius: 16, border: '1px solid #EDE4CF', overflow: 'hidden' }}>
+            <div style={{ padding: 28 }}>
+              {/* Steps */}
+              <div style={{ display: 'flex', marginBottom: 24, border: '1px solid #EDE4CF', borderRadius: 10, overflow: 'hidden' }}>
+                {[
+                  { n: 1, label: lang === 'it' ? '① Date' : '① Dates' },
+                  { n: 2, label: lang === 'it' ? '② Ospiti' : '② Guests' },
+                  { n: 3, label: lang === 'it' ? '③ Prenota' : '③ Book' },
+                ].map(s => (
+                  <div key={s.n} style={{
+                    flex: 1, padding: 10, textAlign: 'center', fontSize: 12, fontWeight: 500,
+                    color: s.n < step ? '#2D6A4F' : s.n === step ? '#C4935A' : '#5C4F3A',
+                    background: s.n < step ? 'rgba(45,106,79,.06)' : s.n === step ? '#FDFAF4' : '#F5EFE0',
+                    borderRight: s.n < 3 ? '1px solid #EDE4CF' : 'none',
+                    transition: 'all .2s',
+                  }}>
+                    {s.label}
+                  </div>
+                ))}
+              </div>
 
-              <div className="space-y-4 mb-6">
-                <div className="p-4 border border-sand-dark">
-                  <div className="flex items-center gap-2 mb-1">
-                    <CalendarDays size={14} className="text-sunset" />
-                    <span className="text-xs font-medium tracking-widest uppercase text-stone">{t({ it: 'Arrivo', en: 'Check-in' })}</span>
-                  </div>
-                  <p className="text-sm text-ocean">{formatDate(checkIn)}</p>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', var(--font-cormorant), serif", fontSize: 22, fontWeight: 300, marginBottom: 20 }}>
+                {lang === 'it' ? 'Riepilogo' : 'Summary'}
+              </h3>
+
+              {/* Dates */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 20 }}>
+                <div style={{ background: '#F5EFE0', borderRadius: 8, padding: '12px 14px' }}>
+                  <div style={{ fontSize: 10, letterSpacing: '.08em', textTransform: 'uppercase', color: '#5C4F3A', marginBottom: 4 }}>Check-in</div>
+                  <div style={{ fontSize: 15, fontWeight: checkin ? 500 : 300, color: checkin ? '#2C2416' : 'rgba(92,79,58,.4)' }}>{formatDateDisplay(checkin)}</div>
                 </div>
-                <div className="p-4 border border-sand-dark">
-                  <div className="flex items-center gap-2 mb-1">
-                    <CalendarDays size={14} className="text-sunset" />
-                    <span className="text-xs font-medium tracking-widest uppercase text-stone">{t({ it: 'Partenza', en: 'Check-out' })}</span>
-                  </div>
-                  <p className="text-sm text-ocean">{formatDate(checkOut)}</p>
-                </div>
-                <div className="p-4 border border-sand-dark">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Users size={14} className="text-sunset" />
-                    <span className="text-xs font-medium tracking-widest uppercase text-stone">{t({ it: 'Ospiti', en: 'Guests' })}</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <button
-                      onClick={() => setGuests(g => Math.max(1, g - 1))}
-                      className="w-7 h-7 border border-sand-dark flex items-center justify-center text-ocean hover:bg-sand-dark"
-                    >−</button>
-                    <span className="text-sm text-ocean">{guests}</span>
-                    <button
-                      onClick={() => setGuests(g => Math.min(6, g + 1))}
-                      className="w-7 h-7 border border-sand-dark flex items-center justify-center text-ocean hover:bg-sand-dark"
-                    >+</button>
-                  </div>
+                <div style={{ background: '#F5EFE0', borderRadius: 8, padding: '12px 14px' }}>
+                  <div style={{ fontSize: 10, letterSpacing: '.08em', textTransform: 'uppercase', color: '#5C4F3A', marginBottom: 4 }}>Check-out</div>
+                  <div style={{ fontSize: 15, fontWeight: checkout ? 500 : 300, color: checkout ? '#2C2416' : 'rgba(92,79,58,.4)' }}>{formatDateDisplay(checkout)}</div>
                 </div>
               </div>
 
-              {nights >= listingData.pricing.minimumNights && (
-                <div className="border-t border-sand-dark pt-4 mb-6 space-y-2 text-sm">
-                  <div className="flex justify-between text-stone">
-                    <span>€{seasonPrice} × {nights} {nights === 1 ? t({ it: 'notte', en: 'night' }) : t({ it: 'notti', en: 'nights' })}</span>
-                    <span>€{subtotal}</span>
-                  </div>
-                  <div className="flex justify-between text-stone">
-                    <span>{t({ it: 'Pulizie finali', en: 'Cleaning fee' })}</span>
-                    <span>€{listingData.pricing.cleaningFee}</span>
-                  </div>
-                  <div className="flex justify-between text-stone">
-                    <span>{t({ it: 'Spese di servizio', en: 'Service fee' })}</span>
-                    <span>€{listingData.pricing.serviceFee}</span>
-                  </div>
-                  <div className="flex justify-between font-medium text-ocean pt-2 border-t border-sand-dark">
-                    <span>{t({ it: 'Totale', en: 'Total' })}</span>
-                    <span>€{total}</span>
-                  </div>
+              {/* Guests */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid #EDE4CF', marginBottom: 16 }}>
+                <span style={{ fontSize: 14 }}>{lang === 'it' ? 'Ospiti adulti' : 'Adult guests'}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <button onClick={() => setGuests(g => Math.max(1, g-1))} style={{ width: 28, height: 28, borderRadius: '50%', border: '1px solid #EDE4CF', background: 'none', cursor: 'pointer', fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#5C4F3A' }}>−</button>
+                  <span style={{ fontSize: 16, fontWeight: 500, minWidth: 20, textAlign: 'center' }}>{guests}</span>
+                  <button onClick={() => setGuests(g => Math.min(8, g+1))} style={{ width: 28, height: 28, borderRadius: '50%', border: '1px solid #EDE4CF', background: 'none', cursor: 'pointer', fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#5C4F3A' }}>+</button>
                 </div>
-              )}
+              </div>
 
-              {nights > 0 && nights < listingData.pricing.minimumNights && (
-                <p className="text-xs text-red-500 mb-4 flex items-center gap-1">
-                  <Info size={12} /> {t({ it: `Minimo ${listingData.pricing.minimumNights} notti richieste`, en: `Minimum ${listingData.pricing.minimumNights} nights required` })}
+              {/* Price breakdown */}
+              {nights > 0 ? (
+                <>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, padding: '10px 0', borderBottom: '1px solid #EDE4CF' }}>
+                    <span style={{ color: '#5C4F3A' }}>€{pricePerNight} × {nights} {lang === 'it' ? 'notti' : 'nights'}</span>
+                    <span>€{basePrice}</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, padding: '10px 0', borderBottom: '1px solid #EDE4CF' }}>
+                    <span style={{ color: '#5C4F3A' }}>{lang === 'it' ? 'Pulizie finali' : 'Cleaning fee'}</span>
+                    <span>€{cleaningFee}</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, padding: '10px 0', borderBottom: '1px solid #EDE4CF' }}>
+                    <span style={{ color: '#5C4F3A' }}>{lang === 'it' ? 'Spese di servizio' : 'Service fee'}</span>
+                    <span>€{serviceFee}</span>
+                  </div>
+                  {discount > 0 && (
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, padding: '10px 0', borderBottom: '1px solid #EDE4CF' }}>
+                      <span style={{ color: '#5C4F3A' }}>{lang === 'it' ? 'Sconto 7+ notti' : '7+ nights discount'} <span style={{ background: 'rgba(45,106,79,.1)', color: '#2D6A4F', fontSize: 12, fontWeight: 500, padding: '2px 8px', borderRadius: 20 }}>–10%</span></span>
+                      <span style={{ color: '#2D6A4F' }}>–€{discount}</span>
+                    </div>
+                  )}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '16px 0 20px', borderTop: '2px solid #2C2416', marginTop: 4 }}>
+                    <span style={{ fontSize: 13, fontWeight: 500, textTransform: 'uppercase', letterSpacing: '.05em' }}>{lang === 'it' ? 'Totale' : 'Total'}</span>
+                    <span style={{ fontFamily: "'Cormorant Garamond', var(--font-cormorant), serif", fontSize: 36, fontWeight: 300 }}>€{total}</span>
+                  </div>
+
+                  <Link
+                    href={`/book?checkIn=${checkin}&checkOut=${checkout}&guests=${guests}`}
+                    style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+                      width: '100%', background: '#C4935A', color: '#FDFAF4', border: 'none',
+                      fontFamily: "'Jost', var(--font-jost), sans-serif", fontSize: 15, fontWeight: 500, letterSpacing: '.03em',
+                      padding: 18, borderRadius: 8, textDecoration: 'none',
+                      transition: 'opacity .2s, transform .2s',
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.opacity = '0.9'; e.currentTarget.style.transform = 'translateY(-1px)' }}
+                    onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'none' }}
+                  >
+                    {lang === 'it' ? `Prenota ora — €${total}` : `Book now — €${total}`}
+                  </Link>
+
+                  <p style={{ fontSize: 12, color: '#5C4F3A', textAlign: 'center', marginTop: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+                    <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ opacity: .5 }}><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                    {lang === 'it' ? 'Pagamento sicuro · Cancellazione flessibile' : 'Secure payment · Flexible cancellation'}
+                  </p>
+                </>
+              ) : (
+                <p style={{ fontSize: 14, color: '#5C4F3A', padding: '16px 0', fontStyle: 'italic', fontFamily: "'Cormorant Garamond', var(--font-cormorant), serif" }}>
+                  {lang === 'it' ? 'Seleziona le date per vedere il prezzo...' : 'Select dates to see pricing...'}
                 </p>
               )}
 
-              {checkIn && checkOut && nights >= listingData.pricing.minimumNights ? (
-                <Link
-                  href={`/book?checkIn=${checkIn.toISOString().split('T')[0]}&checkOut=${checkOut.toISOString().split('T')[0]}&guests=${guests}`}
-                  className="btn-primary w-full justify-center"
-                >
-                  {t({ it: 'Continua con la prenotazione', en: 'Continue to booking' })}
-                </Link>
-              ) : (
-                <button
-                  disabled
-                  className="w-full py-3 bg-sand-dark text-stone text-xs font-medium tracking-widest uppercase cursor-not-allowed"
-                >
-                  {!checkIn
-                    ? t({ it: 'Seleziona data di arrivo', en: 'Select check-in date' })
-                    : !checkOut
-                    ? t({ it: 'Seleziona data di partenza', en: 'Select check-out date' })
-                    : t({ it: `Minimo ${listingData.pricing.minimumNights} notti`, en: `Minimum ${listingData.pricing.minimumNights} nights` })}
-                </button>
-              )}
-
-              <p className="text-xs text-stone text-center mt-3">{t({ it: 'Non ti verrà addebitato nulla ora', en: "You won't be charged anything now" })}</p>
-
-              <div className="mt-4 pt-4 border-t border-sand-dark text-center">
-                <p className="text-xs text-stone mb-2">{t({ it: 'O prenota su', en: 'Or book on' })}</p>
-                <a
-                  href={listingData.airbnbUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs font-medium text-ocean hover:text-sunset transition-colors uppercase tracking-widest"
-                >
-                  Airbnb →
+              {/* WhatsApp alternative */}
+              <div style={{ marginTop: 20, paddingTop: 20, borderTop: '1px solid #EDE4CF', textAlign: 'center' }}>
+                <p style={{ fontSize: 12, color: '#5C4F3A', marginBottom: 8 }}>{lang === 'it' ? 'Oppure contattaci direttamente' : 'Or contact us directly'}</p>
+                <a href="https://wa.me/393478327243" target="_blank" rel="noopener noreferrer"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 13, fontWeight: 500, color: '#2D6A4F', textDecoration: 'none' }}>
+                  <svg width={16} height={16} viewBox="0 0 24 24" fill="#2D6A4F"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  WhatsApp Concierge
                 </a>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Responsive */}
+      <style>{`
+        @media (max-width: 768px) {
+          .booking-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </div>
   )
 }
 
 export default function AvailabilityPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen pt-24 flex items-center justify-center text-stone">Loading...</div>}>
+    <Suspense fallback={<div style={{ minHeight: '100vh', background: '#F5EFE0', paddingTop: 120, textAlign: 'center', color: '#5C4F3A', fontSize: 14 }}>Caricamento...</div>}>
       <AvailabilityContent />
     </Suspense>
   )

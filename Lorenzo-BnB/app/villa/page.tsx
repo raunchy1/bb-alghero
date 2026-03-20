@@ -29,7 +29,7 @@ export default function VillaPage() {
         <div className="absolute inset-0">
           <Image
             src={listingData.images.gallery[1].url}
-            alt="Lorenzo's B&B"
+            alt="La Suite N4 Alghero"
             fill
             priority
             className="object-cover object-center"

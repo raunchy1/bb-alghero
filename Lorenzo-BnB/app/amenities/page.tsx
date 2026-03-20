@@ -17,7 +17,7 @@ export default function AmenitiesPage() {
           <p className="text-xs font-medium tracking-widest uppercase text-stone mb-4">{t({ it: 'Cosa è incluso', en: "What's included" })}</p>
           <h1 className="font-serif text-2xl sm:text-display-lg text-ocean mb-4">{t({ it: 'Servizi', en: 'Amenities' })}</h1>
           <p className="text-stone max-w-xl text-sm leading-relaxed">
-            {t({ it: "Lorenzo's B&B è completamente attrezzato per un soggiorno confortevole e senza pensieri. Dal balcone privato alla colazione inclusa, ogni dettaglio è stato curato.", en: "Lorenzo's B&B is fully equipped for a comfortable and worry-free stay. From the private balcony to the included breakfast, every detail has been taken care of." })}
+            {t({ it: "La Suite N4 Alghero è completamente attrezzato per un soggiorno confortevole e senza pensieri. Dal balcone privato alla colazione inclusa, ogni dettaglio è stato curato.", en: "La Suite N4 Alghero is fully equipped for a comfortable and worry-free stay. From the private balcony to the included breakfast, every detail has been taken care of." })}
           </p>
         </div>
       </section>

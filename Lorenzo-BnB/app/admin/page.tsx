@@ -3,6 +3,18 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
+const inputStyle: React.CSSProperties = {
+  width: '100%',
+  border: '1px solid rgba(26,43,60,0.15)',
+  borderRadius: 4,
+  padding: '10px 14px',
+  fontFamily: "'Jost', sans-serif",
+  fontSize: 14,
+  outline: 'none',
+  transition: 'border-color 0.2s',
+  boxSizing: 'border-box' as const,
+}
+
 export default function AdminLoginPage() {
   const router = useRouter()
   const [email, setEmail] = useState('')
@@ -39,47 +51,130 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-cream flex items-center justify-center px-4">
-      <div className="w-full max-w-sm">
-        <div className="text-center mb-8">
-          <h1 className="text-display-sm text-dark">Admin</h1>
-          <p className="text-grey text-sm mt-2">Il B&B di Lorenzo — Pannello di gestione</p>
+    <div
+      style={{
+        minHeight: '100vh',
+        backgroundColor: '#FAF8F4',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 16,
+      }}
+    >
+      <div style={{ width: '100%', maxWidth: 380 }}>
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
+          <h1
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: 'italic',
+              fontSize: 28,
+              color: '#1A2B3C',
+              fontWeight: 500,
+              margin: 0,
+              marginBottom: 8,
+            }}
+          >
+            La Suite N4
+          </h1>
+          <p
+            style={{
+              fontFamily: "'Jost', sans-serif",
+              fontSize: 12,
+              color: '#C4935A',
+              textTransform: 'uppercase',
+              letterSpacing: '0.15em',
+              margin: 0,
+            }}
+          >
+            Pannello di Gestione
+          </p>
         </div>
 
-        <div className="bg-white rounded-xl p-6 shadow-sm">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-xs font-medium text-dark mb-1.5">Email</label>
+        <div
+          style={{
+            backgroundColor: '#fff',
+            padding: 32,
+            boxShadow: '0 1px 8px rgba(0,0,0,0.06)',
+          }}
+        >
+          <form onSubmit={handleSubmit}>
+            <div style={{ marginBottom: 16 }}>
+              <label
+                style={{
+                  display: 'block',
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: 12,
+                  color: '#1A2B3C',
+                  marginBottom: 6,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                }}
+              >
+                Email
+              </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@lasuiten4.it"
                 required
-                className="w-full bg-white border border-light-grey rounded-lg px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors"
+                style={inputStyle}
+                onFocus={(e) => { e.currentTarget.style.borderColor = '#C4935A' }}
+                onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(26,43,60,0.15)' }}
               />
             </div>
 
-            <div>
-              <label className="block text-xs font-medium text-dark mb-1.5">Password</label>
+            <div style={{ marginBottom: 24 }}>
+              <label
+                style={{
+                  display: 'block',
+                  fontFamily: "'Jost', sans-serif",
+                  fontSize: 12,
+                  color: '#1A2B3C',
+                  marginBottom: 6,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                }}
+              >
+                Password
+              </label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 required
-                className="w-full bg-white border border-light-grey rounded-lg px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors"
+                style={inputStyle}
+                onFocus={(e) => { e.currentTarget.style.borderColor = '#C4935A' }}
+                onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(26,43,60,0.15)' }}
               />
             </div>
 
             {error && (
-              <p className="text-error text-xs font-medium">{error}</p>
+              <p style={{ color: '#ef4444', fontFamily: "'Jost', sans-serif", fontSize: 13, margin: '0 0 16px 0' }}>
+                {error}
+              </p>
             )}
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-primary text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-secondary transition-colors disabled:opacity-50"
+              style={{
+                width: '100%',
+                backgroundColor: '#C4935A',
+                color: '#fff',
+                border: 'none',
+                borderRadius: 2,
+                padding: '12px 24px',
+                fontFamily: "'Jost', sans-serif",
+                fontSize: 13,
+                letterSpacing: '0.05em',
+                cursor: loading ? 'not-allowed' : 'pointer',
+                opacity: loading ? 0.6 : 1,
+                transition: 'background-color 0.2s',
+              }}
+              onMouseEnter={(e) => { if (!loading) e.currentTarget.style.backgroundColor = '#b38249' }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#C4935A' }}
             >
               {loading ? 'Accesso...' : 'Accedi'}
             </button>

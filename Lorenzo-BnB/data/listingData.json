@@ -1,5 +1,5 @@
 {
-  "title": "Lorenzo's B&B",
+  "title": "La Suite N4 Alghero",
   "tagline": {
     "it": "La tua camera di lusso ad Alghero",
     "en": "Your luxury room in Alghero"
@@ -33,8 +33,8 @@
   },
   "description": {
     "short": {
-      "it": "Lorenzo's B&B offre una camera di lusso per 2 persone nel cuore di Alghero, a pochi passi dal mare. Design moderno, letto matrimoniale di qualità, balcone privato e tutti i comfort per un soggiorno indimenticabile.",
-      "en": "Lorenzo's B&B offers a luxury room for 2 in the heart of Alghero, steps from the sea. Modern design, quality double bed, private balcony and all the comforts for an unforgettable stay."
+      "it": "La Suite N4 Alghero offre una camera di lusso per 2 persone nel cuore di Alghero, a pochi passi dal mare. Design moderno, letto matrimoniale di qualità, balcone privato e tutti i comfort per un soggiorno indimenticabile.",
+      "en": "La Suite N4 Alghero offers a luxury room for 2 in the heart of Alghero, steps from the sea. Modern design, quality double bed, private balcony and all the comforts for an unforgettable stay."
     },
     "full": {
       "it": "Benvenuti nel nostro B&B nel cuore di Alghero, una delle città più affascinanti della Sardegna.\n\nLa camera luxury è stata progettata per offrire il massimo comfort: letto matrimoniale con biancheria di qualità, aria condizionata, ampie finestre che lasciano entrare la luce naturale e un balcone privato dove rilassarsi.\n\nL'arredamento moderno e i dettagli di design creano un'atmosfera elegante e accogliente. A pochi passi dal mare e dal centro storico catalano di Alghero, la nostra posizione è ideale per esplorare le meraviglie della zona.\n\nColazione inclusa. Wi-Fi gratuito. Parcheggio disponibile nelle vicinanze.",
@@ -275,9 +275,9 @@
     ]
   },
   "seo": {
-    "title": "Lorenzo's B&B · Camera luxury ad Alghero, Sardegna",
+    "title": "La Suite N4 Alghero · Camera luxury ad Alghero, Sardegna",
     "description": "Camera luxury per 2 persone ad Alghero, Sardegna. Balcone privato, colazione inclusa, Wi-Fi gratuito. A pochi passi dal mare e dal centro storico catalano.",
-    "keywords": ["B&B Alghero", "camera lusso Alghero", "bed and breakfast Alghero", "alloggio Alghero Sardegna", "Lorenzo B&B Alghero"],
+    "keywords": ["La Suite N4 Alghero", "camera lusso Alghero", "bed and breakfast Alghero", "alloggio Alghero Sardegna", "suite luxury Alghero"],
     "ogImage": "/images/suite-tripla-camera-01.jpeg"
   }
 }

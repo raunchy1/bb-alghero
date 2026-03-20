@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { Sun, Coffee } from 'lucide-react'
 import { property } from '@/data/rooms'
 import { useLanguage } from '@/contexts/LanguageContext'
 
@@ -62,7 +63,7 @@ export default function RoomsPage() {
                     {t(room.tagline)}
                   </p>
 
-                  <div className="flex flex-wrap gap-3 mb-10">
+                  <div className="flex flex-wrap gap-3 mb-6">
                     <span className="inline-flex items-center px-4 py-2 bg-[#1a1716]/5 rounded-full text-sm text-[#1a1716]">
                       {room.capacity.guests} {lang === 'it' ? 'ospiti' : 'guests'}
                     </span>
@@ -75,6 +76,17 @@ export default function RoomsPage() {
                     <span className="inline-flex items-center px-4 py-2 bg-[#1a1716]/5 rounded-full text-sm text-[#1a1716]">
                       {room.capacity.bathrooms} {lang === 'it' ? 'bagno' : 'bathroom'}
                     </span>
+                  </div>
+
+                  <div className="flex flex-col gap-2 mb-10">
+                    <div className="flex items-center gap-2 text-sm text-[#1a1716]">
+                      <Sun size={16} strokeWidth={1.2} color="#C4935A" />
+                      <span>{lang === 'it' ? 'Terrazza panoramica privata' : 'Private panoramic terrace'}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-[#1a1716]">
+                      <Coffee size={16} strokeWidth={1.2} color="#C4935A" />
+                      <span>{lang === 'it' ? 'Colazione disponibile su richiesta' : 'Breakfast available on request'}</span>
+                    </div>
                   </div>
 
                   <Link

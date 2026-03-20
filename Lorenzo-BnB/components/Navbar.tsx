@@ -1,23 +1,50 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import clsx from 'clsx'
 import { useLanguage, type Lang } from '@/contexts/LanguageContext'
 
-const AIRBNB_URL = 'https://www.airbnb.it/rooms/1610343576481869093'
-
 const navLinks = [
-  { label: { it: 'Home', en: 'Home' }, href: '/' },
-  { label: { it: 'Camere', en: 'Rooms' }, href: '/rooms' },
+  { label: { it: 'Le Suite', en: 'Suites' }, href: '/rooms' },
   { label: { it: 'Galleria', en: 'Gallery' }, href: '/gallery' },
+  { label: { it: 'Esperienze', en: 'Experiences' }, href: '/explore' },
   { label: { it: 'Contatti', en: 'Contact' }, href: '/contact' },
 ]
 
-const nextLangLabel: Record<Lang, string> = { it: 'EN', en: 'IT' }
 const nextLang: Record<Lang, Lang> = { it: 'en', en: 'it' }
+
+// Magnetic button effect
+function MagneticButton({ children, className, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement> & { children: React.ReactNode }) {
+  const ref = useRef<HTMLAnchorElement>(null)
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!ref.current) return
+    const rect = ref.current.getBoundingClientRect()
+    const x = e.clientX - rect.left - rect.width / 2
+    const y = e.clientY - rect.top - rect.height / 2
+    ref.current.style.transform = `translate(${x * 0.2}px, ${y * 0.3}px)`
+  }, [])
+
+  const handleMouseLeave = useCallback(() => {
+    if (ref.current) ref.current.style.transform = 'translate(0, 0)'
+  }, [])
+
+  return (
+    <a
+      ref={ref}
+      className={className}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ transition: 'transform 0.3s cubic-bezier(0.16,1,0.3,1)' }}
+      {...props}
+    >
+      {children}
+    </a>
+  )
+}
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -43,80 +70,81 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={clsx(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        isTransparent
-          ? 'bg-transparent'
-          : 'bg-[#f5f4ef]/95 backdrop-blur-md shadow-[0_1px_0_rgba(0,0,0,0.06)]'
-      )}>
-        <div className="max-w-[1624px] mx-auto px-5 md:px-10">
-          <div className="flex items-center justify-between py-6">
+      <nav
+        className={clsx(
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-400',
+          isTransparent
+            ? 'bg-transparent'
+            : 'bg-[rgba(250,248,244,0.97)] backdrop-blur-[20px] border-b border-[rgba(26,43,60,0.08)]'
+        )}
+        style={{ height: 90 }}
+      >
+        <div className="max-w-[1624px] mx-auto px-6 md:px-10 h-full">
+          <div className="flex items-center justify-between h-full">
 
-            {/* Logo */}
-            <Link href="/" className={clsx(
-              'transition-colors duration-200',
-              isTransparent ? 'text-white' : 'text-[#1a1716]'
-            )}>
-              <span className="font-serif font-semibold text-[22px] tracking-tight">Il B&B</span>
-              <span className="font-serif font-light text-[22px] tracking-tight ml-2">di Lorenzo</span>
+            {/* Logo — Left */}
+            <Link
+              href="/"
+              className={clsx(
+                'font-serif italic text-[22px] font-light tracking-tight transition-colors duration-300',
+                isTransparent ? 'text-white' : 'text-navy'
+              )}
+            >
+              La Suite N4
             </Link>
 
-            {/* Desktop Nav */}
+            {/* Center links — Desktop */}
             <div className="hidden lg:flex items-center gap-10">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   className={clsx(
-                    'nav-link text-[15px] font-bold uppercase tracking-[0.08em] transition-all duration-200',
-                    isTransparent
-                      ? 'text-white/90 hover:text-white'
-                      : 'text-[#1a1716]/70 hover:text-[#1a1716]',
-                    pathname === link.href && (isTransparent ? 'text-white' : 'text-[#1a1716]')
+                    'rolling-link text-[12px] uppercase tracking-[0.3em] font-sans font-medium transition-colors duration-300',
+                    isTransparent ? 'text-white/80 hover:text-white' : 'text-navy/60 hover:text-navy',
+                    pathname === link.href && (isTransparent ? 'text-white' : 'text-navy')
                   )}
                 >
-                  {t(link.label)}
+                  <span>{t(link.label)}</span>
+                  <span>{t(link.label)}</span>
                 </Link>
               ))}
             </div>
 
-            {/* Right: lang toggle + CTA + hamburger */}
-            <div className="flex items-center gap-4">
+            {/* Right side */}
+            <div className="flex items-center gap-5">
               {/* Language toggle */}
               <button
                 onClick={() => setLang(nextLang[lang])}
                 className={clsx(
-                  'text-[15px] font-bold uppercase tracking-[0.08em] px-3 py-1.5 border transition-all duration-200',
-                  isTransparent
-                    ? 'border-white/40 text-white/90 hover:border-white hover:text-white'
-                    : 'border-[#1a1716]/20 text-[#1a1716]/70 hover:border-[#1a1716]/60 hover:text-[#1a1716]'
+                  'text-[11px] uppercase tracking-[0.2em] font-medium transition-colors duration-300',
+                  isTransparent ? 'text-white/60 hover:text-white' : 'text-navy/40 hover:text-navy'
                 )}
               >
-                {nextLangLabel[lang]}
+                {lang === 'it' ? 'EN' : 'IT'}
               </button>
 
-              {/* Book CTA */}
-              <a
-                href={AIRBNB_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              {/* Prenota button — Desktop */}
+              <MagneticButton
+                href="/book"
                 className={clsx(
-                  'hidden lg:inline-flex items-center justify-center px-8 py-3.5 text-[13px] font-bold uppercase tracking-[0.1em] border-2 rounded-sm transition-all duration-300',
-                  isTransparent
-                    ? 'bg-white text-[#1a1716] border-white hover:bg-transparent hover:text-white hover:shadow-[0_4px_20px_rgba(255,255,255,0.15)]'
-                    : 'bg-[#1a1716] text-[#f5f4ef] border-[#1a1716] hover:bg-transparent hover:text-[#1a1716] hover:shadow-[0_4px_20px_rgba(0,0,0,0.12)]'
+                  'magnetic-btn hidden lg:inline-flex items-center justify-center px-7 py-3 text-[12px] font-sans font-medium uppercase tracking-[0.2em] transition-all duration-300',
+                  'bg-gold text-white hover:bg-[#b8854e]'
                 )}
               >
                 {t({ it: 'Prenota', en: 'Book' })}
-              </a>
+              </MagneticButton>
 
-              {/* Hamburger */}
+              {/* Hamburger — Mobile */}
               <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
-                className={clsx('lg:hidden p-1 transition-colors duration-200', isTransparent ? 'text-white' : 'text-[#1a1716]')}
+                className={clsx(
+                  'lg:hidden p-1 transition-colors duration-200',
+                  isTransparent ? 'text-white' : 'text-navy'
+                )}
                 aria-label="Toggle menu"
               >
-                {isMobileOpen ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
+                {isMobileOpen ? <X size={26} strokeWidth={1.5} /> : <Menu size={26} strokeWidth={1.5} />}
               </button>
             </div>
           </div>
@@ -125,29 +153,26 @@ export default function Navbar() {
 
       {/* Mobile fullscreen overlay */}
       <div className={clsx(
-        'fixed inset-0 z-40 flex flex-col bg-[#1a1716] transition-all duration-400',
+        'fixed inset-0 z-40 flex flex-col bg-navy transition-all duration-500',
         isMobileOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
       )}>
-        {/* Top bar */}
-        <div className="flex items-center justify-between py-6 px-5 md:px-10 border-b border-white/10">
-          <Link href="/" className="text-[#f5f4ef]">
-            <span className="font-serif font-semibold text-[22px] tracking-tight">Il B&B</span>
-            <span className="font-serif font-light text-[22px] tracking-tight ml-2">di Lorenzo</span>
+        <div className="flex items-center justify-between h-[90px] px-6 border-b border-white/10">
+          <Link href="/" className="font-serif italic text-[22px] font-light text-white tracking-tight">
+            La Suite N4
           </Link>
-          <button onClick={() => setIsMobileOpen(false)} className="p-1 text-[#f5f4ef]" aria-label="Close menu">
-            <X size={28} strokeWidth={2.5} />
+          <button onClick={() => setIsMobileOpen(false)} className="p-1 text-white" aria-label="Close menu">
+            <X size={26} strokeWidth={1.5} />
           </button>
         </div>
 
-        {/* Links */}
-        <div className="flex-1 flex flex-col justify-center items-center px-8 gap-5">
+        <div className="flex-1 flex flex-col justify-center items-center px-8 gap-6">
           {navLinks.map((link, i) => (
             <Link
               key={link.href}
               href={link.href}
-              style={{ animationDelay: `${i * 60}ms`, animationFillMode: 'forwards' }}
+              style={{ animationDelay: `${i * 80}ms`, animationFillMode: 'forwards' }}
               className={clsx(
-                'text-2xl font-bold uppercase tracking-[0.08em] text-[#f5f4ef]/90 hover:text-[#f5f4ef] transition-colors text-center',
+                'font-serif italic text-4xl text-white/80 hover:text-white transition-colors text-center',
                 isMobileOpen ? 'animate-fade-up' : 'opacity-0'
               )}
             >
@@ -156,17 +181,15 @@ export default function Navbar() {
           ))}
 
           <div className="pt-8 mt-4 border-t border-white/10 w-full flex flex-col gap-4 items-center">
-            <a
-              href={AIRBNB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center w-full max-w-xs px-8 py-4 text-[13px] font-bold uppercase tracking-[0.1em] bg-white text-[#1a1716] border-2 border-white rounded-sm transition-all duration-300 hover:bg-transparent hover:text-white"
+            <Link
+              href="/book"
+              className="inline-flex items-center justify-center w-full max-w-xs px-8 py-4 text-[12px] font-medium uppercase tracking-[0.2em] bg-gold text-white"
             >
               {t({ it: 'Prenota ora', en: 'Book now' })}
-            </a>
+            </Link>
             <button
               onClick={() => setLang(nextLang[lang])}
-              className="text-[15px] font-bold uppercase tracking-[0.08em] text-[#f5f4ef]/50 hover:text-[#f5f4ef] transition-colors"
+              className="text-[13px] uppercase tracking-[0.15em] text-white/40 hover:text-white transition-colors"
             >
               {lang === 'it' ? 'English' : 'Italiano'}
             </button>

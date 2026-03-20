@@ -4,7 +4,7 @@ import './globals.css'
 import LayoutWrapper from '@/components/LayoutWrapper'
 
 const cormorant = Cormorant_Garamond({
-  weight: ['300', '400', '500', '600'],
+  weight: ['300', '400'],
   subsets: ['latin'],
   style: ['normal', 'italic'],
   display: 'swap',
@@ -20,49 +20,34 @@ const jost = Jost({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Il B&B di Lorenzo — Exclusive Rooms | Alghero, Sardegna',
-    template: '%s · Il B&B di Lorenzo',
+    default: 'La Suite N4 Alghero — Exclusive Rooms | Alghero, Sardegna',
+    template: '%s · La Suite N4 Alghero',
   },
   description:
-    'Scopri Il B&B di Lorenzo, camera esclusiva nel cuore di Alghero, Sardegna. Design raffinato, comfort assoluto e ospitalità autentica per un soggiorno indimenticabile.',
+    'Scopri La Suite N4 Alghero, camere esclusive nel cuore di Alghero, Sardegna. Design raffinato, comfort assoluto e ospitalità autentica per un soggiorno indimenticabile.',
   keywords: [
-    'Alghero',
-    'Sardegna',
-    'B&B',
-    'luxury room',
-    'exclusive rooms',
-    'Il B&B di Lorenzo',
-    'camera di lusso',
-    'bed and breakfast Alghero',
+    'Alghero', 'Sardegna', 'B&B', 'luxury room', 'exclusive rooms',
+    'La Suite N4 Alghero', 'camera di lusso', 'bed and breakfast Alghero',
   ],
   openGraph: {
-    title: 'Il B&B di Lorenzo — Exclusive Rooms | Alghero, Sardegna',
-    description:
-      'Camera esclusiva nel cuore di Alghero. Design raffinato, comfort assoluto e ospitalità autentica.',
+    title: 'La Suite N4 Alghero — Exclusive Rooms | Alghero, Sardegna',
+    description: 'Camere esclusive nel cuore di Alghero. Design raffinato, comfort assoluto e ospitalità autentica.',
     type: 'website',
     locale: 'it_IT',
-    siteName: 'Il B&B di Lorenzo',
+    siteName: 'La Suite N4 Alghero',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Il B&B di Lorenzo — Exclusive Rooms | Alghero, Sardegna',
-    description:
-      'Camera esclusiva nel cuore di Alghero. Design raffinato, comfort assoluto.',
+    title: 'La Suite N4 Alghero — Exclusive Rooms | Alghero, Sardegna',
+    description: 'Camere esclusive nel cuore di Alghero. Design raffinato, comfort assoluto.',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it" className={`${cormorant.variable} ${jost.variable}`}>
-      <body className={`${jost.className} bg-cream antialiased`}>
+      <body className={`${jost.className} antialiased`}>
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>

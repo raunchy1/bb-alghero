@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { property, getRoomBySlug } from '@/data/rooms'
+import { Sun, Coffee } from 'lucide-react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import BookingForm from '@/components/BookingForm'
 
@@ -137,7 +138,13 @@ export default function RoomDetailPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {room.amenities.map((amenity, i) => (
               <div key={i} className="flex items-center gap-3">
-                <span className="text-[#094730] text-sm">&#10003;</span>
+                {amenity === 'Terrazza panoramica privata' ? (
+                  <Sun size={16} strokeWidth={1.2} color="#C4935A" />
+                ) : amenity === 'Colazione disponibile su richiesta' ? (
+                  <Coffee size={16} strokeWidth={1.2} color="#C4935A" />
+                ) : (
+                  <span className="text-[#094730] text-sm">&#10003;</span>
+                )}
                 <span className="text-[#1a1716] text-base">{amenity}</span>
               </div>
             ))}

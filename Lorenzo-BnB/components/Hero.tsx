@@ -56,7 +56,7 @@ export default function Hero() {
             <span className="hidden sm:block w-px h-3.5 bg-white/25" />
             <span>700 m {t({ it: 'dal mare', en: 'to the sea' })}</span>
             <span className="hidden sm:block w-px h-3.5 bg-white/25" />
-            <span>{t({ it: 'Colazione inclusa', en: 'Breakfast included' })}</span>
+            <span>{t({ it: 'Colazione su richiesta', en: 'Breakfast on request' })}</span>
           </div>
 
           {/* CTAs */}

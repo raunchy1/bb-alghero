@@ -41,15 +41,15 @@ export interface PropertyData {
 }
 
 export const property: PropertyData = {
-  name: "Il B&B di Lorenzo",
-  brandName: "Il B&B di Lorenzo — Exclusive Rooms",
+  name: "La Suite N4 Alghero",
+  brandName: "La Suite N4 Alghero — Exclusive Rooms",
   tagline: {
     it: "Camere esclusive nel cuore di Alghero",
     en: "Exclusive rooms in the heart of Alghero"
   },
   description: {
-    it: "Il B&B di Lorenzo offre camere esclusive di lusso nel cuore di Alghero, a soli 150 metri dalla spiaggia. Ogni camera è arredata con design moderno, materiali pregiati e attenzione ai dettagli. Terrazza panoramica, colazione inclusa e tutti i comfort per un soggiorno indimenticabile in Sardegna.",
-    en: "Il B&B di Lorenzo offers exclusive luxury rooms in the heart of Alghero, just 150 meters from the beach. Each room features modern design, premium materials and attention to detail. Panoramic terrace, breakfast included and all comforts for an unforgettable stay in Sardinia."
+    it: "La Suite N4 Alghero offre camere esclusive di lusso nel cuore di Alghero, a soli 150 metri dalla spiaggia. Ogni camera è arredata con design moderno, materiali pregiati e attenzione ai dettagli. Terrazza panoramica, colazione su richiesta e tutti i comfort per un soggiorno indimenticabile in Sardegna.",
+    en: "La Suite N4 Alghero offers exclusive luxury rooms in the heart of Alghero, just 150 meters from the beach. Each room features modern design, premium materials and attention to detail. Panoramic terrace, breakfast on request and all comforts for an unforgettable stay in Sardinia."
   },
   location: {
     city: "Alghero",
@@ -70,7 +70,7 @@ export const property: PropertyData = {
     { icon: "Wifi", label: { it: "WiFi gratuito", en: "Free WiFi" } },
     { icon: "Snowflake", label: { it: "Aria condizionata", en: "Air conditioning" } },
     { icon: "Tv", label: { it: "Televisore", en: "Television" } },
-    { icon: "Coffee", label: { it: "Colazione inclusa", en: "Breakfast included" } },
+    { icon: "Coffee", label: { it: "Colazione su richiesta", en: "Breakfast on request" } },
     { icon: "Briefcase", label: { it: "Spazio di lavoro dedicato", en: "Dedicated workspace" } },
     { icon: "ShieldCheck", label: { it: "Detector monossido di carbonio", en: "Carbon monoxide detector" } },
     { icon: "Flame", label: { it: "Estintore", en: "Fire extinguisher" } },
@@ -92,8 +92,8 @@ export const property: PropertyData = {
         en: "Elegant minimalist style for three guests"
       },
       description: {
-        it: "Una camera doppia contemporanea caratterizzata da uno stile minimalista elegante, giocato su tonalità neutre e materiali morbidi. Il letto è basso e centrale, rivestito con lenzuola di colore chiaro, con una coperta beige testurizzata e asciugamani arrotolati che ricordano l'estetica di un hotel boutique. La testiera imbottita in tonalità taupe/rosa cipria aggiunge calore e comfort, mentre la parete posteriore è decorata con strisce verticali bianche che danno ritmo, altezza visiva e un tocco architettonico.",
-        en: "A contemporary double room characterized by an elegant minimalist style, played on neutral tones and soft materials. The bed is low and central, dressed in light-colored sheets, with a textured beige blanket and rolled towels reminiscent of a boutique hotel aesthetic. The upholstered headboard in taupe/powder pink adds warmth and comfort, while the back wall is decorated with white vertical stripes that give rhythm, visual height and an architectural touch."
+        it: "Una camera doppia contemporanea caratterizzata da uno stile minimalista elegante, giocato su tonalità neutre e materiali morbidi. Il letto è basso e centrale, rivestito con lenzuola di colore chiaro, con una coperta beige testurizzata e asciugamani arrotolati che ricordano l'estetica di un hotel boutique. La testiera imbottita in tonalità taupe/rosa cipria aggiunge calore e comfort, mentre la parete posteriore è decorata con strisce verticali bianche che danno ritmo, altezza visiva e un tocco architettonico. Ogni suite dispone di una terrazza panoramica privata con vista mozzafiato.",
+        en: "A contemporary double room characterized by an elegant minimalist style, played on neutral tones and soft materials. The bed is low and central, dressed in light-colored sheets, with a textured beige blanket and rolled towels reminiscent of a boutique hotel aesthetic. The upholstered headboard in taupe/powder pink adds warmth and comfort, while the back wall is decorated with white vertical stripes that give rhythm, visual height and an architectural touch. Every suite features a private panoramic terrace with breathtaking views."
       },
       capacity: {
         guests: 3,
@@ -102,7 +102,7 @@ export const property: PropertyData = {
         bathrooms: 1
       },
       size: 28,
-      amenities: ["WiFi", "Aria condizionata", "Televisore", "Detector monossido", "Estintore"],
+      amenities: ["WiFi", "Aria condizionata", "Televisore", "Detector monossido", "Estintore", "Terrazza panoramica privata", "Colazione disponibile su richiesta"],
       images: [
         "/images/rooms/suite-luxury-tripla/room-01.jpeg",
         "/images/rooms/suite-luxury-tripla/room-02.jpeg",
@@ -123,8 +123,8 @@ export const property: PropertyData = {
         en: "Space, art and comfort for four"
       },
       description: {
-        it: "La camera è spaziosa e confortevole, ha due letti matrimoniali comodi con biancheria di qualità, mobili contemporanei e dettagli artistici. Il pavimento in legno chiaro e il balcone privato garantiscono luce naturale e relax.",
-        en: "The room is spacious and comfortable, with two comfortable double beds with quality linen, contemporary furniture and artistic details. The light wood floor and private balcony provide natural light and relaxation."
+        it: "La camera è spaziosa e confortevole, ha due letti matrimoniali comodi con biancheria di qualità, mobili contemporanei e dettagli artistici. Il pavimento in legno chiaro e il balcone privato garantiscono luce naturale e relax. Ogni suite dispone di una terrazza panoramica privata con vista mozzafiato.",
+        en: "The room is spacious and comfortable, with two comfortable double beds with quality linen, contemporary furniture and artistic details. The light wood floor and private balcony provide natural light and relaxation. Every suite features a private panoramic terrace with breathtaking views."
       },
       capacity: {
         guests: 4,
@@ -133,7 +133,7 @@ export const property: PropertyData = {
         bathrooms: 1
       },
       size: 35,
-      amenities: ["WiFi", "Aria condizionata", "Televisore", "Spazio lavoro", "Detector monossido", "Estintore"],
+      amenities: ["WiFi", "Aria condizionata", "Televisore", "Spazio lavoro", "Detector monossido", "Estintore", "Terrazza panoramica privata", "Colazione disponibile su richiesta"],
       images: [
         "/images/rooms/suite-luxury-4-pax/room-01.jpeg",
         "/images/rooms/suite-luxury-4-pax/room-02.jpeg",
@@ -155,8 +155,8 @@ export const property: PropertyData = {
         en: "Golden design and warm atmosphere"
       },
       description: {
-        it: "Il mobilio elegante, un letto matrimoniale confortevole, l'illuminazione di design e i dettagli raffinati creano un'atmosfera calda e rilassante nella camera.",
-        en: "Elegant furniture, a comfortable double bed, designer lighting and refined details create a warm and relaxing atmosphere in the room."
+        it: "Il mobilio elegante, un letto matrimoniale confortevole, l'illuminazione di design e i dettagli raffinati creano un'atmosfera calda e rilassante nella camera. Ogni suite dispone di una terrazza panoramica privata con vista mozzafiato.",
+        en: "Elegant furniture, a comfortable double bed, designer lighting and refined details create a warm and relaxing atmosphere in the room. Every suite features a private panoramic terrace with breathtaking views."
       },
       capacity: {
         guests: 3,
@@ -165,7 +165,7 @@ export const property: PropertyData = {
         bathrooms: 1
       },
       size: 25,
-      amenities: ["WiFi", "Aria condizionata", "Televisore", "Spazio lavoro", "Detector monossido", "Estintore"],
+      amenities: ["WiFi", "Aria condizionata", "Televisore", "Spazio lavoro", "Detector monossido", "Estintore", "Terrazza panoramica privata", "Colazione disponibile su richiesta"],
       images: [
         "/images/rooms/stanza-luxury-3-pax/room-01.jpeg",
         "/images/rooms/stanza-luxury-3-pax/room-02.jpeg",
@@ -188,8 +188,8 @@ export const property: PropertyData = {
         en: "Modern design and natural light for two"
       },
       description: {
-        it: "Arredata in stile moderno, la camera ha un comodo letto matrimoniale con biancheria di qualità, aria condizionata e dettagli di design. Le grandi finestre e il balcone offrono luce naturale e relax.",
-        en: "Furnished in a modern style, the room has a comfortable double bed with quality linen, air conditioning and design details. Large windows and the balcony offer natural light and relaxation."
+        it: "Arredata in stile moderno, la camera ha un comodo letto matrimoniale con biancheria di qualità, aria condizionata e dettagli di design. Le grandi finestre e il balcone offrono luce naturale e relax. Ogni suite dispone di una terrazza panoramica privata con vista mozzafiato.",
+        en: "Furnished in a modern style, the room has a comfortable double bed with quality linen, air conditioning and design details. Large windows and the balcony offer natural light and relaxation. Every suite features a private panoramic terrace with breathtaking views."
       },
       capacity: {
         guests: 2,
@@ -198,7 +198,7 @@ export const property: PropertyData = {
         bathrooms: 1
       },
       size: 25,
-      amenities: ["WiFi", "Aria condizionata", "Televisore", "Spazio lavoro", "Detector monossido", "Estintore"],
+      amenities: ["WiFi", "Aria condizionata", "Televisore", "Spazio lavoro", "Detector monossido", "Estintore", "Terrazza panoramica privata", "Colazione disponibile su richiesta"],
       images: [
         "/images/rooms/stanza-luxury-2-pax/room-01.jpeg",
         "/images/rooms/stanza-luxury-2-pax/room-02.jpeg",
