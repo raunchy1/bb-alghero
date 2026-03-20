@@ -28,7 +28,7 @@ function HeroSection() {
   }, [])
 
   return (
-    <section ref={heroRef} className="relative h-screen w-full overflow-hidden">
+    <section ref={heroRef} className="relative h-screen-safe w-full overflow-hidden">
       <motion.div className="absolute inset-0" style={{ y: heroY }}>
         <Image src="/images/alghero-sardinia-italy654270282-1.jpg.webp" alt="Alghero coast" fill priority className="object-cover scale-105" sizes="100vw" />
       </motion.div>
@@ -44,16 +44,16 @@ function HeroSection() {
         <h1 className="font-serif italic font-light text-white leading-[0.85] mb-6">
           <div className="overflow-hidden">
             <motion.span initial={{ clipPath: 'polygon(0 100%,100% 100%,100% 100%,0 100%)' }} animate={{ clipPath: 'polygon(0 0,100% 0,100% 100%,0 100%)' }}
-              transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }} className="block text-7xl md:text-[120px]">La Suite</motion.span>
+              transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }} className="block text-[52px] sm:text-7xl md:text-[120px]">La Suite</motion.span>
           </div>
           <div className="overflow-hidden">
             <motion.span initial={{ clipPath: 'polygon(0 100%,100% 100%,100% 100%,0 100%)' }} animate={{ clipPath: 'polygon(0 0,100% 0,100% 100%,0 100%)' }}
-              transition={{ delay: 0.7, duration: 1, ease: [0.16, 1, 0.3, 1] }} className="block text-7xl md:text-[120px] ml-4 md:ml-20">N4</motion.span>
+              transition={{ delay: 0.7, duration: 1, ease: [0.16, 1, 0.3, 1] }} className="block text-[52px] sm:text-7xl md:text-[120px] ml-2 sm:ml-4 md:ml-20">N4</motion.span>
           </div>
         </h1>
 
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1, duration: 1 }}
-          className="font-serif text-2xl md:text-[36px] text-white/80 leading-snug max-w-2xl mb-12">
+          className="font-serif text-xl sm:text-2xl md:text-[36px] text-white/80 leading-snug max-w-2xl mb-8 md:mb-12">
           {lang === 'it' ? 'Terrazze panoramiche private · Vista sul mare di Alghero' : 'Private panoramic terraces · View of the Alghero sea'}
         </motion.p>
 
@@ -210,16 +210,48 @@ function MarqueeStrip() {
   )
 }
 
+// ─── SUITE CARD ───
+function SuiteCard({ room, index, t, lang }: { room: (typeof property.rooms)[0]; index: number; t: (v: { it: string; en: string }) => string; lang: string }) {
+  return (
+    <Link href={`/rooms/${room.slug}`} className="group bg-white flex flex-col relative shrink-0 shadow-2xl" style={{ width: '100%', minWidth: 280, maxWidth: 380, height: 520 }}>
+      <div className="h-[65%] w-full overflow-hidden">
+        <Image src={room.hero} alt={t(room.name)} fill className="object-cover !relative w-full h-full grayscale-[20%] group-hover:scale-105 transition-transform duration-700" sizes="380px" />
+      </div>
+      <div className="h-[35%] w-full p-6 md:p-8 flex flex-col justify-between relative bg-white">
+        <span className="absolute top-0 right-4 font-serif text-[80px] md:text-[100px] leading-none text-navy opacity-[0.05] -translate-y-1/2 select-none pointer-events-none">0{index + 1}</span>
+        <div>
+          <h3 className="font-serif italic text-xl md:text-2xl text-navy mb-3">{t(room.name)}</h3>
+          <div className="flex flex-wrap gap-2">
+            <span className="px-3 py-1 border border-gold text-gold text-[10px] tracking-widest uppercase font-sans">{lang === 'it' ? 'Terrazza' : 'Terrace'}</span>
+            <span className="px-3 py-1 border border-gold text-gold text-[10px] tracking-widest uppercase font-sans">{room.capacity.guests} {lang === 'it' ? 'ospiti' : 'guests'}</span>
+          </div>
+        </div>
+        <span className="inline-flex items-center text-navy text-sm tracking-widest uppercase font-sans">
+          {lang === 'it' ? 'Scopri' : 'Discover'} <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
+        </span>
+      </div>
+    </Link>
+  )
+}
+
 // ─── SUITES HORIZONTAL SCROLL ───
 function SuitesSection() {
   const { t, lang } = useLanguage()
   const sectionRef = useRef<HTMLElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
 
+  const [isMobile, setIsMobile] = useState(false)
+
   useEffect(() => {
-    if (!sectionRef.current || !trackRef.current) return
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  useEffect(() => {
+    if (isMobile || !sectionRef.current || !trackRef.current) return
     const track = trackRef.current
-    // Calculate total scrollable distance from inner content
     const getScrollAmount = () => track.scrollWidth - window.innerWidth * 0.667
     const tween = gsap.to(track, {
       x: () => -getScrollAmount(),
@@ -234,48 +266,46 @@ function SuitesSection() {
       },
     })
     return () => { tween.scrollTrigger?.kill(); tween.kill() }
-  }, [])
+  }, [isMobile])
 
   return (
-    <section ref={sectionRef} className="bg-navy min-h-screen overflow-hidden">
-      <div className="flex h-screen">
-        <div className="w-full md:w-1/3 p-12 md:p-24 flex flex-col justify-center shrink-0 z-10 bg-navy">
+    <section ref={sectionRef} className="bg-navy overflow-hidden">
+      {/* Desktop: GSAP horizontal scroll */}
+      <div className="hidden md:flex h-screen">
+        <div className="w-1/3 p-24 flex flex-col justify-center shrink-0 z-10 bg-navy">
           <span className="text-gold font-sans tracking-[0.4em] uppercase text-xs mb-6 block font-medium">
             {lang === 'it' ? 'LE SUITE' : 'THE SUITES'}
           </span>
-          <h2 className="font-serif italic text-5xl md:text-[52px] leading-tight text-white max-w-sm">
+          <h2 className="font-serif italic text-[52px] leading-tight text-white max-w-sm">
             {lang === 'it' ? 'Quattro suite, quattro esperienze' : 'Four suites, four experiences'}
           </h2>
-          <div className="mt-12 hidden md:flex items-center gap-4 text-white/30">
+          <div className="mt-12 flex items-center gap-4 text-white/30">
             <span className="text-4xl">‹</span>
             <span className="font-sans tracking-widest text-[10px] uppercase">Scroll to explore</span>
             <span className="text-4xl">›</span>
           </div>
         </div>
-
-        <div className="w-full md:w-2/3 flex items-center overflow-hidden py-12 px-12 md:px-0">
+        <div className="w-2/3 flex items-center overflow-hidden py-12">
           <div ref={trackRef} className="flex gap-8 pr-40 pl-4">
             {property.rooms.map((room, i) => (
-              <Link key={room.slug} href={`/rooms/${room.slug}`} className="group w-[320px] md:w-[380px] h-[520px] snap-center bg-white flex flex-col relative shrink-0 shadow-2xl">
-                <div className="h-[65%] w-full overflow-hidden">
-                  <Image src={room.hero} alt={t(room.name)} fill className="object-cover !relative w-full h-full grayscale-[20%] group-hover:scale-105 transition-transform duration-700" sizes="380px" />
-                </div>
-                <div className="h-[35%] w-full p-8 flex flex-col justify-between relative bg-white">
-                  <span className="absolute top-0 right-4 font-serif text-[100px] leading-none text-navy opacity-[0.05] -translate-y-1/2 select-none pointer-events-none">0{i + 1}</span>
-                  <div>
-                    <h3 className="font-serif italic text-2xl text-navy mb-4">{t(room.name)}</h3>
-                    <div className="flex flex-wrap gap-2">
-                      <span className="px-3 py-1 border border-gold text-gold text-[10px] tracking-widest uppercase font-sans">{lang === 'it' ? 'Terrazza Privata' : 'Private Terrace'}</span>
-                      <span className="px-3 py-1 border border-gold text-gold text-[10px] tracking-widest uppercase font-sans">{room.capacity.guests} {lang === 'it' ? 'ospiti' : 'guests'}</span>
-                    </div>
-                  </div>
-                  <span className="inline-flex items-center text-navy text-sm tracking-widest uppercase font-sans group/link">
-                    {lang === 'it' ? 'Scopri' : 'Discover'} <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
-                  </span>
-                </div>
-              </Link>
+              <SuiteCard key={room.slug} room={room} index={i} t={t} lang={lang} />
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Mobile: swipeable carousel */}
+      <div className="md:hidden py-16 px-6">
+        <span className="text-gold font-sans tracking-[0.4em] uppercase text-xs mb-4 block font-medium">
+          {lang === 'it' ? 'LE SUITE' : 'THE SUITES'}
+        </span>
+        <h2 className="font-serif italic text-4xl leading-tight text-white mb-8">
+          {lang === 'it' ? 'Quattro suite, quattro esperienze' : 'Four suites, four experiences'}
+        </h2>
+        <div className="suites-mobile-track">
+          {property.rooms.map((room, i) => (
+            <SuiteCard key={room.slug} room={room} index={i} t={t} lang={lang} />
+          ))}
         </div>
       </div>
     </section>

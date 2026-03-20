@@ -44,9 +44,21 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
+export const viewport = {
+  themeColor: '#1A2B3C',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it" className={`${cormorant.variable} ${jost.variable}`}>
+      <head>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="La Suite N4" />
+      </head>
       <body className={`${jost.className} antialiased`}>
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>
