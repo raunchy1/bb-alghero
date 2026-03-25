@@ -348,8 +348,7 @@ function BookContent() {
                 {t({ it: 'Prenota via Airbnb', en: 'Book via Airbnb' })}
               </a>
 
-              {/* Payment Methods (Change 8) */}
-              {/* TODO: Enable Apple Pay and Google Pay in Stripe Dashboard → Settings → Payment methods */}
+              {/* Payment Methods */}
               <div style={{
                 display: 'flex', gap: 12,
                 alignItems: 'center',
@@ -369,7 +368,33 @@ function BookContent() {
                 <span>{t({ it: 'Bonifico', en: 'Bank transfer' })}</span>
               </div>
 
-              {/* Sconto Ristorante (Change 7) */}
+              {/* Bonifico Bancario */}
+              <div 
+                className="mt-4 p-4 rounded-lg"
+                style={{
+                  background: 'rgba(14, 165, 233, 0.06)',
+                  borderLeft: '3px solid #0ea5e9',
+                }}
+              >
+                <p className="text-xs font-medium tracking-widest uppercase text-stone mb-2">
+                  {t({ it: 'Pagamento tramite Bonifico Bancario', en: 'Bank Transfer Payment' })}
+                </p>
+                <div className="space-y-1 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-stone">IBAN:</span>
+                    <span className="text-ocean font-mono">IT71A0306984893100000009177</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-stone">{t({ it: 'Intestato a:', en: 'Account holder:' })}</span>
+                    <span className="text-ocean">{t({ it: '[da aggiornare]', en: '[to be updated]' })}</span>
+                  </div>
+                </div>
+                <p className="text-xs text-stone mt-2 italic">
+                  {t({ it: 'La prenotazione si conferma alla ricezione del pagamento.', en: 'Booking confirmed upon payment receipt.' })}
+                </p>
+              </div>
+
+              {/* Sconto Ristorante */}
               <div
                 className="mt-4 p-4 rounded-lg text-center"
                 style={{

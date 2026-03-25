@@ -76,7 +76,7 @@
     { "id": "iron", "name": "Ferro da stiro", "icon": "Layers", "category": "comfort" }
   ],
   "images": {
-    "hero": "/images/suite-tripla-camera-01.jpeg",
+    "hero": "/images/hero-beach-new.jpeg",
     "gallery": [
       { "id": 1, "url": "/images/suite-tripla-camera-01.jpeg", "alt": "Suite Tripla – camera con mural dorato", "category": "camera" },
       { "id": 2, "url": "/images/stanza-2pax-camera-01.jpeg", "alt": "Stanza 2 Pax – camera luxury", "category": "camera" },

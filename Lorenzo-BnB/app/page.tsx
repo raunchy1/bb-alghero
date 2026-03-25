@@ -30,7 +30,7 @@ function HeroSection() {
   return (
     <section ref={heroRef} className="relative h-screen-safe w-full overflow-hidden">
       <motion.div className="absolute inset-0" style={{ y: heroY }}>
-        <Image src="/images/alghero-sardinia-italy654270282-1.jpg.webp" alt="Alghero coast" fill priority className="object-cover scale-105" sizes="100vw" />
+        <Image src="/images/hero-alghero-beach.jpg" alt="Alghero beach" fill priority className="object-cover scale-105" sizes="100vw" />
       </motion.div>
       <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(4,22,39,0.4) 0%, rgba(4,22,39,0) 40%)' }} />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(4,22,39,0.9) 0%, rgba(4,22,39,0) 70%)' }} />

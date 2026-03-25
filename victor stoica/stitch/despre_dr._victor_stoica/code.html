@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ro"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Inter:wght@300;400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed-variant": "#5b4300",
+              "error": "#ba1a1a",
+              "surface-dim": "#dadada",
+              "tertiary": "#2f2100",
+              "on-tertiary-fixed": "#251a00",
+              "on-secondary-container": "#785d1b",
+              "on-error-container": "#93000a",
+              "primary-container": "#1b3a5c",
+              "surface-container": "#eeeeee",
+              "surface-container-high": "#e8e8e8",
+              "on-background": "#1a1c1c",
+              "tertiary-fixed-dim": "#e5c276",
+              "background": "#f9f9f9",
+              "on-secondary-fixed": "#251a00",
+              "on-primary-fixed": "#001c38",
+              "on-tertiary-container": "#bf9e56",
+              "surface-tint": "#436084",
+              "primary": "#002444",
+              "inverse-on-surface": "#f1f1f1",
+              "on-surface": "#1a1c1c",
+              "on-primary-fixed-variant": "#2b486b",
+              "on-primary": "#ffffff",
+              "primary-fixed": "#d2e4ff",
+              "secondary": "#755b18",
+              "surface-bright": "#f9f9f9",
+              "surface-container-lowest": "#ffffff",
+              "inverse-primary": "#abc9f2",
+              "inverse-surface": "#2f3131",
+              "outline-variant": "#c3c6cf",
+              "surface-variant": "#e2e2e2",
+              "on-primary-container": "#87a4cc",
+              "secondary-fixed": "#ffdf9c",
+              "surface-container-low": "#f3f3f3",
+              "on-surface-variant": "#43474e",
+              "secondary-fixed-dim": "#e5c276",
+              "on-secondary": "#ffffff",
+              "surface": "#f9f9f9",
+              "surface-container-highest": "#e2e2e2",
+              "on-secondary-fixed-variant": "#5b4300",
+              "secondary-container": "#fdd88a",
+              "on-tertiary": "#ffffff",
+              "error-container": "#ffdad6",
+              "outline": "#73777f",
+              "tertiary-fixed": "#ffdf9c",
+              "on-error": "#ffffff",
+              "primary-fixed-dim": "#abc9f2",
+              "tertiary-container": "#4a3600"
+            },
+            fontFamily: {
+              "headline": ["Newsreader", "serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      h1, h2, h3, .serif-font {
+        font-family: 'Newsreader', serif;
+      }
+      .editorial-shadow {
+        box-shadow: 0 12px 32px rgba(26, 28, 28, 0.06);
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-secondary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20 w-full">
+<div class="text-xl font-bold text-[#1B3A5C] dark:text-blue-200 tracking-tighter font-['Newsreader'] serif">
+                Dr. Victor Stoica
+            </div>
+<div class="hidden md:flex items-center space-x-8 font-['Newsreader'] serif tracking-tight">
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#755b18] transition-all duration-300" href="#">Home</a>
+<a class="text-[#1B3A5C] dark:text-blue-300 border-b-2 border-[#755b18] pb-1 font-semibold" href="#">About</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#755b18] transition-all duration-300" href="#">Publications</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#755b18] transition-all duration-300" href="#">Teaching</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#755b18] transition-all duration-300" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-bright border border-outline-variant/20 backdrop-blur-md text-sm font-medium text-primary">
+<span class="material-symbols-outlined text-sm" data-icon="language">language</span>
+                RO/EN
+            </div>
+</div>
+</nav>
+<main class="pt-32 pb-20 max-w-7xl mx-auto px-8">
+<!-- Hero Section / Editorial Intro -->
+<header class="grid grid-cols-1 md:grid-cols-12 gap-12 items-end mb-24">
+<div class="md:col-span-8">
+<span class="text-secondary font-label text-xs tracking-[0.2em] uppercase mb-4 block">Biografie Academică</span>
+<h1 class="text-5xl md:text-7xl text-primary font-headline leading-tight tracking-tighter mb-8">
+                    Cercetător în Sociologia Valorilor și Percepția Riscului.
+                </h1>
+<p class="text-xl text-on-surface-variant max-w-2xl leading-relaxed font-light italic">
+                    "Înțelegerea modului în care schimbările tehnologice remodelează arhitectura valorilor umane și generează noi forme de anxietate socială."
+                </p>
+</div>
+<div class="md:col-span-4 hidden md:block">
+<div class="relative aspect-[3/4] overflow-hidden rounded-lg editorial-shadow">
+<img alt="Dr. Victor Stoica academic portrait" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Close up professional portrait of an academic male" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxFaIPuTGY0ILdnyHrPZc1i1A9GqVbTIT7MKCxO0XHvMMrlCFKcz1lWI0AKbsjvXMLcOBTiSK2d9bNr_CZbB8p4ADqX5Km7hC9d4bUb5MSAHI0wMkiLWOq4LfgJEp_s-RpOuKb36xx5n58RLGsVZWSyhO44xcLPu1Y2EmzeSzkfqGluj3_LVWiFHlX80qP1s8wcNy3gvDTuRHSiBHCoFzI8jphwWaeiwZgGgbaUeFgyD3qFzNstuNflpEGXjqSaUGh9-Lk3wqMxaI"/>
+</div>
+</div>
+</header>
+<!-- Bento Layout: Bio & PhD -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-24">
+<!-- PhD Focus -->
+<section class="md:col-span-7 bg-surface-container-low p-12 rounded-xl border-l-4 border-secondary">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-secondary" data-icon="history_edu">history_edu</span>
+<h2 class="text-2xl font-headline text-primary">Cercetare Doctorală</h2>
+</div>
+<h3 class="text-3xl font-headline text-primary mb-6 italic leading-snug">
+                    „Valori împărtășite și riscuri percepute. Schimbările tehnologice ca factori declanșatori ai fricii”
+                </h3>
+<div class="space-y-6 text-on-surface-variant font-body leading-relaxed">
+<p>
+                        Susținută sub coordonarea <strong class="text-primary">Conf. univ. dr. Romeo Asiminei</strong>, teza explorează intersecția dintre fenomenologia riscului și dinamica valorilor colective în contextul digitalizării accelerate. 
+                    </p>
+<p>
+                        Cercetarea propune un model de analiză a modului în care inovația tehnologică nu este doar un motor economic, ci și un catalizator pentru reconfigurarea hărților mentale ale fricii, transformând riscul dintr-o probabilitate statistică într-o experiență culturală mediată.
+                    </p>
+</div>
+</section>
+<!-- Quick Bio Stats -->
+<aside class="md:col-span-5 grid grid-cols-1 gap-8">
+<div class="bg-surface-container-lowest p-8 rounded-xl editorial-shadow">
+<h3 class="font-label text-xs uppercase tracking-widest text-secondary mb-6">Parcurs Academic</h3>
+<ul class="space-y-6">
+<li class="flex gap-4">
+<span class="text-primary font-headline text-xl">01</span>
+<div>
+<p class="font-semibold text-primary">Universitatea „Alexandru Ioan Cuza”</p>
+<p class="text-sm text-on-surface-variant italic">Doctorat în Sociologie</p>
+</div>
+</li>
+<li class="flex gap-4">
+<span class="text-primary font-headline text-xl">02</span>
+<div>
+<p class="font-semibold text-primary">UAIC Iași</p>
+<p class="text-sm text-on-surface-variant italic">Masterat în Analiză și Intervenție Socială</p>
+</div>
+</li>
+<li class="flex gap-4">
+<span class="text-primary font-headline text-xl">03</span>
+<div>
+<p class="font-semibold text-primary">Facultatea de Filosofie (FSSP)</p>
+<p class="text-sm text-on-surface-variant italic">Licență în Sociologie</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="bg-primary p-8 rounded-xl text-on-primary">
+<h3 class="font-label text-xs uppercase tracking-widest text-secondary-container mb-4">Misiune</h3>
+<p class="font-headline text-xl leading-relaxed">
+                        Contribuind la înțelegerea mecanismelor prin care societatea românească asimilează modernitatea tehnologică.
+                    </p>
+</div>
+</aside>
+</div>
+<!-- Expertise Grid -->
+<section class="mb-24">
+<div class="flex justify-between items-baseline mb-12">
+<h2 class="text-4xl font-headline text-primary">Arii de expertiză</h2>
+<div class="h-px flex-grow mx-8 bg-outline-variant/30 hidden md:block"></div>
+<span class="font-label text-xs text-on-surface-variant uppercase tracking-widest">Research Domains</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+<!-- Area 1 -->
+<div class="p-10 bg-surface-container-lowest hover:bg-surface-container transition-colors duration-300">
+<span class="material-symbols-outlined text-4xl text-secondary mb-6" data-icon="diversity_3">diversity_3</span>
+<h4 class="text-xl font-headline text-primary mb-4">Sociologia Valorilor</h4>
+<p class="text-sm leading-relaxed text-on-surface-variant">Analiza transformărilor axologice în societățile aflate în tranziție post-comunistă și impactul globalizării.</p>
+</div>
+<!-- Area 2 -->
+<div class="p-10 bg-surface-container-lowest hover:bg-surface-container transition-colors duration-300">
+<span class="material-symbols-outlined text-4xl text-secondary mb-6" data-icon="warning">warning</span>
+<h4 class="text-xl font-headline text-primary mb-4">Percepția Riscului</h4>
+<p class="text-sm leading-relaxed text-on-surface-variant">Studiul modului în care grupurile sociale evaluează pericolele contemporane, de la schimbări climatice la IA.</p>
+</div>
+<!-- Area 3 -->
+<div class="p-10 bg-surface-container-lowest hover:bg-surface-container transition-colors duration-300">
+<span class="material-symbols-outlined text-4xl text-secondary mb-6" data-icon="terminal">terminal</span>
+<h4 class="text-xl font-headline text-primary mb-4">Tehnologia și Societatea</h4>
+<p class="text-sm leading-relaxed text-on-surface-variant">Impactul digitalizării asupra legăturilor sociale și apariția noilor forme de stratificare digitală.</p>
+</div>
+</div>
+</section>
+<!-- Academic Quote / Depth -->
+<section class="max-w-4xl mx-auto text-center py-20">
+<div class="inline-block p-4 mb-8 bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-secondary" data-icon="format_quote" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+</div>
+<p class="text-3xl font-headline italic text-primary leading-relaxed mb-8">
+                „Nu tehnologia în sine generează teama, ci viteza cu care aceasta descompune certitudinile noastre morale fără a oferi, în schimb, o nouă gramatică a sensului.”
+            </p>
+<div class="h-8 w-px bg-secondary mx-auto mb-4"></div>
+<p class="font-label text-sm uppercase tracking-widest text-secondary">Dr. Victor Stoica</p>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#002444] dark:bg-slate-950 w-full mt-20 border-t border-[#755b18]/20">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto px-8 py-16 w-full font-['Inter'] sans-serif text-sm tracking-wide text-white dark:text-slate-300">
+<div class="space-y-6">
+<div class="text-lg font-serif italic text-[#755b18]">Dr. Victor Stoica</div>
+<p class="text-slate-300/80 leading-relaxed">
+                    © 2024 Dr. Victor Stoica. Alexandru Ioan Cuza University (UAIC). Faculty of Philosophy and Social-Political Sciences (FSSP).
+                </p>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6 tracking-widest uppercase text-xs">Navigation</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-300/80 hover:text-white transition-colors hover:translate-x-1 inline-block" href="#">Home</a></li>
+<li><a class="text-white font-bold underline underline-offset-4 hover:translate-x-1 inline-block" href="#">About</a></li>
+<li><a class="text-slate-300/80 hover:text-white transition-colors hover:translate-x-1 inline-block" href="#">Publications</a></li>
+<li><a class="text-slate-300/80 hover:text-white transition-colors hover:translate-x-1 inline-block" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6 tracking-widest uppercase text-xs">Resources</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-300/80 hover:text-white transition-colors hover:translate-x-1 inline-block" href="#">Privacy Policy</a></li>
+<li><a class="text-slate-300/80 hover:text-white transition-colors hover:translate-x-1 inline-block" href="#">Institutional Repository</a></li>
+<li><a class="text-slate-300/80 hover:text-white transition-colors hover:translate-x-1 inline-block" href="#">UAIC Portal</a></li>
+<li><a class="text-slate-300/80 hover:text-white transition-colors hover:translate-x-1 inline-block" href="#">FSSP Department</a></li>
+</ul>
+</div>
+</div>
+</footer>
+</body></html>

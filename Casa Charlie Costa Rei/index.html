@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa Charlie — Vista Mare · Costa Rei, Sardegna</title>
+  <meta name="description" content="Casa Charlie a Costa Rei: porzione di villetta al primo piano, 300 metri dalla spiaggia, spettacolare vista mare, 6 ospiti, completamente ristrutturata. Sardegna." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sand:    #F4EDE3;
+      --ivory:   #FDFAF6;
+      --sea:     #1E4A6B;
+      --sea-mid: #2E6D9E;
+      --sea-lt:  #A8C8E2;
+      --gold:    #C8A86B;
+      --dark:    #1A1A1A;
+      --mid:     #5A5A5A;
+      --light:   #9A9A9A;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--ivory); color: var(--dark); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 24px 56px;
+      transition: background .35s, padding .35s, box-shadow .35s;
+    }
+    nav.scrolled {
+      background: rgba(253,250,246,.97); backdrop-filter: blur(10px);
+      padding: 14px 56px; box-shadow: 0 1px 0 rgba(0,0,0,.09);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600; letter-spacing: .05em;
+      color: #fff; text-decoration: none; transition: color .3s;
+    }
+    nav.scrolled .nav-logo { color: var(--sea); }
+    .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+    .nav-links a {
+      font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.82); text-decoration: none; transition: color .3s;
+    }
+    nav.scrolled .nav-links a { color: var(--mid); }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { background: var(--gold) !important; color: #fff !important; padding: 9px 24px; border-radius: 2px; }
+    .nav-cta:hover { background: #b8974e !important; }
+
+    /* HERO */
+    .hero {
+      position: relative; height: 100vh; min-height: 600px;
+      display: flex; align-items: flex-end; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('img/photo_1.jpg') center/cover no-repeat;
+      transform: scale(1.07);
+      animation: zoomOut 14s ease-out forwards;
+    }
+    @keyframes zoomOut { from{transform:scale(1.07)} to{transform:scale(1)} }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(10,25,45,.05) 0%, rgba(10,25,45,.55) 60%, rgba(10,25,45,.85) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2; padding: 0 80px 76px;
+      animation: fadeUp .95s ease-out .25s both;
+    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
+    .eyebrow { font-size: .7rem; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5.5vw, 5.2rem); font-weight: 300;
+      color: #fff; line-height: 1.06; margin-bottom: 22px;
+    }
+    .hero-title em { font-style: italic; color: var(--sea-lt); }
+    .hero-sub { font-size: .9rem; color: rgba(255,255,255,.7); letter-spacing: .05em; line-height: 1.75; max-width: 480px; }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.12); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.22); border-radius: 50px;
+      padding: 7px 18px; font-size: .76rem; letter-spacing: .1em; color: #fff; margin-top: 28px;
+    }
+    .hero-pill span { color: var(--gold); }
+    .hero-scroll {
+      position: absolute; bottom: 36px; right: 80px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      color: rgba(255,255,255,.45); font-size: .65rem; letter-spacing: .18em; text-transform: uppercase;
+    }
+    .hero-scroll::after {
+      content: ''; width: 1px; height: 56px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.5), transparent);
+      animation: lp 2.2s ease infinite;
+    }
+    @keyframes lp { 0%,100%{opacity:.4} 50%{opacity:1} }
+
+    /* STRIP */
+    .strip { background: var(--sea); display: flex; justify-content: center; }
+    .strip-item {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      gap: 12px; padding: 20px 16px; border-right: 1px solid rgba(255,255,255,.1);
+      transition: background .25s;
+    }
+    .strip-item:last-child { border-right: none; }
+    .strip-item:hover { background: rgba(255,255,255,.07); }
+    .si { font-size: 1.35rem; }
+    .st { font-size: .76rem; letter-spacing: .09em; text-transform: uppercase; color: rgba(255,255,255,.88); }
+
+    /* SECTIONS */
+    .section { padding: 108px 80px; }
+    .label { font-size: .7rem; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,3.2vw,3rem); font-weight: 300; color: var(--sea); line-height: 1.15; margin-bottom: 26px; }
+    .body { font-size: .92rem; line-height: 1.9; color: var(--mid); max-width: 560px; }
+
+    /* INTRO */
+    .intro-g { display: grid; grid-template-columns: 1fr 1fr; gap: 88px; align-items: center; }
+    .pframe { position: relative; height: 540px; border-radius: 2px; overflow: hidden; }
+    .pframe img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s; }
+    .pframe:hover img { transform: scale(1.04); }
+    .pcap {
+      position: absolute; bottom: 24px; left: 24px;
+      background: rgba(10,25,45,.82); backdrop-filter: blur(6px);
+      color: #fff; font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 300; padding: 12px 20px; border-left: 3px solid var(--gold);
+    }
+    .stats-g { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 44px; }
+    .sbox { padding: 22px 20px; border: 1px solid rgba(0,0,0,.1); border-radius: 2px; transition: border-color .3s, box-shadow .3s; }
+    .sbox:hover { border-color: var(--gold); box-shadow: 0 4px 24px rgba(200,168,107,.14); }
+    .sval { font-family: 'Cormorant Garamond', serif; font-size: 2.1rem; font-weight: 300; color: var(--sea); }
+    .slbl { font-size: .72rem; letter-spacing: .09em; text-transform: uppercase; color: var(--light); margin-top: 4px; }
+
+    /* GALLERY */
+    .gal-sec { background: var(--sand); padding: 108px 80px; }
+    .gal-hdr { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; gap: 24px; }
+    .gal-note { font-size: .8rem; color: var(--light); letter-spacing: .06em; text-align: right; max-width: 180px; }
+    .gal-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 320px 240px; gap: 10px; }
+    .gi { overflow: hidden; border-radius: 2px; position: relative; cursor: pointer; }
+    .gi:first-child { grid-row: 1/3; }
+    .gi img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s; display: block; }
+    .gi:hover img { transform: scale(1.06); }
+    .gov { position: absolute; inset: 0; background: rgba(10,25,45,0); transition: background .3s; display: flex; align-items: center; justify-content: center; }
+    .gi:hover .gov { background: rgba(10,25,45,.22); }
+    .gzm { opacity: 0; color: #fff; font-size: 1.8rem; transition: opacity .3s; }
+    .gi:hover .gzm { opacity: 1; }
+
+    /* AMENITIES */
+    .am-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin-top: 60px; }
+    .am { text-align: center; padding: 30px 14px; border: 1px solid rgba(0,0,0,.09); border-radius: 2px; transition: all .28s; }
+    .am:hover { background: var(--sea); border-color: var(--sea); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(30,74,107,.2); }
+    .am:hover .amn { color: #fff; }
+    .am:hover .aml { color: rgba(255,255,255,.65); }
+    .ami { font-size: 1.9rem; margin-bottom: 14px; }
+    .amn { font-family: 'Cormorant Garamond', serif; font-size: 1.08rem; color: var(--dark); margin-bottom: 6px; transition: color .28s; }
+    .aml { font-size: .73rem; color: var(--light); line-height: 1.55; transition: color .28s; }
+
+    /* SPACES */
+    .sp-sec { background: var(--dark); padding: 108px 80px; }
+    .sp-sec .h2 { color: #fff; }
+    .sp-intro { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 32px; margin-bottom: 56px; }
+    .sp-intro .body { color: rgba(255,255,255,.62); }
+    .sp-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+    .spc { position: relative; height: 380px; overflow: hidden; }
+    .spc img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.6); transition: filter .5s, transform .6s; display: block; }
+    .spc:hover img { filter: brightness(.75); transform: scale(1.05); }
+    .spi { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 26px; background: linear-gradient(to top, rgba(10,25,45,.92) 0%, transparent 100%); }
+    .spn { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 300; color: #fff; }
+    .spd { font-size: .76rem; color: rgba(255,255,255,.58); margin-top: 5px; }
+
+    /* LOCATION */
+    .loc-wrap { display: grid; grid-template-columns: 1fr 1fr; }
+    .loc-map { position: relative; min-height: 560px; background: url('img/photo_15.jpg') center/cover no-repeat; }
+    .loc-map::after { content: ''; position: absolute; inset: 0; background: rgba(10,25,45,.4); }
+    .map-pin { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 2; text-align: center; }
+    .dot { width: 18px; height: 18px; border-radius: 50%; background: var(--gold); margin: 0 auto 12px; box-shadow: 0 0 0 10px rgba(200,168,107,.28),0 0 0 24px rgba(200,168,107,.1); animation: dp 2.5s ease infinite; }
+    @keyframes dp { 0%,100%{box-shadow:0 0 0 10px rgba(200,168,107,.28),0 0 0 24px rgba(200,168,107,.1)} 50%{box-shadow:0 0 0 16px rgba(200,168,107,.2),0 0 0 36px rgba(200,168,107,.06)} }
+    .map-lbl { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; color: #fff; }
+    .loc-info { background: var(--ivory); padding: 80px 64px; }
+    .dist-list { margin-top: 44px; }
+    .di { display: flex; align-items: center; gap: 24px; padding: 18px 0; border-bottom: 1px solid rgba(0,0,0,.07); }
+    .di:first-child { border-top: 1px solid rgba(0,0,0,.07); }
+    .dkm { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 300; color: var(--gold); min-width: 90px; }
+    .dn { font-size: .86rem; color: var(--dark); }
+    .ds { font-size: .73rem; color: var(--light); margin-top: 2px; }
+
+    /* ZONE */
+    .zone-sec { background: var(--sand); padding: 108px 80px; }
+    .zone-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 56px; }
+    .zone-img { width: 100%; height: 320px; object-fit: cover; border-radius: 2px; margin-bottom: 20px; display: block; }
+    .zbt { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--sea); margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,.1); }
+    .zbc { font-size: .88rem; line-height: 1.9; color: var(--mid); margin-top: 12px; }
+
+    /* REVIEW */
+    .rev-sec { background: var(--sea); padding: 100px 120px; text-align: center; }
+    .rstars { font-size: 1.3rem; letter-spacing: 4px; color: var(--gold); margin-bottom: 32px; }
+    .rquote { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem,2.2vw,2rem); font-weight: 300; font-style: italic; color: #fff; line-height: 1.55; max-width: 720px; margin: 0 auto 28px; }
+    .rauthor { font-size: .76rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.48); }
+
+    /* RULES */
+    .rules-sec { padding: 80px 80px; }
+    .rules-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 48px; }
+    .ritem { display: flex; align-items: flex-start; gap: 16px; padding: 20px; border: 1px solid rgba(0,0,0,.09); border-radius: 2px; }
+    .ricon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+    .rtitle { font-size: .9rem; color: var(--dark); font-weight: 500; margin-bottom: 4px; }
+    .rtxt { font-size: .83rem; color: var(--mid); line-height: 1.6; }
+
+    /* BOOKING */
+    .book-sec { background: var(--dark); padding: 108px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 88px; align-items: center; }
+    .book-sec .h2 { color: #fff; }
+    .book-sec .body { color: rgba(255,255,255,.58); }
+    .cblk { margin-top: 40px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,.1); }
+    .clbl { font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 14px; }
+    .cline { font-size: .9rem; color: rgba(255,255,255,.72); line-height: 2.2; }
+    .bcard { background: var(--ivory); padding: 52px 48px; border-radius: 2px; }
+    .ctitle { font-family: 'Cormorant Garamond', serif; font-size: 1.65rem; font-weight: 300; color: var(--sea); margin-bottom: 6px; }
+    .csub { font-size: .8rem; color: var(--light); margin-bottom: 36px; }
+    .frow { display: flex; gap: 14px; margin-bottom: 14px; }
+    .fg { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+    .fg label { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--mid); }
+    .fg input, .fg select, .fg textarea { padding: 11px 14px; border: 1px solid rgba(0,0,0,.14); border-radius: 2px; font-family: 'Jost', sans-serif; font-size: .87rem; color: var(--dark); background: #fff; outline: none; transition: border-color .2s; }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--sea-mid); }
+    .fg textarea { resize: vertical; min-height: 88px; }
+    .ffull { margin-bottom: 14px; }
+    .bsub { width: 100%; padding: 15px; background: var(--sea); color: #fff; border: none; border-radius: 2px; font-family: 'Jost', sans-serif; font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; transition: background .25s; margin-top: 8px; }
+    .bsub:hover { background: var(--sea-mid); }
+    .abtn { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 14px; padding: 13px; border: 1px solid rgba(0,0,0,.13); border-radius: 2px; text-decoration: none; color: var(--mid); font-size: .8rem; transition: all .22s; }
+    .abtn:hover { border-color: #FF5A5F; color: #FF5A5F; }
+
+    /* FOOTER */
+    footer { background: #0f0f0f; padding: 48px 80px; display: flex; justify-content: space-between; align-items: center; }
+    .flogo { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 300; color: rgba(255,255,255,.78); }
+    .fcopy { font-size: .74rem; color: rgba(255,255,255,.3); }
+    .flinks { display: flex; gap: 24px; }
+    .flinks a { color: rgba(255,255,255,.35); text-decoration: none; font-size: .74rem; letter-spacing: .08em; transition: color .2s; }
+    .flinks a:hover { color: var(--gold); }
+
+    /* LIGHTBOX */
+    .lb { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.94); z-index: 999; align-items: center; justify-content: center; }
+    .lb.open { display: flex; }
+    .lbi { max-width: 92vw; max-height: 88vh; object-fit: contain; border-radius: 2px; }
+    .lbc { position: absolute; top: 28px; right: 40px; color: #fff; font-size: 2rem; cursor: pointer; opacity: .6; transition: opacity .2s; }
+    .lbc:hover { opacity: 1; }
+    .lba { position: absolute; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,.6); font-size: 2.8rem; cursor: pointer; user-select: none; transition: color .2s; }
+    .lba:hover { color: #fff; }
+    .lbp { left: 24px; }
+    .lbn { right: 24px; }
+
+    /* REVEAL */
+    .rv { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+    .rv.in { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width:960px) {
+      nav, nav.scrolled { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero-content { padding: 0 24px 52px; }
+      .hero-scroll { display: none; }
+      .section, .gal-sec, .sp-sec, .zone-sec, .rules-sec, .book-sec { padding: 72px 24px; }
+      .intro-g { grid-template-columns: 1fr; gap: 40px; }
+      .pframe { height: 300px; }
+      .gal-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3,200px); }
+      .gi:first-child { grid-row: auto; }
+      .am-grid { grid-template-columns: repeat(2,1fr); }
+      .sp-grid { grid-template-columns: 1fr; }
+      .loc-wrap { grid-template-columns: 1fr; }
+      .loc-map { min-height: 300px; }
+      .loc-info { padding: 52px 24px; }
+      .zone-cols { grid-template-columns: 1fr; gap: 40px; }
+      .rev-sec { padding: 72px 24px; }
+      .rules-grid { grid-template-columns: 1fr; }
+      .book-sec { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 20px; text-align: center; padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Casa Charlie</a>
+  <ul class="nav-links">
+    <li><a href="#gallery">Galleria</a></li>
+    <li><a href="#dotazioni">Dotazioni</a></li>
+    <li><a href="#location">Dove siamo</a></li>
+    <li><a href="#prenota" class="nav-cta">Prenota ora</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="eyebrow">Monte Nai · Costa Rei · Sardegna</p>
+    <h1 class="hero-title">
+      Casa Charlie<br><em>Vista mare</em><br>a 2 passi dalla spiaggia
+    </h1>
+    <p class="hero-sub">Villetta appena ristrutturata con spettacolare terrazzo panoramico. 300 metri dalla spiaggia bianca di Rei Marina.</p>
+    <div class="hero-pill">🏖️ <span>300 m</span> dalla spiaggia &nbsp;·&nbsp; 👥 fino a <span>6</span> ospiti</div>
+  </div>
+  <div class="hero-scroll">Scopri</div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item"><span class="si">🏖️</span><span class="st">300 m dalla spiaggia</span></div>
+  <div class="strip-item"><span class="si">👁️</span><span class="st">Vista mare dal terrazzo</span></div>
+  <div class="strip-item"><span class="si">🏡</span><span class="st">6 ospiti · 2 camere · 4 letti</span></div>
+  <div class="strip-item"><span class="si">✨</span><span class="st">Appena ristrutturata</span></div>
+  <div class="strip-item"><span class="si">🔑</span><span class="st">Self check-in</span></div>
+</div>
+
+<!-- INTRO -->
+<section class="section" id="casa">
+  <div class="intro-g">
+    <div class="pframe rv">
+      <img src="img/photo_1.jpg" alt="Terrazzo con BBQ e vista mare" />
+      <div class="pcap">Terrazzo con BBQ — Vista mare</div>
+    </div>
+    <div class="rv">
+      <p class="label">La nostra casa</p>
+      <h2 class="h2">Un angolo di Sardegna<br>tutto per te</h2>
+      <p class="body">Casa Charlie è situata al primo piano di una villetta caposchiera appena ristrutturata, in posizione unica: a poco più di 300 metri dalla rinomata spiaggia di Rei Marina — raggiungibile a piedi in pochi minuti — e con spettacolare vista mare dall'ampio terrazzo attrezzato con BBQ.</p>
+      <p class="body" style="margin-top:16px">Il tutto in un piccolo complesso di villette indipendenti che garantiscono privacy e tranquillità. A 50 metri il parcheggio riservato; a due passi tutti i servizi: supermercato, ristorante, bar, farmacia, padel, tennis.</p>
+      <div class="stats-g">
+        <div class="sbox rv"><div class="sval">300m</div><div class="slbl">dalla spiaggia</div></div>
+        <div class="sbox rv"><div class="sval">6</div><div class="slbl">ospiti max</div></div>
+        <div class="sbox rv"><div class="sval">2</div><div class="slbl">camere da letto</div></div>
+        <div class="sbox rv"><div class="sval">4</div><div class="slbl">posti letto</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gal-sec" id="gallery">
+  <div class="gal-hdr">
+    <div><p class="label">Galleria fotografica</p><h2 class="h2" style="margin-bottom:0">Casa Charlie in immagini</h2></div>
+    <p class="gal-note">Clicca per ingrandire · frecce per navigare</p>
+  </div>
+  <div class="gal-grid">
+    <div class="gi" data-idx="0"><img src="img/photo_1.jpg" alt="Terrazzo BBQ vista mare"/><div class="gov"><span class="gzm">⊕</span></div></div>
+    <div class="gi" data-idx="2"><img src="img/photo_3.jpg" alt="Esterno villetta"/><div class="gov"><span class="gzm">⊕</span></div></div>
+    <div class="gi" data-idx="3"><img src="img/photo_4.jpg" alt="Zona giorno"/><div class="gov"><span class="gzm">⊕</span></div></div>
+    <div class="gi" data-idx="4"><img src="img/photo_5.jpg" alt="Camera matrimoniale"/><div class="gov"><span class="gzm">⊕</span></div></div>
+    <div class="gi" data-idx="5"><img src="img/photo_6.jpg" alt="Cameretta"/><div class="gov"><span class="gzm">⊕</span></div></div>
+  </div>
+</section>
+
+<!-- DOTAZIONI -->
+<section class="section" id="dotazioni">
+  <div style="text-align:center;max-width:620px;margin:0 auto">
+    <p class="label">Tutto il necessario</p>
+    <h2 class="h2">Dotazioni & comfort</h2>
+    <p class="body" style="max-width:100%;margin:0 auto">Appena ristrutturata e dotata di ogni comfort. Ogni dettaglio è pensato per rendere la tua vacanza in Sardegna davvero indimenticabile.</p>
+  </div>
+  <div class="am-grid">
+    <div class="am rv"><div class="ami">❄️</div><div class="amn">Aria Condizionata</div><div class="aml">Nella zona giorno</div></div>
+    <div class="am rv"><div class="ami">📺</div><div class="amn">Smart TV</div><div class="aml">Soggiorno + camera matrimoniale</div></div>
+    <div class="am rv"><div class="ami">🔊</div><div class="amn">Cassa Bluetooth</div><div class="aml">Per musica in casa e terrazzo</div></div>
+    <div class="am rv"><div class="ami">🔥</div><div class="amn">BBQ & Terrazzo</div><div class="aml">Tavolo per 6 con vista mare</div></div>
+    <div class="am rv"><div class="ami">🍳</div><div class="amn">Cucina Completa</div><div class="aml">Microonde, macchina caffè, frigo, congelatore, tostapane</div></div>
+    <div class="am rv"><div class="ami">📶</div><div class="amn">Wi-Fi Dedicato</div><div class="aml">In tutti gli ambienti</div></div>
+    <div class="am rv"><div class="ami">🌿</div><div class="amn">Giardino Privato</div><div class="aml">Con doccia esterna esclusiva</div></div>
+    <div class="am rv"><div class="ami">👕</div><div class="amn">Lavatrice</div><div class="aml">Nel sottoscala</div></div>
+    <div class="am rv"><div class="ami">🛏️</div><div class="amn">Biancheria Inclusa</div><div class="aml">Lenzuola, federe e asciugamani per tutti</div></div>
+    <div class="am rv"><div class="ami">🔒</div><div class="amn">Cassaforte</div><div class="aml">Nella camera matrimoniale</div></div>
+    <div class="am rv"><div class="ami">🎾</div><div class="amn">Tennis & Padel</div><div class="aml">Campo a 50 m · racchette su richiesta</div></div>
+    <div class="am rv"><div class="ami">👶</div><div class="amn">Culla Disponibile</div><div class="aml">Su richiesta per neonati</div></div>
+  </div>
+</section>
+
+<!-- SPAZI -->
+<section class="sp-sec" id="spazi">
+  <div class="sp-intro">
+    <div><p class="label">Gli ambienti</p><h2 class="h2">Ogni spazio,<br>un'emozione</h2></div>
+    <p class="body">Dal soggiorno con divano letto alle camere, dalla cucina al terrazzo panoramico con BBQ: ogni angolo di Casa Charlie è pensato per il tuo benessere.</p>
+  </div>
+  <div class="sp-grid">
+    <div class="spc"><img src="img/photo_7.jpg" alt="Soggiorno"/><div class="spi"><div class="spn">Zona Giorno</div><div class="spd">Smart TV · aria condizionata · divano letto matrimoniale · cassa Bluetooth</div></div></div>
+    <div class="spc"><img src="img/photo_8.jpg" alt="Camera matrimoniale"/><div class="spi"><div class="spn">Camera Matrimoniale</div><div class="spd">Letto matrimoniale · TV · cassaforte · armadio · vista mare</div></div></div>
+    <div class="spc"><img src="img/photo_9.jpg" alt="Cameretta"/><div class="spi"><div class="spn">Cameretta</div><div class="spd">Letto a castello · cassettiera · armadio a giorno</div></div></div>
+    <div class="spc"><img src="img/photo_10.jpg" alt="Terrazzo"/><div class="spi"><div class="spn">Terrazzo & BBQ</div><div class="spd">Tavolo per 6 · barbecue · vista panoramica sul mare di Costa Rei</div></div></div>
+    <div class="spc"><img src="img/photo_11.jpg" alt="Cucina"/><div class="spi"><div class="spn">Cucina Attrezzata</div><div class="spd">Microonde · macchina caffè · frigorifero · congelatore · tostapane</div></div></div>
+    <div class="spc"><img src="img/photo_13.jpg" alt="Giardino"/><div class="spi"><div class="spn">Giardino Privato</div><div class="spd">Ad uso esclusivo · doccia esterna · area relax</div></div></div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<div class="loc-wrap" id="location">
+  <div class="loc-map">
+    <div class="map-pin"><div class="dot"></div><div class="map-lbl">Costa Rei<br><small style="font-size:.72rem;opacity:.75">Monte Nai, Sardegna</small></div></div>
+  </div>
+  <div class="loc-info">
+    <p class="label">Dove siamo</p>
+    <h2 class="h2">Nel cuore di<br>Costa Rei</h2>
+    <p class="body">Casa Charlie si trova tra Via delle Agavi e Via delle Tamerici, nella zona Rei Marina — parte nord di Costa Rei, con spiaggia amplissima, sabbia bianca finissima e mare cristallino a fondale basso, ideale per famiglie con bambini.</p>
+    <div class="dist-list">
+      <div class="di rv"><div class="dkm">300m</div><div><div class="dn">Spiaggia di Rei Marina</div><div class="ds">A piedi, ~4 minuti</div></div></div>
+      <div class="di rv"><div class="dkm">50m</div><div><div class="dn">Parcheggio riservato</div><div class="ds">Gratuito, vicino alla casa</div></div></div>
+      <div class="di rv"><div class="dkm">2 passi</div><div><div class="dn">Piazzetta Rei Marina</div><div class="ds">Supermercato, ristorante, bar, farmacia, gelateria, padel, tennis</div></div></div>
+      <div class="di rv"><div class="dkm">Vicino</div><div><div class="dn">Cala Pira · Cala Sinzias · Capo Ferrato</div><div class="ds">Escursioni in gommone o in auto</div></div></div>
+      <div class="di rv"><div class="dkm">~45km</div><div><div class="dn">Aeroporto di Cagliari</div><div class="ds">Circa 45 minuti in auto</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ZONA & MARE -->
+<section class="zone-sec">
+  <p class="label">La zona</p>
+  <h2 class="h2">Costa Rei: 10 km di paradiso<br>sul Mediterraneo</h2>
+  <div class="zone-cols">
+    <div class="rv">
+      <img src="img/photo_14.jpg" alt="Spiaggia Costa Rei" class="zone-img"/>
+      <div class="zbt">🏖️ Il mare e la spiaggia</div>
+      <p class="zbc">Con i suoi 10 km di sabbia bianca e fine, Costa Rei è una delle baie più belle del Mediterraneo — e secondo la Lonely Planet, del mondo. Il mare è cristallino, il fondale dolcemente degradante: ideale per famiglie con bambini.</p>
+      <p class="zbc">Presenti due chioschi con noleggio lettini e ombrelloni. Servizio di noleggio gommoni per esplorare la costa: Cala Pira, Cala Sinzias, l'Isola di Serpentara, Capo Carbonara, Capo Ferrato.</p>
+    </div>
+    <div class="rv">
+      <img src="img/photo_16.jpg" alt="Zona servizi" class="zone-img"/>
+      <div class="zbt">🏘️ Servizi e vita locale</div>
+      <p class="zbc">In piazzetta Rei Marina, a due passi dalla casa: supermercato, ristorante/pizzeria, bar, gelateria, tabaccheria, farmacia, pescheria, pasticceria. Campi da tennis e padel a 50 metri.</p>
+      <p class="zbc">Mercatino artigianale e alimentare due volte a settimana in estate. Una passeggiata più lunga porta al centro del paese con altri ristoranti, noleggio bici e un piccolo parco giochi per bambini.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEW -->
+<section class="rev-sec">
+  <div class="rstars">★★★★★</div>
+  <blockquote class="rquote">"Posto meraviglioso, terrazzo con vista mare stupenda. La casa è curata in ogni dettaglio e la spiaggia è davvero a due passi. Costa Rei è magica — ci torneremo sicuramente!"</blockquote>
+  <p class="rauthor">— Ospite · Airbnb · Estate 2024</p>
+</section>
+
+<!-- REGOLE -->
+<section class="rules-sec">
+  <p class="label">Informazioni utili</p>
+  <h2 class="h2">Regole & note</h2>
+  <div class="rules-grid">
+    <div class="ritem rv"><span class="ricon">🚭</span><div class="rtxt"><div class="rtitle">Non fumatori</div>Si prega di non fumare all'interno della casa.</div></div>
+    <div class="ritem rv"><span class="ricon">🐾</span><div class="rtxt"><div class="rtitle">No animali domestici</div>Non sono ammessi animali domestici.</div></div>
+    <div class="ritem rv"><span class="ricon">♿</span><div class="rtxt"><div class="rtitle">Accessibilità</div>L'appartamento è al primo piano con circa 15 gradini. Non adatto a persone con difficoltà di deambulazione.</div></div>
+    <div class="ritem rv"><span class="ricon">🧹</span><div class="rtxt"><div class="rtitle">Pulizia settimanale</div>Disponibile su richiesta: servizio di pulizia e cambio biancheria.</div></div>
+    <div class="ritem rv"><span class="ricon">🔑</span><div class="rtxt"><div class="rtitle">Self check-in</div>Accesso autonomo con istruzioni dettagliate fornite dall'host Claudio.</div></div>
+    <div class="ritem rv"><span class="ricon">🆔</span><div class="rtxt"><div class="rtitle">Registrazione</div>IT111042C2000U1503 — Struttura regolarmente registrata.</div></div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="book-sec" id="prenota">
+  <div>
+    <p class="label">Prenota il tuo soggiorno</p>
+    <h2 class="h2">Vivi Costa Rei<br>come a casa tua</h2>
+    <p class="body">Compila il modulo per richiedere disponibilità o informazioni. L'host Claudio Ottavio risponde entro 24 ore. Puoi anche prenotare direttamente su Airbnb.</p>
+    <div class="cblk">
+      <p class="clbl">Host</p>
+      <p class="cline">👤 <strong style="color:rgba(255,255,255,.85)">Claudio Ottavio</strong><br>💬 Disponibile su Airbnb Messaging<br>🕐 Risposta entro 24 ore</p>
+    </div>
+  </div>
+  <div class="bcard">
+    <div class="ctitle">Richiedi disponibilità</div>
+    <div class="csub">Risposta garantita entro 24 ore</div>
+    <div class="frow">
+      <div class="fg"><label>Check-in</label><input type="date"/></div>
+      <div class="fg"><label>Check-out</label><input type="date"/></div>
+    </div>
+    <div class="frow">
+      <div class="fg"><label>Nome completo</label><input type="text" placeholder="Il tuo nome"/></div>
+      <div class="fg"><label>Ospiti</label><select><option>1–2 ospiti</option><option>3–4 ospiti</option><option>5–6 ospiti</option></select></div>
+    </div>
+    <div class="fg ffull"><label>Email</label><input type="email" placeholder="la.tua@email.com"/></div>
+    <div class="fg ffull"><label>Messaggio (opzionale)</label><textarea placeholder="Hai bambini piccoli? Hai bisogno della culla? Domande particolari?"></textarea></div>
+    <button class="bsub">Invia richiesta</button>
+    <a href="https://www.airbnb.it/rooms/1618165671865799111?unique_share_id=c4bc087e-16d2-4c11-aff9-bdc437f47190" target="_blank" rel="noopener" class="abtn">
+      <svg width="18" height="18" viewBox="0 0 32 32" fill="#FF5A5F"><path d="M16 0C7.163 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16S24.837 0 16 0zm0 5c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zm0 22.5c-5 0-9.375-2.563-12-6.438C4.063 17.875 9.5 15 16 15s11.938 2.875 12 6.063C25.375 24.937 21 27.5 16 27.5z"/></svg>
+      Prenota su Airbnb
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="flogo">Casa Charlie · Costa Rei</div>
+  <p class="fcopy">© 2025 · Monte Nai, Sardegna · IT111042C2000U1503</p>
+  <div class="flinks">
+    <a href="#">Privacy</a>
+    <a href="https://www.airbnb.it/rooms/1618165671865799111" target="_blank">Airbnb</a>
+    <a href="#prenota">Contatti</a>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <span class="lbc" onclick="lbClose()">✕</span>
+  <span class="lba lbp" onclick="lbMove(-1)">‹</span>
+  <img class="lbi" id="lbi" src="" alt=""/>
+  <span class="lba lbn" onclick="lbMove(1)">›</span>
+</div>
+
+<script>
+  // Nav
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60));
+
+  // Lightbox
+  const photos=['img/photo_1.jpg','img/photo_2.jpg','img/photo_3.jpg','img/photo_4.jpg','img/photo_5.jpg','img/photo_6.jpg','img/photo_7.jpg','img/photo_8.jpg','img/photo_9.jpg','img/photo_10.jpg','img/photo_11.jpg','img/photo_12.jpg','img/photo_13.jpg','img/photo_14.jpg','img/photo_15.jpg','img/photo_16.jpg','img/photo_17.jpg'];
+  let ci=0;
+  const lb=document.getElementById('lb'),lbi=document.getElementById('lbi');
+  document.querySelectorAll('.gi').forEach(el=>{
+    el.addEventListener('click',()=>{ci=parseInt(el.dataset.idx||0);lbi.src=photos[ci];lb.classList.add('open');});
+  });
+  function lbClose(){lb.classList.remove('open');}
+  function lbMove(d){ci=(ci+d+photos.length)%photos.length;lbi.src=photos[ci];}
+  lb.addEventListener('click',e=>{if(e.target===lb)lbClose();});
+  document.addEventListener('keydown',e=>{
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')lbClose();
+    if(e.key==='ArrowRight')lbMove(1);
+    if(e.key==='ArrowLeft')lbMove(-1);
+  });
+
+  // Scroll reveal
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.1});
+  document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

@@ -9,37 +9,200 @@ datasource db {
 }
 
 model Room {
-  id        Int       @id @default(autoincrement())
-  slug      String    @unique
-  name      String
-  price     Float     @default(90)
-  capacity  Int       @default(2)
-  bookings  Booking[]
-  createdAt DateTime  @default(now())
+  id          Int          @id @default(autoincrement())
+  slug        String       @unique
+  name        String
+  nameEn      String?      // English name
+  nameDe      String?      // German name
+  nameFr      String?      // French name
+  description String?
+  descriptionEn String?
+  descriptionDe String?
+  descriptionFr String?
+  price       Float        @default(90)
+  capacity    Int          @default(2)
+  bookings    Booking[]
+  reviews     Review[]
+  priceRules  PriceRule[]
+  cleaningTasks CleaningTask[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime?    @updatedAt
 }
 
 model Booking {
-  id            Int      @id @default(autoincrement())
-  roomId        Int
-  room          Room     @relation(fields: [roomId], references: [id])
-  guestName     String   @default("")
-  guestEmail    String   @default("")
-  checkIn       DateTime
-  checkOut      DateTime
-  guests        Int      @default(1)
-  nights        Int      @default(1)
-  totalPrice    Float    @default(0)
-  paymentStatus String   @default("pending")
+  id              Int              @id @default(autoincrement())
+  roomId          Int
+  room            Room             @relation(fields: [roomId], references: [id])
+  guestName       String           @default("")
+  guestEmail      String           @default("")
+  guestPhone      String?          // Added phone number
+  checkIn         DateTime
+  checkOut        DateTime
+  guests          Int              @default(1)
+  nights          Int              @default(1)
+  totalPrice      Float            @default(0)
+  paymentStatus   String           @default("pending")
   stripeSessionId String?
+  source          String           @default("direct") // direct, airbnb, booking.com
+  notes           String?
+  documents       GuestDocument[]
+  invoice         Invoice?         // Relation to invoice
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime?        @updatedAt
+}
+
+model GuestDocument {
+  id        Int      @id @default(autoincrement())
+  bookingId Int
+  booking   Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  type      String   // passport, id_card, drivers_license
+  number    String   // document number
+  fileUrl   String?  // uploaded file path
+  verified  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model PriceRule {
+  id          Int      @id @default(autoincrement())
+  roomId      Int
+  room        Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  startDate   DateTime
+  endDate     DateTime
+  price       Float    // price per night
+  minNights   Int      @default(1)
+  name        String?  // e.g., "High Season 2024"
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model CleaningTask {
+  id          Int      @id @default(autoincrement())
+  roomId      Int
+  room        Room     @relation(fields: [roomId], references: [id])
+  date        DateTime
+  status      String   @default("pending") // pending, in_progress, done, cancelled
+  assignedTo  String?  // cleaner name
+  notes       String?
+  checklist   Json?    // {beds: true, bathroom: false, ...}
+  completedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Review {
+  id          Int      @id @default(autoincrement())
+  roomId      Int
+  room        Room     @relation(fields: [roomId], references: [id])
+  guestName   String
+  guestEmail  String?
+  rating      Int      // 1-5 stars
+  title       String?
+  comment     String
+  reply       String?  // admin reply
+  isApproved  Boolean  @default(false)
+  checkInDate DateTime? // when they stayed
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Invoice {
+  id            Int      @id @default(autoincrement())
+  bookingId     Int      @unique
+  booking       Booking  @relation(fields: [bookingId], references: [id])
+  invoiceNumber String   @unique
+  issueDate     DateTime @default(now())
+  totalAmount   Float
+  vatAmount     Float    @default(0)
+  xmlData       String?  // FatturaPA XML
+  status        String   @default("draft") // draft, sent, paid
   createdAt     DateTime @default(now())
 }
 
+model BlogPost {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  title       String
+  titleEn     String?
+  titleDe     String?
+  titleFr     String?
+  content     String
+  contentEn   String?
+  contentDe   String?
+  contentFr   String?
+  excerpt     String?
+  image       String?
+  category    String   // guide, food, events, news
+  published   Boolean  @default(false)
+  views       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model NewsletterSubscriber {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  isActive  Boolean  @default(true)
+  source    String   @default("website") // website, booking, popup
+  createdAt DateTime @default(now())
+}
+
+model SpecialPackage {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  name        String
+  description String
+  image       String?
+  price       Float
+  originalPrice Float? // for showing discount
+  includes    Json     // ["2 nights", "breakfast", "wine tasting"]
+  isActive    Boolean  @default(true)
+  validFrom   DateTime?
+  validUntil  DateTime?
+  createdAt   DateTime @default(now())
+}
+
+model WishlistItem {
+  id        Int      @id @default(autoincrement())
+  sessionId String   // anonymous user session
+  roomId    Int
+  createdAt DateTime @default(now())
+  
+  @@unique([sessionId, roomId])
+}
+
 model Settings {
-  id               Int    @id @default(1)
-  stripePublicKey  String @default("")
-  stripeSecretKey  String @default("")
-  whatsappNumber   String @default("+393478327243")
-  propertyName     String @default("La Suite N\u00b04")
-  adminEmail       String @default("admin@lasuiten4.it")
-  adminPassword    String @default("admin123")
+  id                  Int    @id @default(1)
+  stripePublicKey     String @default("")
+  stripeSecretKey     String @default("")
+  whatsappNumber      String @default("+393478327243")
+  propertyName        String @default("La Suite N°4")
+  adminEmail          String @default("admin@lasuiten4.it")
+  adminPassword       String @default("admin123")
+  // Email settings
+  smtpHost            String @default("")
+  smtpPort            Int    @default(587)
+  smtpUser            String @default("")
+  smtpPassword        String @default("")
+  smtpFrom            String @default("booking@lasuiten4.it")
+  // Invoice settings
+  vatNumber           String @default("")
+  fiscalCode          String @default("")
+  companyAddress      String @default("")
+  // Alloggiati Web
+  alloggiatiUsername  String @default("")
+  alloggiatiPassword  String @default("")
+  // Languages
+  defaultLanguage     String @default("it")
+  enabledLanguages    Json   @default("[\"it\", \"en\"]")
+}
+
+model AuditLog {
+  id          Int      @id @default(autoincrement())
+  action      String   // booking_created, price_updated, etc.
+  entityType  String   // booking, room, etc.
+  entityId    Int?
+  userId      String?  // admin user if applicable
+  details     Json?    // additional data
+  createdAt   DateTime @default(now())
 }

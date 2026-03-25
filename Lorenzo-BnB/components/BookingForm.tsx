@@ -1,12 +1,20 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { property } from '@/data/rooms'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 interface BookingFormProps {
   preselectedRoom?: string
   variant?: 'inline' | 'card'
+}
+
+// Map room slugs to camera keys
+const roomToCameraMap: Record<string, string> = {
+  'suite-luxury-tripla': 'camera_1',
+  'suite-luxury-4-pax': 'camera_2',
+  'stanza-luxury-3-pax': 'camera_3',
+  'stanza-luxury-2-pax': 'camera_4',
 }
 
 export default function BookingForm({ preselectedRoom, variant = 'card' }: BookingFormProps) {
@@ -23,11 +31,31 @@ export default function BookingForm({ preselectedRoom, variant = 'card' }: Booki
   const [guestEmail, setGuestEmail] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [bookedDates, setBookedDates] = useState<string[]>([])
+  const [calendarLoading, setCalendarLoading] = useState(true)
 
   const selectedRoom = useMemo(
     () => property.rooms.find((r) => r.slug === roomSlug),
     [roomSlug]
   )
+
+  // Fetch booked dates when room changes
+  useEffect(() => {
+    async function fetchCalendar() {
+      setCalendarLoading(true)
+      try {
+        const res = await fetch(`/api/calendar?room=${roomSlug}`)
+        const data = await res.json()
+        setBookedDates(data.bookedDates || [])
+      } catch (err) {
+        console.error('Failed to fetch calendar:', err)
+        setBookedDates([])
+      } finally {
+        setCalendarLoading(false)
+      }
+    }
+    fetchCalendar()
+  }, [roomSlug])
 
   const nights = useMemo(() => {
     const d1 = new Date(checkIn)
@@ -35,6 +63,20 @@ export default function BookingForm({ preselectedRoom, variant = 'card' }: Booki
     const diff = Math.ceil((d2.getTime() - d1.getTime()) / 86400000)
     return diff > 0 ? diff : 0
   }, [checkIn, checkOut])
+
+  // Check if selected dates overlap with booked dates
+  const hasDateConflict = useMemo(() => {
+    if (!checkIn || !checkOut || bookedDates.length === 0) return false
+    const start = new Date(checkIn)
+    const end = new Date(checkOut)
+    const current = new Date(start)
+    while (current < end) {
+      const dateStr = current.toISOString().split('T')[0]
+      if (bookedDates.includes(dateStr)) return true
+      current.setDate(current.getDate() + 1)
+    }
+    return false
+  }, [checkIn, checkOut, bookedDates])
 
   // Price estimation from static data
   const estimatedPrice = useMemo(() => {
@@ -60,6 +102,10 @@ export default function BookingForm({ preselectedRoom, variant = 'card' }: Booki
     }
     if (new Date(checkIn) < new Date(today)) {
       setError(lang === 'it' ? 'La data non può essere nel passato' : 'Date cannot be in the past')
+      return false
+    }
+    if (hasDateConflict) {
+      setError(lang === 'it' ? 'Le date selezionate non sono disponibili' : 'Selected dates are not available')
       return false
     }
     if (!selectedRoom) return false
@@ -128,6 +174,13 @@ export default function BookingForm({ preselectedRoom, variant = 'card' }: Booki
     }
   }
 
+  // Format booked dates for the date input min/max
+  const getNextAvailableDate = (fromDate: string): string => {
+    const date = new Date(fromDate)
+    date.setDate(date.getDate() + 1)
+    return date.toISOString().split('T')[0]
+  }
+
   const isCard = variant === 'card'
   const inputCls = 'w-full px-4 py-3.5 bg-[#f5f4ef] border border-[#eee7df] rounded-lg text-[#1a1716] text-sm focus:outline-none focus:border-[#094730] transition-colors'
 
@@ -142,15 +195,36 @@ export default function BookingForm({ preselectedRoom, variant = 'card' }: Booki
       <div className={`grid gap-5 ${isCard ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-2 md:grid-cols-4'}`}>
         <div>
           <label className="block text-xs tracking-[0.2em] uppercase text-[#9e9790] mb-2">Check-in</label>
-          <input type="date" value={checkIn} min={today} onChange={(e) => { setCheckIn(e.target.value); setError('') }} className={inputCls} />
+          <input 
+            type="date" 
+            value={checkIn} 
+            min={today} 
+            onChange={(e) => { setCheckIn(e.target.value); setError('') }} 
+            className={inputCls} 
+          />
         </div>
         <div>
           <label className="block text-xs tracking-[0.2em] uppercase text-[#9e9790] mb-2">Check-out</label>
-          <input type="date" value={checkOut} min={checkIn || today} onChange={(e) => { setCheckOut(e.target.value); setError('') }} className={inputCls} />
+          <input 
+            type="date" 
+            value={checkOut} 
+            min={getNextAvailableDate(checkIn || today)} 
+            onChange={(e) => { setCheckOut(e.target.value); setError('') }} 
+            className={inputCls} 
+          />
         </div>
         <div>
           <label className="block text-xs tracking-[0.2em] uppercase text-[#9e9790] mb-2">{lang === 'it' ? 'Camera' : 'Room'}</label>
-          <select value={roomSlug} onChange={(e) => { setRoomSlug(e.target.value); const r = property.rooms.find(r => r.slug === e.target.value); if (r && guests > r.capacity.guests) setGuests(r.capacity.guests); setError('') }} className={`${inputCls} appearance-none`}>
+          <select 
+            value={roomSlug} 
+            onChange={(e) => { 
+              setRoomSlug(e.target.value); 
+              const r = property.rooms.find(r => r.slug === e.target.value); 
+              if (r && guests > r.capacity.guests) setGuests(r.capacity.guests); 
+              setError('') 
+            }} 
+            className={`${inputCls} appearance-none`}
+          >
             {property.rooms.map((r) => (
               <option key={r.slug} value={r.slug}>{t(r.name)}</option>
             ))}
@@ -158,12 +232,42 @@ export default function BookingForm({ preselectedRoom, variant = 'card' }: Booki
         </div>
         <div>
           <label className="block text-xs tracking-[0.2em] uppercase text-[#9e9790] mb-2">{lang === 'it' ? 'Ospiti' : 'Guests'}</label>
-          <select value={guests} onChange={(e) => { setGuests(Number(e.target.value)); setError('') }} className={`${inputCls} appearance-none`}>
+          <select 
+            value={guests} 
+            onChange={(e) => { setGuests(Number(e.target.value)); setError('') }} 
+            className={`${inputCls} appearance-none`}
+          >
             {Array.from({ length: selectedRoom?.capacity.guests || 4 }, (_, i) => i + 1).map((n) => (
               <option key={n} value={n}>{n} {n === 1 ? (lang === 'it' ? 'ospite' : 'guest') : (lang === 'it' ? 'ospiti' : 'guests')}</option>
             ))}
           </select>
         </div>
+      </div>
+
+      {/* Availability indicator */}
+      <div className="mt-4 flex items-center gap-3">
+        {calendarLoading ? (
+          <div className="flex items-center gap-2 text-sm text-[#9e9790]">
+            <span className="w-3 h-3 border-2 border-[#9e9790]/30 border-t-[#9e9790] rounded-full animate-spin" />
+            {lang === 'it' ? 'Caricamento disponibilità...' : 'Loading availability...'}
+          </div>
+        ) : bookedDates.length > 0 ? (
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-amber-500" />
+            <span className="text-sm text-[#9e9790]">
+              {lang === 'it' 
+                ? `${bookedDates.length} notti prenotate per questa camera` 
+                : `${bookedDates.length} nights booked for this room`}
+            </span>
+          </div>
+        ) : (
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-green-500" />
+            <span className="text-sm text-[#9e9790]">
+              {lang === 'it' ? 'Disponibilità aggiornata' : 'Availability updated'}
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Guest info for Stripe */}
@@ -191,14 +295,24 @@ export default function BookingForm({ preselectedRoom, variant = 'card' }: Booki
         </div>
       )}
 
-      {error && <p className="text-sm text-red-600 mt-4">{error}</p>}
+      {hasDateConflict && (
+        <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+          <p className="text-sm text-red-600">
+            {lang === 'it' 
+              ? '⚠️ Alcune date selezionate non sono disponibili. Scegli altre date.' 
+              : '⚠️ Some selected dates are not available. Please choose different dates.'}
+          </p>
+        </div>
+      )}
+
+      {error && !hasDateConflict && <p className="text-sm text-red-600 mt-4">{error}</p>}
 
       {/* Action buttons */}
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
         {/* Stripe / Pay Online */}
         <button
           onClick={handleStripeCheckout}
-          disabled={loading}
+          disabled={loading || hasDateConflict}
           className="flex items-center justify-center gap-2 px-6 py-4 bg-[#1a1716] text-[#f5f4ef] text-sm font-medium tracking-[0.1em] uppercase rounded-lg hover:bg-[#272220] active:scale-[0.98] transition-all duration-200 disabled:opacity-50"
         >
           {loading ? (
@@ -214,7 +328,8 @@ export default function BookingForm({ preselectedRoom, variant = 'card' }: Booki
         {/* WhatsApp */}
         <button
           onClick={handleWhatsApp}
-          className="flex items-center justify-center gap-2 px-6 py-4 bg-[#25D366] text-white text-sm font-medium tracking-[0.1em] uppercase rounded-lg hover:bg-[#20bd5a] active:scale-[0.98] transition-all duration-200"
+          disabled={hasDateConflict}
+          className="flex items-center justify-center gap-2 px-6 py-4 bg-[#25D366] text-white text-sm font-medium tracking-[0.1em] uppercase rounded-lg hover:bg-[#20bd5a] active:scale-[0.98] transition-all duration-200 disabled:opacity-50"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>

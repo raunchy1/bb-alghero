@@ -1,0 +1,412 @@
+{
+  "business": {
+    "name": "MTB Sardegna",
+    "owner": "Michele Pinna",
+    "title": "Guida Ciclo Turistica Sportiva",
+    "subtitle": "Maestro di Mountain Bike e Ciclismo Fuoristrada",
+    "address": "viale Firenze 27, 08040 Arzana (OG) - Sardinia (Italy)",
+    "phone": "+39 388 9708246",
+    "whatsapp": "+39 388 9708246",
+    "email": "info@mtbsardegna.com",
+    "piva": "01475520910",
+    "languages": ["it", "en", "es", "de"]
+  },
+  "navigation": {
+    "it": { "home": "Home", "about": "Chi Sono", "tours": "Escursioni", "reviews": "Recensioni", "contact": "Contatti", "book": "Prenota" },
+    "en": { "home": "Home", "about": "About", "tours": "Tours", "reviews": "Reviews", "contact": "Contact", "book": "Book Now" },
+    "es": { "home": "Inicio", "about": "Sobre Mí", "tours": "Excursiones", "reviews": "Opiniones", "contact": "Contacto", "book": "Reservar" },
+    "de": { "home": "Start", "about": "Über Mich", "tours": "Touren", "reviews": "Bewertungen", "contact": "Kontakt", "book": "Buchen" }
+  },
+  "home": {
+    "it": {
+      "hero": {
+        "title": "MTB Sardegna",
+        "subtitle": "Vivi la natura in Mountain Bike",
+        "description": "Escursioni e viaggi itineranti in MTB ed E-Bike personalizzati per scoprire l'Ogliastra",
+        "cta": "Scopri le Escursioni"
+      },
+      "about": {
+        "title": "Chi Sono",
+        "content": "Salve a tutti, sono Michele Pinna, Guida Ciclo Turistica Sportiva. Il mio compito è quello di accompagnare turisti ed appassionati sul proprio territorio. Ho deciso di intraprendere questo 'cammino' in quanto sono in primis un appassionato di MTB. Porto la mia passione, la mia esperienza e la mia conoscenza del territorio al vostro servizio... Conosco questo territorio perchè lo vivo e l'ho sempre vissuto fin da bambino. I miei nonni, che della mia terra hanno vissuto, hanno insegnato a mio padre a conoscerla, ad apprezzarla ed a rispettarla. Mio padre l'ha insegnato a me. Oggi io organizzo escursioni, viaggi itineranti in mountain bike e in e-bike personalizzati per chi ha voglia di scoprire ed assaporare la Sardegna grazie alla bici! Vi aspetto per una entusiasmante vacanza sportiva!",
+        "cta": "Scopri di più"
+      },
+      "features": {
+        "title": "Perché Scegliere MTB Sardegna",
+        "items": [
+          { "title": "Guida Certificata", "description": "Guida Ciclo Turistica Sportiva certificata con anni di esperienza" },
+          { "title": "Territorio Autentico", "description": "Conoscenza profonda dell'Ogliastra, territorio vissuto fin da bambino" },
+          { "title": "Percorsi Personalizzati", "description": "Escursioni su misura per ogni livello di preparazione fisica e tecnica" },
+          { "title": "Passione e Professionalità", "description": "Amore vero per la mountain bike e rispetto profondo per la natura" }
+        ]
+      }
+    },
+    "en": {
+      "hero": {
+        "title": "MTB Sardinia",
+        "subtitle": "Experience Nature on a Mountain Bike",
+        "description": "Custom MTB and E-Bike excursions and tours to discover Ogliastra",
+        "cta": "Discover Tours"
+      },
+      "about": {
+        "title": "About Me",
+        "content": "I'm Michele Pinna, a bicycle touring guide specializing in sports and mountain biking. My job is to accompany tourists and MTB enthusiasts on tours throughout my beautiful home region of Ogliastra, Sardinia. I'll share my passion, experience, and knowledge of the area with you. I know this place inside and out because I was born and raised here, and my family has lived here for generations. My grandparents taught my father to love and respect this area, and he passed that passion on to me. Today, I organize personalized excursions and trips on mountain bikes and e-bikes for those who want to discover and enjoy Sardinia from a unique perspective. I look forward to seeing you for an exciting sports holiday!",
+        "cta": "Learn More"
+      },
+      "features": {
+        "title": "Why Choose MTB Sardinia",
+        "items": [
+          { "title": "Certified Guide", "description": "Certified Sports Cycling Tourist Guide with years of experience" },
+          { "title": "Authentic Territory", "description": "Deep knowledge of Ogliastra, territory experienced since childhood" },
+          { "title": "Custom Routes", "description": "Tailored excursions for every fitness and skill level" },
+          { "title": "Passion & Professionalism", "description": "True love for mountain biking and deep respect for nature" }
+        ]
+      }
+    },
+    "es": {
+      "hero": {
+        "title": "MTB Cerdeña",
+        "subtitle": "Vive la naturaleza en Mountain Bike",
+        "description": "Excursiones y viajes itinerantes en MTB y E-Bike personalizados para descubrir Ogliastra",
+        "cta": "Descubre las Excursiones"
+      },
+      "about": {
+        "title": "Sobre Mí",
+        "content": "Soy Michele Pinna, guía de cicloturismo deportivo. Mi trabajo es acompañar a turistas y apasionados del MTB en su territorio. Decidí emprender este 'camino' porque soy ante todo un apasionado del MTB. Llevo mi pasión, mi experiencia y mi conocimiento del territorio a su servicio... Conozco este territorio porque lo vivo y lo he vivido siempre desde niño. Mis abuelos, que vivieron de mi tierra, enseñaron a mi padre a conocerla, a apreciarla y a respetarla. Mi padre me lo enseñó a mí. Hoy organizo excursiones, viajes itinerantes en mountain bike y e-bike personalizados para quienes quieran descubrir y saborear Cerdeña en bicicleta. ¡Les espero para unas emocionantes vacaciones deportivas!",
+        "cta": "Saber más"
+      },
+      "features": {
+        "title": "Por qué Elegir MTB Cerdeña",
+        "items": [
+          { "title": "Guía Certificada", "description": "Guía de Cicloturismo Deportivo certificada con años de experiencia" },
+          { "title": "Territorio Auténtico", "description": "Conocimiento profundo de Ogliastra, territorio vivido desde la infancia" },
+          { "title": "Rutas Personalizadas", "description": "Excursiones a medida para cada nivel de preparación física y técnica" },
+          { "title": "Pasión y Profesionalidad", "description": "Amor verdadero por la mountain bike y respeto profundo por la naturaleza" }
+        ]
+      }
+    },
+    "de": {
+      "hero": {
+        "title": "MTB Sardinien",
+        "subtitle": "Erlebe die Natur auf dem Mountain Bike",
+        "description": "Maßgeschneiderte MTB- und E-Bike-Ausflüge und Touren zur Entdeckung der Ogliastra",
+        "cta": "Touren Entdecken"
+      },
+      "about": {
+        "title": "Über Mich",
+        "content": "Ich bin Michele Pinna, ein Fahrradreiseguide mit Spezialisierung auf Sport und Mountainbike. Meine Aufgabe ist es, Touristen und MTB-Enthusiasten durch meine wunderschöne Heimatregion Ogliastra auf Sardinien zu führen. Ich teile meine Leidenschaft, meine Erfahrung und mein Wissen über die Gegend mit Ihnen. Ich kenne diesen Ort in- und auswendig, weil ich hier geboren und aufgewachsen bin, und meine Familie lebt seit Generationen hier. Meine Großeltern brachten meinem Vater bei, diese Gegend zu lieben und zu respektieren, und er gab diese Leidenschaft an mich weiter. Heute organisiere ich personalisierte Ausflüge und Touren mit Mountainbikes und E-Bikes für diejenigen, die Sardinien aus einer einzigartigen Perspektive entdecken und genießen möchten. Ich freue mich darauf, Sie zu einem aufregenden Sporturlaub zu treffen!",
+        "cta": "Mehr Erfahren"
+      },
+      "features": {
+        "title": "Warum MTB Sardinien Wählen",
+        "items": [
+          { "title": "Zertifizierter Guide", "description": "Zertifizierter Sport-Radtouren-Guide mit jahrelanger Erfahrung" },
+          { "title": "Authentisches Gebiet", "description": "Tiefes Wissen über Ogliastra, seit der Kindheit erlebtes Gebiet" },
+          { "title": "Maßgeschneiderte Routen", "description": "Maßgeschneiderte Ausflüge für jedes Fitness- und Könnensniveau" },
+          { "title": "Leidenschaft & Professionalität", "description": "Wahre Liebe zum Mountainbiken und tiefer Respekt vor der Natur" }
+        ]
+      }
+    }
+  },
+  "tours": {
+    "it": [
+      {
+        "id": "escursione-giornata",
+        "title": "Escursione di una Giornata",
+        "description": "Percorso personalizzato nella splendida Ogliastra, dalle montagne del Gennargentu fino al mare cristallino. Adatto a tutti i livelli.",
+        "duration": "1 giorno",
+        "difficulty": "Personalizzabile",
+        "price": "Da €140",
+        "highlights": ["Percorso personalizzato", "Viste panoramiche", "Adatto a tutti i livelli", "Attrezzatura inclusa"]
+      },
+      {
+        "id": "tour-itinerante",
+        "title": "Tour Itinerante Multi-Giorno",
+        "description": "Viaggio di più giorni attraverso i territori dell'Ogliastra, Baunei, Dorgali e le Gole di Gorroppu. Un'esperienza indimenticabile.",
+        "duration": "3-7 giorni",
+        "difficulty": "Medio-Alta",
+        "price": "Da €240",
+        "highlights": ["Esperienza completa", "Alloggio incluso", "Percorsi epici", "Cultura e natura"]
+      },
+      {
+        "id": "gole-gorroppu",
+        "title": "Le Gole di Gorroppu",
+        "description": "L'emozionante discesa tecnica nelle Gole di Gorroppu, il Canyon più profondo d'Europa. Un'avventura unica nel cuore del Supramonte.",
+        "duration": "1 giorno",
+        "difficulty": "Tecnica",
+        "price": "Su richiesta",
+        "highlights": ["Canyon più profondo d'Europa", "Discesa tecnica", "Supramonte di Baunei", "Paesaggi spettacolari"]
+      },
+      {
+        "id": "supramonte",
+        "title": "Supramonte di Baunei",
+        "description": "Traversata del Supramonte arzanese con sentieri spettacolari, single track tecnici e vista mozzafiato sul mare.",
+        "duration": "1-2 giorni",
+        "difficulty": "Media",
+        "price": "Su richiesta",
+        "highlights": ["Single track tecnici", "Vista sul mare", "Flora e fauna locali", "Storia e tradizioni"]
+      }
+    ],
+    "en": [
+      {
+        "id": "day-excursion",
+        "title": "Day Excursion",
+        "description": "Customized route in beautiful Ogliastra, from the Gennargentu mountains to the crystal clear sea. Suitable for all levels.",
+        "duration": "1 day",
+        "difficulty": "Customizable",
+        "price": "From €140",
+        "highlights": ["Customized route", "Panoramic views", "All levels welcome", "Equipment included"]
+      },
+      {
+        "id": "multi-day-tour",
+        "title": "Multi-Day Tour",
+        "description": "Multi-day journey through the territories of Ogliastra, Baunei, Dorgali and the Gorroppu Gorges. An unforgettable experience.",
+        "duration": "3-7 days",
+        "difficulty": "Medium-High",
+        "price": "From €240",
+        "highlights": ["Complete experience", "Accommodation included", "Epic routes", "Culture and nature"]
+      },
+      {
+        "id": "gorroppu-gorge",
+        "title": "Gorroppu Gorge",
+        "description": "The exciting technical descent into the Gorroppu Gorges, the deepest canyon in Europe. A unique adventure in the heart of Supramonte.",
+        "duration": "1 day",
+        "difficulty": "Technical",
+        "price": "On request",
+        "highlights": ["Deepest canyon in Europe", "Technical descent", "Supramonte of Baunei", "Spectacular landscapes"]
+      },
+      {
+        "id": "supramonte-en",
+        "title": "Supramonte of Baunei",
+        "description": "Crossing of the Arzana Supramonte with spectacular trails, technical single tracks and breathtaking sea views.",
+        "duration": "1-2 days",
+        "difficulty": "Medium",
+        "price": "On request",
+        "highlights": ["Technical single tracks", "Sea views", "Local flora and fauna", "History and traditions"]
+      }
+    ],
+    "es": [
+      {
+        "id": "excursion-dia",
+        "title": "Excursión de un Día",
+        "description": "Ruta personalizada en la hermosa Ogliastra, desde las montañas del Gennargentu hasta el mar cristalino. Adecuado para todos los niveles.",
+        "duration": "1 día",
+        "difficulty": "Personalizable",
+        "price": "Desde €140",
+        "highlights": ["Ruta personalizada", "Vistas panorámicas", "Todos los niveles", "Equipo incluido"]
+      },
+      {
+        "id": "viaje-itinerante",
+        "title": "Viaje Itinerante Multi-Día",
+        "description": "Viaje de varios días por los territorios de Ogliastra, Baunei, Dorgali y las Gargantas de Gorroppu. Una experiencia inolvidable.",
+        "duration": "3-7 días",
+        "difficulty": "Medio-Alto",
+        "price": "Desde €240",
+        "highlights": ["Experiencia completa", "Alojamiento incluido", "Rutas épicas", "Cultura y naturaleza"]
+      },
+      {
+        "id": "gargantas-gorroppu",
+        "title": "Las Gargantas de Gorroppu",
+        "description": "El emocionante descenso técnico en las Gargantas de Gorroppu, el cañón más profundo de Europa. Una aventura única en el corazón del Supramonte.",
+        "duration": "1 día",
+        "difficulty": "Técnica",
+        "price": "Bajo petición",
+        "highlights": ["Cañón más profundo de Europa", "Descenso técnico", "Supramonte de Baunei", "Paisajes espectaculares"]
+      },
+      {
+        "id": "supramonte-es",
+        "title": "Supramonte de Baunei",
+        "description": "Travesía del Supramonte arzanés con senderos espectaculares, single tracks técnicos y vistas impresionantes del mar.",
+        "duration": "1-2 días",
+        "difficulty": "Media",
+        "price": "Bajo petición",
+        "highlights": ["Single tracks técnicos", "Vistas al mar", "Flora y fauna local", "Historia y tradiciones"]
+      }
+    ],
+    "de": [
+      {
+        "id": "tagesausflug",
+        "title": "Tagesausflug",
+        "description": "Individuelle Route im wunderschönen Ogliastra, von den Gennargentu-Bergen bis zum kristallklaren Meer. Für alle Niveaus geeignet.",
+        "duration": "1 Tag",
+        "difficulty": "Anpassbar",
+        "price": "Ab €140",
+        "highlights": ["Individuelle Route", "Panoramablicke", "Alle Niveaus willkommen", "Ausrüstung inklusive"]
+      },
+      {
+        "id": "mehrtagestour",
+        "title": "Mehrtägige Tour",
+        "description": "Mehrtägige Reise durch die Gebiete von Ogliastra, Baunei, Dorgali und die Gorroppu-Schluchten. Ein unvergessliches Erlebnis.",
+        "duration": "3-7 Tage",
+        "difficulty": "Mittel-Hoch",
+        "price": "Ab €240",
+        "highlights": ["Komplettes Erlebnis", "Unterkunft inklusive", "Epische Routen", "Kultur und Natur"]
+      },
+      {
+        "id": "gorroppu-schlucht",
+        "title": "Gorroppu-Schlucht",
+        "description": "Der aufregende technische Abstieg in die Gorroppu-Schluchten, die tiefste Schlucht Europas. Ein einzigartiges Abenteuer im Herzen des Supramonte.",
+        "duration": "1 Tag",
+        "difficulty": "Technisch",
+        "price": "Auf Anfrage",
+        "highlights": ["Tiefste Schlucht Europas", "Technischer Abstieg", "Supramonte von Baunei", "Spektakuläre Landschaften"]
+      },
+      {
+        "id": "supramonte-de",
+        "title": "Supramonte von Baunei",
+        "description": "Überquerung des Arzana-Supramonte mit spektakulären Trails, technischen Single Tracks und atemberaubendem Meerblick.",
+        "duration": "1-2 Tage",
+        "difficulty": "Mittel",
+        "price": "Auf Anfrage",
+        "highlights": ["Technische Single Tracks", "Meerblick", "Einheimische Flora und Fauna", "Geschichte und Traditionen"]
+      }
+    ]
+  },
+  "pricing": {
+    "single_day": {
+      "1": 140,
+      "2": 190,
+      "3": 240,
+      "4": 290,
+      "5": 340,
+      "6": 390,
+      "7": 440,
+      "8": 490,
+      "9": 540,
+      "10": 590,
+      "11": 640,
+      "12": 690,
+      "13": 740,
+      "14": 790,
+      "15": 840
+    },
+    "tour_itinerant": {
+      "1": 240
+    },
+    "included": {
+      "it": ["Accompagnamento Guida Certificata", "Assicurazione Sport", "Gadget Mtb Sardegna"],
+      "en": ["Certified Guide accompaniment", "Sport Insurance", "MTB Sardinia Gadget"],
+      "es": ["Acompañamiento de Guía Certificada", "Seguro Deportivo", "Gadget MTB Cerdeña"],
+      "de": ["Begleitung durch zertifizierten Guide", "Sportversicherung", "MTB Sardinien Gadget"]
+    },
+    "not_included": {
+      "it": ["Recupero in caso di guasto meccanico", "Recupero in caso di incapacità a proseguire"],
+      "en": ["Recovery in case of mechanical failure", "Recovery if unable to continue"],
+      "es": ["Recuperación en caso de fallo mecánico", "Recuperación si no puede continuar"],
+      "de": ["Bergung bei mechanischem Versagen", "Bergung bei Unfähigkeit fortzufahren"]
+    }
+  },
+  "reviews": [
+    {
+      "id": 1,
+      "name": "Angelo Fornier",
+      "date": "2019-05-25",
+      "language": "it",
+      "rating": 5,
+      "text": "Ho appena terminato una breve, ma intensa esperienza in MTB, rigorosamente muscolare, nel territorio dell'Ogliastra compreso fra i comuni di Arzana, Baunei e le Gole di Gorroppu. Mio compagno, nonché guida MTB è stato un giovane arzanese DOC, al secolo Michele Pinna, che ha svolto il suo lavoro con professionalità e autentica passione, non solo per l'aspetto tecnico, ma per un amore ed un rispetto verso il territorio dove ha la fortuna di operare veramente ammirevole."
+    },
+    {
+      "id": 2,
+      "name": "Andreas",
+      "date": "2018-05-21",
+      "language": "de",
+      "rating": 5,
+      "text": "Grazie Michele! E' stata una settimana fantastica con dei giri in bici indimenticabili nel tuo territorio cosi' unico e spettacolare. La tua guida e' stata professionale, flessibile, amichevole e con grande anima per la tua Ogliastra. Wer einen erfahrenen, zuvorkommenden und verlässlichen Moutainbike-Guide für Sardinien sucht, ist bei Michele Pinna aus Arzana genau an der richtigen Adresse. Er kennt die schönsten Ecken der Provinz Ogliastra wie seine Westentasche."
+    },
+    {
+      "id": 3,
+      "name": "Niels Montano Frandsen",
+      "date": "2017-07-25",
+      "language": "en",
+      "rating": 5,
+      "text": "Thank you for five great days in Sardinia! You are a real pro! To anyone reading this I highly recommend Michele as MTB guide. He has great local knowledge and will take you to places of immense beauty that you would never find on your own - be it deserted sandy beaches or mountain ridges with fantastic views. Michele will sense your technical skills and physical ability on the first ride and intelligently pick routes that match them."
+    },
+    {
+      "id": 4,
+      "name": "Jean Michel",
+      "date": "2017-08-08",
+      "language": "fr",
+      "rating": 5,
+      "text": "Nous avons passé des vacances magnifiques en Sardaigne, avec les enfants. C'est une région qui possède une richesse naturelle, écologique et culturelle impressionnante. La montagne, la forêt, le maquis, la mer, des petites criques avec une eau bleu turquoise. On découvre tous les jours quelque chose de nouveau."
+    },
+    {
+      "id": 5,
+      "name": "Adam Wheelwright",
+      "date": "2016-07-25",
+      "language": "en",
+      "rating": 5,
+      "text": "Just had 2 excellent days riding with Michelle. Both days were a proper big day out on the bike with 30km and 1500m of vertical on day 1 and 50km and 2000m on day 2. More importantly, Michele picked the type of trails I love - technical, natural singletrack - really testing in places but great fun."
+    }
+  ],
+  "contact": {
+    "it": {
+      "title": "Contattaci",
+      "subtitle": "Prenota la tua avventura in MTB",
+      "form": {
+        "name": "Nome",
+        "email": "Email",
+        "phone": "Telefono",
+        "message": "Messaggio",
+        "submit": "Invia Richiesta",
+        "success": "Grazie! Ti contatteremo presto."
+      }
+    },
+    "en": {
+      "title": "Contact Us",
+      "subtitle": "Book Your MTB Adventure",
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone",
+        "message": "Message",
+        "submit": "Send Request",
+        "success": "Thank you! We will contact you soon."
+      }
+    },
+    "es": {
+      "title": "Contáctanos",
+      "subtitle": "Reserva tu Aventura en MTB",
+      "form": {
+        "name": "Nombre",
+        "email": "Email",
+        "phone": "Teléfono",
+        "message": "Mensaje",
+        "submit": "Enviar Solicitud",
+        "success": "¡Gracias! Te contactaremos pronto."
+      }
+    },
+    "de": {
+      "title": "Kontaktiere Uns",
+      "subtitle": "Buche Dein MTB-Abenteuer",
+      "form": {
+        "name": "Name",
+        "email": "E-Mail",
+        "phone": "Telefon",
+        "message": "Nachricht",
+        "submit": "Anfrage Senden",
+        "success": "Danke! Wir werden uns bald bei dir melden."
+      }
+    }
+  },
+  "footer": {
+    "it": {
+      "rights": "Tutti i diritti riservati",
+      "legal": "Informazioni legali",
+      "privacy": "Privacy"
+    },
+    "en": {
+      "rights": "All rights reserved",
+      "legal": "Legal Information",
+      "privacy": "Privacy"
+    },
+    "es": {
+      "rights": "Todos los derechos reservados",
+      "legal": "Información Legal",
+      "privacy": "Privacidad"
+    },
+    "de": {
+      "rights": "Alle Rechte vorbehalten",
+      "legal": "Rechtliche Informationen",
+      "privacy": "Datenschutz"
+    }
+  }
+}

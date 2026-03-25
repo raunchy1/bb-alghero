@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { CreditCard, Check, X } from 'lucide-react'
+import { CreditCard, Check, X, Building2 } from 'lucide-react'
 
 interface Room {
   id: number
@@ -34,9 +34,11 @@ export default function PagamentiPage() {
   const [publishableKey, setPublishableKey] = useState('')
   const [secretKey, setSecretKey] = useState('')
   const [mode, setMode] = useState('test')
+  const [iban, setIban] = useState('IT71A0306984893100000009177')
+  const [accountHolder, setAccountHolder] = useState('')
   const [rooms, setRooms] = useState<Room[]>([])
   const [roomPrices, setRoomPrices] = useState<Record<number, number>>({})
-  const [paymentMethods, setPaymentMethods] = useState({ carta: true, applePay: false, googlePay: false, bonifico: false })
+  const [paymentMethods, setPaymentMethods] = useState({ carta: true, applePay: false, googlePay: false, bonifico: true })
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
 
   useEffect(() => {
@@ -267,7 +269,57 @@ export default function PagamentiPage() {
         </div>
       </div>
 
-      {/* Section 3: Pricing */}
+      {/* Section 3: Bank Transfer / IBAN */}
+      <div style={{ backgroundColor: '#fff', border: '1px solid rgba(26,43,60,0.08)', padding: 16, marginBottom: 24, boxSizing: 'border-box' as const, maxWidth: '100%' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
+          <Building2 size={20} strokeWidth={1.5} color="#C4935A" />
+          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, color: '#1A2B3C', margin: 0 }}>
+            Dati Bonifico
+          </h2>
+        </div>
+
+        <div style={{ display: 'grid', gap: 16 }}>
+          <div>
+            <p style={sectionLabel}>IBAN</p>
+            <input
+              type="text"
+              value={iban}
+              onChange={(e) => setIban(e.target.value)}
+              placeholder="IT..."
+              style={{ ...inputStyle, fontFamily: 'monospace' }}
+              onFocus={(e) => { e.currentTarget.style.borderColor = '#C4935A' }}
+              onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(26,43,60,0.15)' }}
+            />
+          </div>
+          <div>
+            <p style={sectionLabel}>Intestatario</p>
+            <input
+              type="text"
+              value={accountHolder}
+              onChange={(e) => setAccountHolder(e.target.value)}
+              placeholder="Nome Cognome / Ragione Sociale"
+              style={inputStyle}
+              onFocus={(e) => { e.currentTarget.style.borderColor = '#C4935A' }}
+              onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(26,43,60,0.15)' }}
+            />
+          </div>
+        </div>
+
+        <div
+          style={{
+            border: '1px solid #C4935A',
+            padding: 12,
+            marginTop: 16,
+            backgroundColor: 'rgba(196,147,90,0.03)',
+          }}
+        >
+          <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 13, color: '#1A2B3C', margin: 0 }}>
+            Questi dati verranno mostrati ai clienti nella pagina di prenotazione e contatti.
+          </p>
+        </div>
+      </div>
+
+      {/* Section 4: Pricing */}
       <div style={{ backgroundColor: '#fff', border: '1px solid rgba(26,43,60,0.08)', padding: 24 }}>
         <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, color: '#1A2B3C', margin: '0 0 20px 0' }}>
           Tariffe Suite

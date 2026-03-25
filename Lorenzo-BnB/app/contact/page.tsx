@@ -128,7 +128,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ─── BONIFICO BANCARIO (Change 9) ─── */}
+      {/* ─── BONIFICO BANCARIO ─── */}
       <section className="px-6 md:px-12 pb-16 md:pb-24">
         <div className="max-w-[1624px] mx-auto">
           <div
@@ -144,10 +144,26 @@ export default function ContactPage() {
                 {lang === 'it' ? 'Pagamento tramite Bonifico Bancario' : 'Bank Transfer Payment'}
               </h3>
             </div>
-            <p className="text-[#9e9790] text-base leading-relaxed max-w-2xl">
+            
+            <div className="space-y-3 mb-4">
+              <div>
+                <p className="text-xs tracking-[0.25em] uppercase text-[#9e9790] mb-1">IBAN</p>
+                <p className="text-lg md:text-xl font-mono text-[#1a1716] tracking-wide">IT71A0306984893100000009177</p>
+              </div>
+              <div>
+                <p className="text-xs tracking-[0.25em] uppercase text-[#9e9790] mb-1">
+                  {lang === 'it' ? 'Intestato a' : 'Account holder'}
+                </p>
+                <p className="text-base text-[#1a1716]">
+                  {lang === 'it' ? '[nome cliente - da aggiornare]' : '[client name - to be updated]'}
+                </p>
+              </div>
+            </div>
+
+            <p className="text-[#9e9790] text-base leading-relaxed max-w-2xl italic">
               {lang === 'it'
-                ? 'Preferisci il bonifico? Nessun problema. Contattaci e ti forniremo le coordinate bancarie. La prenotazione si conferma alla ricezione del pagamento.'
-                : "Prefer bank transfer? No problem. Contact us and we'll provide bank details. Booking confirmed upon payment receipt."}
+                ? 'La prenotazione si conferma alla ricezione del pagamento.'
+                : 'Booking confirmed upon payment receipt.'}
             </p>
           </div>
         </div>

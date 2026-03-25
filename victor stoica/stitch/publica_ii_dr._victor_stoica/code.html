@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html lang="ro"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed-variant": "#5b4300",
+              "error": "#ba1a1a",
+              "surface-dim": "#dadada",
+              "tertiary": "#2f2100",
+              "on-tertiary-fixed": "#251a00",
+              "on-secondary-container": "#785d1b",
+              "on-error-container": "#93000a",
+              "primary-container": "#1b3a5c",
+              "surface-container": "#eeeeee",
+              "surface-container-high": "#e8e8e8",
+              "on-background": "#1a1c1c",
+              "tertiary-fixed-dim": "#e5c276",
+              "background": "#f9f9f9",
+              "on-secondary-fixed": "#251a00",
+              "on-primary-fixed": "#001c38",
+              "on-tertiary-container": "#bf9e56",
+              "surface-tint": "#436084",
+              "primary": "#002444",
+              "inverse-on-surface": "#f1f1f1",
+              "on-surface": "#1a1c1c",
+              "on-primary-fixed-variant": "#2b486b",
+              "on-primary": "#ffffff",
+              "primary-fixed": "#d2e4ff",
+              "secondary": "#755b18",
+              "surface-bright": "#f9f9f9",
+              "surface-container-lowest": "#ffffff",
+              "inverse-primary": "#abc9f2",
+              "inverse-surface": "#2f3131",
+              "outline-variant": "#c3c6cf",
+              "surface-variant": "#e2e2e2",
+              "on-primary-container": "#87a4cc",
+              "secondary-fixed": "#ffdf9c",
+              "surface-container-low": "#f3f3f3",
+              "on-surface-variant": "#43474e",
+              "secondary-fixed-dim": "#e5c276",
+              "on-secondary": "#ffffff",
+              "surface": "#f9f9f9",
+              "surface-container-highest": "#e2e2e2",
+              "on-secondary-fixed-variant": "#5b4300",
+              "secondary-container": "#fdd88a",
+              "on-tertiary": "#ffffff",
+              "error-container": "#ffdad6",
+              "outline": "#73777f",
+              "tertiary-fixed": "#ffdf9c",
+              "on-error": "#ffffff",
+              "primary-fixed-dim": "#abc9f2",
+              "tertiary-container": "#4a3600"
+            },
+            fontFamily: {
+              "headline": ["Newsreader", "serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .serif { font-family: 'Newsreader', serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20 w-full">
+<div class="text-xl font-bold text-[#1B3A5C] dark:text-blue-200 tracking-tighter serif">
+                Dr. Victor Stoica
+            </div>
+<div class="hidden md:flex items-center space-x-8 font-['Newsreader'] serif tracking-tight">
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#755b18] transition-all duration-300" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#755b18] transition-all duration-300" href="#">About</a>
+<a class="text-[#1B3A5C] dark:text-blue-300 border-b-2 border-[#755b18] pb-1 font-semibold" href="#">Publications</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#755b18] transition-all duration-300" href="#">Teaching</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#755b18] transition-all duration-300" href="#">Contact</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="flex items-center gap-2 px-3 py-1 rounded-full border border-outline-variant/30 text-sm font-medium hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="language">language</span>
+<span>RO/EN</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-20 max-w-7xl mx-auto px-8">
+<!-- Header Section -->
+<header class="mb-16">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="max-w-3xl">
+<span class="text-secondary font-label text-xs uppercase tracking-[0.2em] font-bold mb-4 block">Academic Archive</span>
+<h1 class="text-5xl md:text-6xl text-primary serif font-bold tracking-tight mb-6">Publications</h1>
+<p class="text-on-surface-variant text-lg leading-relaxed font-body">
+                        A curated collection of research contributions in political science, social theory, and methodology. This repository includes peer-reviewed articles, book chapters, and significant conference contributions.
+                    </p>
+</div>
+<!-- External Profiles -->
+<div class="flex flex-wrap gap-4 pb-2">
+<a class="group flex items-center gap-3 px-6 py-3 bg-surface-container-lowest border border-outline-variant/20 shadow-sm hover:shadow-md transition-all rounded-lg" href="#">
+<div class="w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-lg" data-icon="school">school</span>
+</div>
+<span class="text-sm font-semibold text-primary">Google Scholar</span>
+</a>
+<a class="group flex items-center gap-3 px-6 py-3 bg-surface-container-lowest border border-outline-variant/20 shadow-sm hover:shadow-md transition-all rounded-lg" href="#">
+<div class="w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-lg" data-icon="clinical_notes">clinical_notes</span>
+</div>
+<span class="text-sm font-semibold text-primary">ResearchGate</span>
+</a>
+</div>
+</div>
+</header>
+<!-- Filter Navigation -->
+<section class="mb-12 sticky top-20 z-40 bg-background/95 backdrop-blur-sm py-4">
+<div class="flex flex-wrap items-center gap-2">
+<button class="px-6 py-2 rounded-full bg-primary text-on-primary text-sm font-medium transition-all shadow-lg shadow-primary/10">Toate</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant text-sm font-medium hover:bg-primary-container hover:text-on-primary-container transition-all">Articole</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant text-sm font-medium hover:bg-primary-container hover:text-on-primary-container transition-all">Capitole de carte</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant text-sm font-medium hover:bg-primary-container hover:text-on-primary-container transition-all">Conferințe</button>
+</div>
+</section>
+<!-- Publications Grid/List -->
+<div class="space-y-10">
+<!-- Category Group: 2023 -->
+<div>
+<div class="flex items-center gap-4 mb-8">
+<h2 class="text-3xl font-bold serif text-primary">2023</h2>
+<div class="h-[1px] flex-grow bg-outline-variant/30"></div>
+</div>
+<div class="grid grid-cols-1 gap-8">
+<!-- Publication Card 1 -->
+<article class="relative flex flex-col md:flex-row gap-8 p-8 bg-surface-container-lowest transition-all hover:shadow-[0_12px_32px_rgba(26,28,28,0.06)] group">
+<div class="absolute top-0 left-0 w-1 h-0 bg-secondary transition-all duration-300 group-hover:h-full"></div>
+<div class="flex-shrink-0 w-full md:w-32">
+<span class="text-secondary font-label text-xs font-bold tracking-widest uppercase mb-2 block">Journal Article</span>
+<div class="text-4xl font-bold text-surface-dim/40 serif">01</div>
+</div>
+<div class="flex-grow">
+<h3 class="text-2xl font-bold serif text-primary mb-3 leading-snug">The Dynamics of Political Discourse in Post-Communist Societies: A Longitudinal Study</h3>
+<p class="text-on-surface-variant font-body italic mb-4 leading-relaxed">
+                                Stoica, V., &amp; Popescu, M. (2023). <span class="not-italic font-semibold">Romanian Journal of Political Science</span>, 23(2), 145-168.
+                            </p>
+<div class="flex flex-wrap items-center gap-4">
+<a class="flex items-center gap-2 text-xs font-bold text-secondary uppercase tracking-widest hover:text-on-secondary-container transition-colors" href="#">
+<span class="material-symbols-outlined text-base" data-icon="link">link</span>
+                                    DOI: 10.2478/rjps-2023-0012
+                                </a>
+<button class="flex items-center gap-2 px-4 py-1.5 bg-secondary-container text-on-secondary-container rounded-sm text-xs font-bold uppercase tracking-wider hover:brightness-105 transition-all">
+<span class="material-symbols-outlined text-base" data-icon="download">download</span>
+                                    Full Text PDF
+                                </button>
+</div>
+</div>
+</article>
+<!-- Publication Card 2 -->
+<article class="relative flex flex-col md:flex-row gap-8 p-8 bg-surface-container-lowest transition-all hover:shadow-[0_12px_32px_rgba(26,28,28,0.06)] group">
+<div class="absolute top-0 left-0 w-1 h-0 bg-secondary transition-all duration-300 group-hover:h-full"></div>
+<div class="flex-shrink-0 w-full md:w-32">
+<span class="text-secondary font-label text-xs font-bold tracking-widest uppercase mb-2 block">Book Chapter</span>
+<div class="text-4xl font-bold text-surface-dim/40 serif">02</div>
+</div>
+<div class="flex-grow">
+<h3 class="text-2xl font-bold serif text-primary mb-3 leading-snug">Social Capital and Civic Engagement: Mapping the Romanian Landscape</h3>
+<p class="text-on-surface-variant font-body italic mb-4 leading-relaxed">
+                                Stoica, V. (2023). In A. Ionescu (Ed.), <span class="not-italic font-semibold">Modernity and Tradition in Eastern Europe</span> (pp. 89-114). Polirom.
+                            </p>
+<div class="flex flex-wrap items-center gap-4">
+<span class="flex items-center gap-2 text-xs font-bold text-secondary uppercase tracking-widest">
+<span class="material-symbols-outlined text-base" data-icon="isbn">book</span>
+                                    ISBN: 978-973-46-9022-1
+                                </span>
+</div>
+</div>
+</article>
+</div>
+</div>
+<!-- Category Group: 2022 -->
+<div class="pt-10">
+<div class="flex items-center gap-4 mb-8">
+<h2 class="text-3xl font-bold serif text-primary">2022</h2>
+<div class="h-[1px] flex-grow bg-outline-variant/30"></div>
+</div>
+<div class="grid grid-cols-1 gap-8">
+<!-- Publication Card 3 -->
+<article class="relative flex flex-col md:flex-row gap-8 p-8 bg-surface-container-lowest transition-all hover:shadow-[0_12px_32px_rgba(26,28,28,0.06)] group">
+<div class="absolute top-0 left-0 w-1 h-0 bg-secondary transition-all duration-300 group-hover:h-full"></div>
+<div class="flex-shrink-0 w-full md:w-32">
+<span class="text-secondary font-label text-xs font-bold tracking-widest uppercase mb-2 block">Conference</span>
+<div class="text-4xl font-bold text-surface-dim/40 serif">03</div>
+</div>
+<div class="flex-grow">
+<h3 class="text-2xl font-bold serif text-primary mb-3 leading-snug">Methodological Challenges in Studying Digital Activism in Emerging Democracies</h3>
+<p class="text-on-surface-variant font-body italic mb-4 leading-relaxed">
+                                Paper presented at the <span class="not-italic font-semibold">Annual Political Science Conference (APSC 2022)</span>, Bucharest, Romania.
+                            </p>
+<div class="flex flex-wrap items-center gap-4">
+<a class="flex items-center gap-2 text-xs font-bold text-secondary uppercase tracking-widest hover:text-on-secondary-container transition-colors" href="#">
+<span class="material-symbols-outlined text-base" data-icon="article">article</span>
+                                    View Abstract
+                                </a>
+</div>
+</div>
+</article>
+<!-- Publication Card 4 -->
+<article class="relative flex flex-col md:flex-row gap-8 p-8 bg-surface-container-lowest transition-all hover:shadow-[0_12px_32px_rgba(26,28,28,0.06)] group">
+<div class="absolute top-0 left-0 w-1 h-0 bg-secondary transition-all duration-300 group-hover:h-full"></div>
+<div class="flex-shrink-0 w-full md:w-32">
+<span class="text-secondary font-label text-xs font-bold tracking-widest uppercase mb-2 block">Journal Article</span>
+<div class="text-4xl font-bold text-surface-dim/40 serif">04</div>
+</div>
+<div class="flex-grow">
+<h3 class="text-2xl font-bold serif text-primary mb-3 leading-snug">Elite Formation and Democratization in South-Eastern Europe</h3>
+<p class="text-on-surface-variant font-body italic mb-4 leading-relaxed">
+                                Stoica, V. (2022). <span class="not-italic font-semibold">European Sociological Review</span>, 15(1), 45-62.
+                            </p>
+<div class="flex flex-wrap items-center gap-4">
+<a class="flex items-center gap-2 text-xs font-bold text-secondary uppercase tracking-widest hover:text-on-secondary-container transition-colors" href="#">
+<span class="material-symbols-outlined text-base" data-icon="link">link</span>
+                                    DOI: 10.1093/esr/jcab012
+                                </a>
+<button class="flex items-center gap-2 px-4 py-1.5 bg-secondary-container text-on-secondary-container rounded-sm text-xs font-bold uppercase tracking-wider hover:brightness-105 transition-all">
+<span class="material-symbols-outlined text-base" data-icon="download">download</span>
+                                    Full Text PDF
+                                </button>
+</div>
+</div>
+</article>
+</div>
+</div>
+</div>
+<!-- Pagination/Load More -->
+<div class="mt-20 flex justify-center">
+<button class="group flex items-center gap-3 px-10 py-4 bg-primary text-on-primary font-semibold tracking-wide rounded-sm hover:bg-primary-container transition-all shadow-xl shadow-primary/20">
+                Load Archive Publications
+                <span class="material-symbols-outlined group-hover:translate-y-1 transition-transform" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-20 bg-[#002444] dark:bg-slate-950">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto px-8 py-16 w-full">
+<div>
+<div class="text-lg font-serif italic text-[#755b18] mb-6">Dr. Victor Stoica</div>
+<p class="text-slate-300/80 text-sm leading-relaxed max-w-xs">
+                    Academic profile and repository of research activities at Alexandru Ioan Cuza University of Iași.
+                </p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-white font-bold text-sm tracking-widest uppercase mb-2">Navigation</h4>
+<a class="text-slate-300/80 hover:text-white transition-colors hover:translate-x-1 transition-transform duration-200 text-sm" href="#">Privacy Policy</a>
+<a class="text-slate-300/80 hover:text-white transition-colors hover:translate-x-1 transition-transform duration-200 text-sm" href="#">Institutional Repository</a>
+<a class="text-slate-300/80 hover:text-white transition-colors hover:translate-x-1 transition-transform duration-200 text-sm" href="#">UAIC Portal</a>
+<a class="text-slate-300/80 hover:text-white transition-colors hover:translate-x-1 transition-transform duration-200 text-sm" href="#">FSSP Department</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-white font-bold text-sm tracking-widest uppercase mb-2">Contact Info</h4>
+<div class="text-slate-300/80 text-sm flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="location_on">location_on</span>
+<span>Carol I Blvd, No. 11, Iași, 700506, Romania</span>
+</div>
+<div class="text-slate-300/80 text-sm flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="mail">mail</span>
+<span>victor.stoica@uaic.ro</span>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 py-8 border-t border-[#755b18]/20">
+<p class="text-slate-300/60 font-['Inter'] text-xs tracking-wide">
+                © 2024 Dr. Victor Stoica. Alexandru Ioan Cuza University (UAIC). Faculty of Philosophy and Social-Political Sciences (FSSP).
+            </p>
+</div>
+</footer>
+</body></html>
