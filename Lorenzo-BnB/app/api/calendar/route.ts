@@ -4,56 +4,66 @@ import path from 'path'
 
 export const dynamic = 'force-dynamic'
 
-export async function GET() {
-  try {
-    // Primary: read from data/calendar.json (synced via admin)
-    const calPath = path.join(process.cwd(), 'data', 'calendar.json')
-    if (fs.existsSync(calPath)) {
-      const data = JSON.parse(fs.readFileSync(calPath, 'utf8'))
-      if (data.bookedDates && data.bookedDates.length > 0) {
-        return NextResponse.json({ bookedDates: data.bookedDates })
-      }
-    }
-
-    // Fallback: fetch live from env var
-    const AIRBNB_ICAL_URL = process.env.AIRBNB_ICAL_URL || ''
-    if (!AIRBNB_ICAL_URL) {
-      return NextResponse.json({ bookedDates: [], message: 'iCal URL not configured' })
-    }
-
-    const response = await fetch(AIRBNB_ICAL_URL, { headers: { 'User-Agent': 'Mozilla/5.0' } })
-    const icalData = await response.text()
-    const bookedDates = parseIcal(icalData)
-
-    return NextResponse.json({ bookedDates })
-  } catch {
-    return NextResponse.json({ bookedDates: [], error: 'Failed to fetch calendar' })
-  }
+// Map room slugs to camera keys
+const roomToCameraMap: Record<string, string> = {
+  'suite-luxury-tripla': 'camera_1',
+  'suite-luxury-4-pax': 'camera_2',
+  'stanza-luxury-3-pax': 'camera_3',
+  'stanza-luxury-2-pax': 'camera_4',
 }
 
-function parseIcal(icalString: string): string[] {
-  const bookedDates: string[] = []
-  const lines = icalString.split(/\r?\n/)
-  let inEvent = false
-  let start = ''
-  let end = ''
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url)
+    const roomSlug = searchParams.get('room')
 
-  for (const line of lines) {
-    if (line === 'BEGIN:VEVENT') { inEvent = true; start = ''; end = '' }
-    if (line === 'END:VEVENT' && inEvent) {
-      if (start && end) {
-        const startDate = new Date(start.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'))
-        const endDate = new Date(end.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3'))
-        const current = new Date(startDate)
-        while (current < endDate) {
-          bookedDates.push(current.toISOString().split('T')[0])
-          current.setDate(current.getDate() + 1)
+    // Read from data/calendar.json (synced via admin)
+    const calPath = path.join(process.cwd(), 'data', 'calendar.json')
+    
+    if (fs.existsSync(calPath)) {
+      const data = JSON.parse(fs.readFileSync(calPath, 'utf8'))
+      
+      // If new format with suites
+      if (data.suites) {
+        // If room slug provided, return specific suite's booked dates
+        if (roomSlug && roomToCameraMap[roomSlug]) {
+          const cameraKey = roomToCameraMap[roomSlug]
+          const suiteData = data.suites[cameraKey]
+          if (suiteData && suiteData.bookedDates) {
+            return NextResponse.json({ 
+              bookedDates: suiteData.bookedDates,
+              suite: cameraKey,
+              lastSync: data.lastSync,
+            })
+          }
         }
+        
+        // Return all suites data
+        return NextResponse.json({
+          suites: data.suites,
+          lastSync: data.lastSync,
+        })
       }
-      inEvent = false
+      
+      // Legacy format - return bookedDates directly
+      if (data.bookedDates) {
+        return NextResponse.json({ 
+          bookedDates: data.bookedDates,
+          lastSync: data.lastSync,
+        })
+      }
     }
-    if (inEvent && line.startsWith('DTSTART')) start = line.split(':').pop()?.trim() || ''
-    if (inEvent && line.startsWith('DTEND')) end = line.split(':').pop()?.trim() || ''
+
+    return NextResponse.json({ 
+      suites: {},
+      bookedDates: [],
+      message: 'Calendar not synced yet',
+    })
+  } catch (error) {
+    console.error('Calendar API error:', error)
+    return NextResponse.json({ 
+      bookedDates: [],
+      error: 'Failed to fetch calendar',
+    })
   }
-  return Array.from(new Set(bookedDates)).sort()
 }
