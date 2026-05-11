@@ -1,14 +1,23 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null)
   const ringRef = useRef<HTMLDivElement>(null)
+  const [isTouchDevice, setIsTouchDevice] = useState(true)
 
   useEffect(() => {
-    // Skip on touch devices
-    if (window.matchMedia('(pointer: coarse)').matches) return
+    // Check if touch device immediately
+    const checkTouch = () => {
+      const isTouch = window.matchMedia('(pointer: coarse)').matches || 
+                      'ontouchstart' in window || 
+                      navigator.maxTouchPoints > 0
+      setIsTouchDevice(isTouch)
+      return isTouch
+    }
+    
+    if (checkTouch()) return
 
     const dot = dotRef.current
     const ring = ringRef.current
@@ -25,7 +34,7 @@ export default function CustomCursor() {
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement
-      if (target.closest('a, button, [role="button"], .magnetic-btn, .img-zoom')) {
+      if (target.closest('a, button, [role="button"], .magnetic-btn, .img-zoom, [data-cursor-hover]')) {
         ring.classList.add('hovering')
       }
     }
@@ -61,6 +70,9 @@ export default function CustomCursor() {
       style.remove()
     }
   }, [])
+
+  // Don't render on touch devices
+  if (typeof window !== 'undefined' && isTouchDevice) return null
 
   return (
     <>

@@ -17,7 +17,7 @@ const inputStyle: React.CSSProperties = {
   border: '1px solid rgba(26,43,60,0.15)',
   borderRadius: 4,
   padding: '10px 14px',
-  fontFamily: "'Jost', sans-serif",
+  fontFamily: "'Figtree', sans-serif",
   fontSize: 14,
   outline: 'none',
   boxSizing: 'border-box' as const,
@@ -108,17 +108,17 @@ export default function SuitePage() {
   }
 
   if (loading) {
-    return <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, color: 'rgba(26,43,60,0.5)' }}>Caricamento...</p>
+    return <p style={{ fontFamily: "'Figtree', sans-serif", fontSize: 14, color: 'rgba(26,43,60,0.5)' }}>Caricamento...</p>
   }
 
   return (
     <div>
       <h1
         style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant', serif",
           fontStyle: 'italic',
           fontSize: 32,
-          color: '#1A2B3C',
+          color: 'oklch(22% 0.01 75)',
           fontWeight: 500,
           margin: '0 0 24px 0',
         }}
@@ -137,7 +137,7 @@ export default function SuitePage() {
             backgroundColor: '#fff',
             border: `1px solid ${toast.type === 'success' ? '#16a34a' : '#ef4444'}`,
             color: toast.type === 'success' ? '#16a34a' : '#ef4444',
-            fontFamily: "'Jost', sans-serif",
+            fontFamily: "'Figtree', sans-serif",
             fontSize: 13,
             zIndex: 1000,
             display: 'flex',
@@ -157,7 +157,7 @@ export default function SuitePage() {
           return (
             <div key={room.id} style={{ backgroundColor: '#fff', border: '1px solid rgba(26,43,60,0.08)', padding: 24 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-                <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(26,43,60,0.4)', margin: 0 }}>
+                <p style={{ fontFamily: "'Figtree', sans-serif", fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(26,43,60,0.4)', margin: 0 }}>
                   Suite #{room.id}
                 </p>
                 <button
@@ -169,7 +169,7 @@ export default function SuitePage() {
                     border: 'none',
                     background: 'none',
                     cursor: 'pointer',
-                    fontFamily: "'Jost', sans-serif",
+                    fontFamily: "'Figtree', sans-serif",
                     fontSize: 12,
                     color: availability[room.id] ? '#16a34a' : '#ef4444',
                   }}
@@ -203,7 +203,7 @@ export default function SuitePage() {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginBottom: 20 }}>
                 <div>
-                  <label style={{ display: 'block', fontFamily: "'Jost', sans-serif", fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'rgba(26,43,60,0.4)', marginBottom: 4 }}>
+                  <label style={{ display: 'block', fontFamily: "'Figtree', sans-serif", fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'rgba(26,43,60,0.4)', marginBottom: 4 }}>
                     Nome Suite
                   </label>
                   <input
@@ -216,7 +216,7 @@ export default function SuitePage() {
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontFamily: "'Jost', sans-serif", fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'rgba(26,43,60,0.4)', marginBottom: 4 }}>
+                  <label style={{ display: 'block', fontFamily: "'Figtree', sans-serif", fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'rgba(26,43,60,0.4)', marginBottom: 4 }}>
                     Prezzo / notte (&euro;)
                   </label>
                   <input
@@ -229,7 +229,7 @@ export default function SuitePage() {
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontFamily: "'Jost', sans-serif", fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'rgba(26,43,60,0.4)', marginBottom: 4 }}>
+                  <label style={{ display: 'block', fontFamily: "'Figtree', sans-serif", fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'rgba(26,43,60,0.4)', marginBottom: 4 }}>
                     Ospiti max
                   </label>
                   <input
@@ -266,7 +266,7 @@ export default function SuitePage() {
                 }}
               >
                 <Upload size={24} strokeWidth={1.5} color="#C4935A" style={{ marginBottom: 8 }} />
-                <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 13, color: 'rgba(26,43,60,0.5)', margin: 0 }}>
+                <p style={{ fontFamily: "'Figtree', sans-serif", fontSize: 13, color: 'rgba(26,43,60,0.5)', margin: 0 }}>
                   Trascina le foto qui o clicca per selezionare
                 </p>
                 <input
@@ -299,12 +299,12 @@ export default function SuitePage() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: 8,
-                  backgroundColor: '#C4935A',
-                  color: '#fff',
+                  backgroundColor: 'oklch(58% 0.12 42)',
+                  color: 'white',
                   border: 'none',
                   borderRadius: 2,
                   padding: '12px 24px',
-                  fontFamily: "'Jost', sans-serif",
+                  fontFamily: "'Figtree', sans-serif",
                   fontSize: 13,
                   letterSpacing: '0.05em',
                   cursor: 'pointer',

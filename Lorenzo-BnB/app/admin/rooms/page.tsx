@@ -64,17 +64,17 @@ export default function AdminRoomsPage() {
   }
 
   if (loading) {
-    return <div className="text-grey text-sm">Caricamento...</div>
+    return <div className="text-muted text-sm">Caricamento...</div>
   }
 
   return (
     <div>
       <h1 className="text-display-sm text-dark mb-1">Camere</h1>
-      <p className="text-grey text-sm mb-8">Gestisci le camere e i prezzi</p>
+      <p className="text-muted text-sm mb-8">Gestisci le camere e i prezzi</p>
 
       <div className="space-y-4">
         {rooms.map((room) => (
-          <div key={room.id} className="bg-white rounded-xl p-6 shadow-sm">
+          <div key={room.id} className="bg-white rounded-none p-6 ">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
               <div>
                 <label className="block text-xs font-medium text-dark mb-1.5">Nome camera</label>
@@ -82,7 +82,7 @@ export default function AdminRoomsPage() {
                   type="text"
                   value={room.name}
                   onChange={(e) => updateField(room.id, 'name', e.target.value)}
-                  className="w-full bg-white border border-light-grey rounded-lg px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors"
+                  className="w-full bg-white border border-light-grey rounded-none px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors"
                 />
               </div>
 
@@ -92,7 +92,7 @@ export default function AdminRoomsPage() {
                   type="number"
                   value={room.price}
                   onChange={(e) => updateField(room.id, 'price', e.target.value)}
-                  className="w-full bg-white border border-light-grey rounded-lg px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors"
+                  className="w-full bg-white border border-light-grey rounded-none px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors"
                 />
               </div>
 
@@ -102,7 +102,7 @@ export default function AdminRoomsPage() {
                   type="number"
                   value={room.capacity}
                   onChange={(e) => updateField(room.id, 'capacity', e.target.value)}
-                  className="w-full bg-white border border-light-grey rounded-lg px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors"
+                  className="w-full bg-white border border-light-grey rounded-none px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors"
                 />
               </div>
 
@@ -110,7 +110,7 @@ export default function AdminRoomsPage() {
                 <button
                   onClick={() => saveRoom(room)}
                   disabled={saving === room.id}
-                  className="bg-primary text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-secondary transition-colors disabled:opacity-50"
+                  className="bg-primary text-white px-6 py-3 rounded-none text-sm font-medium hover:bg-secondary transition-colors disabled:opacity-50"
                 >
                   {saving === room.id ? 'Salvataggio...' : 'Salva'}
                 </button>
@@ -125,7 +125,7 @@ export default function AdminRoomsPage() {
         ))}
 
         {rooms.length === 0 && (
-          <div className="bg-white rounded-xl p-8 shadow-sm text-center text-grey text-sm">
+          <div className="bg-white rounded-none p-8  text-center text-muted text-sm">
             Nessuna camera trovata
           </div>
         )}

@@ -148,7 +148,7 @@ const SyncStatusIndicator = ({
       display: 'flex', 
       alignItems: 'center', 
       gap: 6,
-      fontFamily: "'Jost', sans-serif",
+      fontFamily: "'Figtree', sans-serif",
       fontSize: 12,
       color,
     }}>
@@ -170,11 +170,11 @@ const Toast = ({ message, onClose }: { message: string; onClose: () => void }) =
       position: 'fixed',
       bottom: 24,
       right: 24,
-      backgroundColor: '#1A2B3C',
-      color: '#fff',
+      backgroundColor: 'oklch(22% 0.01 75)',
+      color: 'white',
       padding: '16px 24px',
       borderRadius: 4,
-      fontFamily: "'Jost', sans-serif",
+      fontFamily: "'Figtree', sans-serif",
       fontSize: 14,
       boxShadow: '0 4px 24px rgba(0,0,0,0.2)',
       zIndex: 1001,
@@ -207,7 +207,7 @@ const StatusBadge = ({ status }: { status: string }) => {
       fontWeight: 500,
       backgroundColor: style.bg,
       color: style.color,
-      fontFamily: "'Jost', sans-serif",
+      fontFamily: "'Figtree', sans-serif",
     }}>
       {style.label}
     </span>
@@ -386,10 +386,10 @@ export default function CalendarioPage() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
         <div>
           <h1 style={{
-            fontFamily: "'Cormorant Garamond', serif",
+            fontFamily: "'Cormorant', serif",
             fontStyle: 'italic',
             fontSize: 32,
-            color: '#1A2B3C',
+            color: 'oklch(22% 0.01 75)',
             fontWeight: 500,
             margin: 0,
           }}>
@@ -406,7 +406,7 @@ export default function CalendarioPage() {
             {SUITES.map(suite => (
               <div key={suite.key} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span style={{
-                  fontFamily: "'Jost', sans-serif",
+                  fontFamily: "'Figtree', sans-serif",
                   fontSize: 12,
                   color: 'rgba(26,43,60,0.7)',
                   fontWeight: 500,
@@ -424,7 +424,7 @@ export default function CalendarioPage() {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 12 }}>
           {lastSync && (
             <span style={{
-              fontFamily: "'Jost', sans-serif",
+              fontFamily: "'Figtree', sans-serif",
               fontSize: 12,
               color: 'rgba(26,43,60,0.5)',
             }}>
@@ -444,11 +444,11 @@ export default function CalendarioPage() {
               alignItems: 'center',
               gap: 8,
               padding: '10px 20px',
-              backgroundColor: '#C4935A',
-              color: '#fff',
+              backgroundColor: 'oklch(58% 0.12 42)',
+              color: 'white',
               border: 'none',
               borderRadius: 2,
-              fontFamily: "'Jost', sans-serif",
+              fontFamily: "'Figtree', sans-serif",
               fontSize: 13,
               cursor: syncing ? 'not-allowed' : 'pointer',
               opacity: syncing ? 0.7 : 1,
@@ -467,7 +467,7 @@ export default function CalendarioPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
               <Calendar size={18} color="#C4935A" />
               <span style={{
-                fontFamily: "'Jost', sans-serif",
+                fontFamily: "'Figtree', sans-serif",
                 fontSize: 11,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
@@ -475,9 +475,9 @@ export default function CalendarioPage() {
               }}>Prenotazioni totali</span>
             </div>
             <p style={{
-              fontFamily: "'Cormorant Garamond', serif",
+              fontFamily: "'Cormorant', serif",
               fontSize: 32,
-              color: '#1A2B3C',
+              color: 'oklch(22% 0.01 75)',
               fontWeight: 500,
               margin: 0,
             }}>{stats.total}</p>
@@ -487,7 +487,7 @@ export default function CalendarioPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
               <Clock size={18} color="#C4935A" />
               <span style={{
-                fontFamily: "'Jost', sans-serif",
+                fontFamily: "'Figtree', sans-serif",
                 fontSize: 11,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
@@ -495,9 +495,9 @@ export default function CalendarioPage() {
               }}>Notti questo mese</span>
             </div>
             <p style={{
-              fontFamily: "'Cormorant Garamond', serif",
+              fontFamily: "'Cormorant', serif",
               fontSize: 32,
-              color: '#1A2B3C',
+              color: 'oklch(22% 0.01 75)',
               fontWeight: 500,
               margin: 0,
             }}>{stats.nightsThisMonth}</p>
@@ -507,7 +507,7 @@ export default function CalendarioPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
               <Users size={18} color="#C4935A" />
               <span style={{
-                fontFamily: "'Jost', sans-serif",
+                fontFamily: "'Figtree', sans-serif",
                 fontSize: 11,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
@@ -515,9 +515,9 @@ export default function CalendarioPage() {
               }}>Prossimo check-in</span>
             </div>
             <p style={{
-              fontFamily: "'Cormorant Garamond', serif",
+              fontFamily: "'Cormorant', serif",
               fontSize: 24,
-              color: '#1A2B3C',
+              color: 'oklch(22% 0.01 75)',
               fontWeight: 500,
               margin: 0,
             }}>
@@ -529,7 +529,7 @@ export default function CalendarioPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
               <Trophy size={18} color="#C4935A" />
               <span style={{
-                fontFamily: "'Jost', sans-serif",
+                fontFamily: "'Figtree', sans-serif",
                 fontSize: 11,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
@@ -537,9 +537,9 @@ export default function CalendarioPage() {
               }}>Suite più prenotata</span>
             </div>
             <p style={{
-              fontFamily: "'Cormorant Garamond', serif",
+              fontFamily: "'Cormorant', serif",
               fontSize: 24,
-              color: '#1A2B3C',
+              color: 'oklch(22% 0.01 75)',
               fontWeight: 500,
               margin: 0,
             }}>
@@ -560,7 +560,7 @@ export default function CalendarioPage() {
               backgroundColor: 'transparent',
               border: 'none',
               borderBottom: selectedSuite === suite.key ? '2px solid #C4935A' : '2px solid transparent',
-              fontFamily: "'Jost', sans-serif",
+              fontFamily: "'Figtree', sans-serif",
               fontSize: 14,
               color: selectedSuite === suite.key ? '#1A2B3C' : 'rgba(26,43,60,0.5)',
               fontWeight: selectedSuite === suite.key ? 500 : 400,
@@ -593,7 +593,7 @@ export default function CalendarioPage() {
           >
             <ChevronLeft size={18} color="#1A2B3C" />
           </button>
-          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, color: '#1A2B3C', margin: 0, fontWeight: 500 }}>
+          <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 24, color: 'oklch(22% 0.01 75)', margin: 0, fontWeight: 500 }}>
             {MONTHS[currentMonth]} {currentYear}
           </h2>
           <button
@@ -622,7 +622,7 @@ export default function CalendarioPage() {
               style={{
                 textAlign: 'center',
                 padding: '8px 0',
-                fontFamily: "'Jost', sans-serif",
+                fontFamily: "'Figtree', sans-serif",
                 fontSize: 11,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
@@ -663,7 +663,7 @@ export default function CalendarioPage() {
                   padding: '8px',
                   minHeight: 70,
                   textAlign: 'center',
-                  fontFamily: "'Jost', sans-serif",
+                  fontFamily: "'Figtree', sans-serif",
                   fontSize: 14,
                   color: isBooked ? '#1A2B3C' : 'rgba(26,43,60,0.6)',
                   backgroundColor: isBooked ? 'rgba(196,147,90,0.15)' : isToday ? '#fff' : 'transparent',
@@ -683,7 +683,7 @@ export default function CalendarioPage() {
                 {guestInitials && (
                   <span style={{
                     fontSize: 10,
-                    color: '#C4935A',
+                    color: 'oklch(58% 0.12 42)',
                     marginTop: 4,
                     fontWeight: 500,
                   }}>
@@ -693,7 +693,7 @@ export default function CalendarioPage() {
                 {firstDay && (
                   <span style={{
                     fontSize: 8,
-                    color: '#C4935A',
+                    color: 'oklch(58% 0.12 42)',
                     marginTop: 2,
                   }}>
                     Check-in
@@ -702,7 +702,7 @@ export default function CalendarioPage() {
                 {lastDay && (
                   <span style={{
                     fontSize: 8,
-                    color: '#C4935A',
+                    color: 'oklch(58% 0.12 42)',
                     marginTop: 2,
                   }}>
                     Check-out
@@ -717,15 +717,15 @@ export default function CalendarioPage() {
         <div style={{ display: 'flex', gap: 24, marginTop: 20, paddingTop: 16, borderTop: '1px solid rgba(26,43,60,0.08)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{ width: 16, height: 16, backgroundColor: 'rgba(196,147,90,0.15)', border: '1px solid #C4935A' }} />
-            <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 12, color: 'rgba(26,43,60,0.5)' }}>Prenotato</span>
+            <span style={{ fontFamily: "'Figtree', sans-serif", fontSize: 12, color: 'rgba(26,43,60,0.5)' }}>Prenotato</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{ width: 16, height: 16, border: '2px solid #1A2B3C' }} />
-            <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 12, color: 'rgba(26,43,60,0.5)' }}>Oggi</span>
+            <span style={{ fontFamily: "'Figtree', sans-serif", fontSize: 12, color: 'rgba(26,43,60,0.5)' }}>Oggi</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{ width: 16, height: 16, borderLeft: '3px solid #C4935A', backgroundColor: 'rgba(196,147,90,0.15)' }} />
-            <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 12, color: 'rgba(26,43,60,0.5)' }}>Check-in / Check-out</span>
+            <span style={{ fontFamily: "'Figtree', sans-serif", fontSize: 12, color: 'rgba(26,43,60,0.5)' }}>Check-in / Check-out</span>
           </div>
         </div>
       </div>
@@ -733,9 +733,9 @@ export default function CalendarioPage() {
       {/* Reservations Table */}
       <div style={{ backgroundColor: '#fff', border: '1px solid rgba(26,43,60,0.08)', padding: 24 }}>
         <h2 style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant', serif",
           fontSize: 22,
-          color: '#1A2B3C',
+          color: 'oklch(22% 0.01 75)',
           margin: '0 0 20px 0',
           fontWeight: 500,
         }}>
@@ -748,7 +748,7 @@ export default function CalendarioPage() {
           </div>
         ) : tableReservations.length === 0 ? (
           <p style={{
-            fontFamily: "'Jost', sans-serif",
+            fontFamily: "'Figtree', sans-serif",
             fontSize: 14,
             color: 'rgba(26,43,60,0.5)',
             textAlign: 'center',
@@ -764,7 +764,7 @@ export default function CalendarioPage() {
                   <th style={{
                     textAlign: 'left',
                     padding: '12px 16px',
-                    fontFamily: "'Jost', sans-serif",
+                    fontFamily: "'Figtree', sans-serif",
                     fontSize: 11,
                     textTransform: 'uppercase',
                     letterSpacing: '0.1em',
@@ -774,7 +774,7 @@ export default function CalendarioPage() {
                   <th style={{
                     textAlign: 'left',
                     padding: '12px 16px',
-                    fontFamily: "'Jost', sans-serif",
+                    fontFamily: "'Figtree', sans-serif",
                     fontSize: 11,
                     textTransform: 'uppercase',
                     letterSpacing: '0.1em',
@@ -784,7 +784,7 @@ export default function CalendarioPage() {
                   <th style={{
                     textAlign: 'left',
                     padding: '12px 16px',
-                    fontFamily: "'Jost', sans-serif",
+                    fontFamily: "'Figtree', sans-serif",
                     fontSize: 11,
                     textTransform: 'uppercase',
                     letterSpacing: '0.1em',
@@ -794,7 +794,7 @@ export default function CalendarioPage() {
                   <th style={{
                     textAlign: 'center',
                     padding: '12px 16px',
-                    fontFamily: "'Jost', sans-serif",
+                    fontFamily: "'Figtree', sans-serif",
                     fontSize: 11,
                     textTransform: 'uppercase',
                     letterSpacing: '0.1em',
@@ -804,7 +804,7 @@ export default function CalendarioPage() {
                   <th style={{
                     textAlign: 'center',
                     padding: '12px 16px',
-                    fontFamily: "'Jost', sans-serif",
+                    fontFamily: "'Figtree', sans-serif",
                     fontSize: 11,
                     textTransform: 'uppercase',
                     letterSpacing: '0.1em',
@@ -828,9 +828,9 @@ export default function CalendarioPage() {
                   >
                     <td style={{
                       padding: '16px',
-                      fontFamily: "'Jost', sans-serif",
+                      fontFamily: "'Figtree', sans-serif",
                       fontSize: 14,
-                      color: '#1A2B3C',
+                      color: 'oklch(22% 0.01 75)',
                     }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                         <User size={16} color="#C4935A" />
@@ -839,21 +839,21 @@ export default function CalendarioPage() {
                     </td>
                     <td style={{
                       padding: '16px',
-                      fontFamily: "'Jost', sans-serif",
+                      fontFamily: "'Figtree', sans-serif",
                       fontSize: 14,
-                      color: '#1A2B3C',
+                      color: 'oklch(22% 0.01 75)',
                     }}>{formatDate(reservation.checkIn)}</td>
                     <td style={{
                       padding: '16px',
-                      fontFamily: "'Jost', sans-serif",
+                      fontFamily: "'Figtree', sans-serif",
                       fontSize: 14,
-                      color: '#1A2B3C',
+                      color: 'oklch(22% 0.01 75)',
                     }}>{formatDate(reservation.checkOut)}</td>
                     <td style={{
                       padding: '16px',
-                      fontFamily: "'Jost', sans-serif",
+                      fontFamily: "'Figtree', sans-serif",
                       fontSize: 14,
-                      color: '#1A2B3C',
+                      color: 'oklch(22% 0.01 75)',
                       textAlign: 'center',
                     }}>{reservation.nights}</td>
                     <td style={{
@@ -904,9 +904,9 @@ export default function CalendarioPage() {
           </button>
 
           <h2 style={{
-            fontFamily: "'Cormorant Garamond', serif",
+            fontFamily: "'Cormorant', serif",
             fontSize: 24,
-            color: '#1A2B3C',
+            color: 'oklch(22% 0.01 75)',
             margin: '0 0 32px 0',
             fontWeight: 500,
           }}>
@@ -919,7 +919,7 @@ export default function CalendarioPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
                 <Home size={18} color="#C4935A" />
                 <span style={{
-                  fontFamily: "'Jost', sans-serif",
+                  fontFamily: "'Figtree', sans-serif",
                   fontSize: 12,
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
@@ -927,9 +927,9 @@ export default function CalendarioPage() {
                 }}>Suite</span>
               </div>
               <p style={{
-                fontFamily: "'Jost', sans-serif",
+                fontFamily: "'Figtree', sans-serif",
                 fontSize: 16,
-                color: '#1A2B3C',
+                color: 'oklch(22% 0.01 75)',
                 margin: 0,
                 paddingLeft: 30,
               }}>
@@ -942,7 +942,7 @@ export default function CalendarioPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
                 <User size={18} color="#C4935A" />
                 <span style={{
-                  fontFamily: "'Jost', sans-serif",
+                  fontFamily: "'Figtree', sans-serif",
                   fontSize: 12,
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
@@ -950,9 +950,9 @@ export default function CalendarioPage() {
                 }}>Ospite</span>
               </div>
               <p style={{
-                fontFamily: "'Jost', sans-serif",
+                fontFamily: "'Figtree', sans-serif",
                 fontSize: 16,
-                color: '#1A2B3C',
+                color: 'oklch(22% 0.01 75)',
                 margin: 0,
                 paddingLeft: 30,
               }}>
@@ -965,7 +965,7 @@ export default function CalendarioPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
                 <Calendar size={18} color="#C4935A" />
                 <span style={{
-                  fontFamily: "'Jost', sans-serif",
+                  fontFamily: "'Figtree', sans-serif",
                   fontSize: 12,
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
@@ -973,9 +973,9 @@ export default function CalendarioPage() {
                 }}>Check-in</span>
               </div>
               <p style={{
-                fontFamily: "'Jost', sans-serif",
+                fontFamily: "'Figtree', sans-serif",
                 fontSize: 16,
-                color: '#1A2B3C',
+                color: 'oklch(22% 0.01 75)',
                 margin: 0,
                 paddingLeft: 30,
               }}>
@@ -988,7 +988,7 @@ export default function CalendarioPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
                 <Calendar size={18} color="#C4935A" />
                 <span style={{
-                  fontFamily: "'Jost', sans-serif",
+                  fontFamily: "'Figtree', sans-serif",
                   fontSize: 12,
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
@@ -996,9 +996,9 @@ export default function CalendarioPage() {
                 }}>Check-out</span>
               </div>
               <p style={{
-                fontFamily: "'Jost', sans-serif",
+                fontFamily: "'Figtree', sans-serif",
                 fontSize: 16,
-                color: '#1A2B3C',
+                color: 'oklch(22% 0.01 75)',
                 margin: 0,
                 paddingLeft: 30,
               }}>
@@ -1011,7 +1011,7 @@ export default function CalendarioPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
                 <Clock size={18} color="#C4935A" />
                 <span style={{
-                  fontFamily: "'Jost', sans-serif",
+                  fontFamily: "'Figtree', sans-serif",
                   fontSize: 12,
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
@@ -1019,9 +1019,9 @@ export default function CalendarioPage() {
                 }}>Durata</span>
               </div>
               <p style={{
-                fontFamily: "'Jost', sans-serif",
+                fontFamily: "'Figtree', sans-serif",
                 fontSize: 16,
-                color: '#1A2B3C',
+                color: 'oklch(22% 0.01 75)',
                 margin: 0,
                 paddingLeft: 30,
               }}>
@@ -1034,7 +1034,7 @@ export default function CalendarioPage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
                 <FileText size={18} color="#C4935A" />
                 <span style={{
-                  fontFamily: "'Jost', sans-serif",
+                  fontFamily: "'Figtree', sans-serif",
                   fontSize: 12,
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
@@ -1049,14 +1049,14 @@ export default function CalendarioPage() {
             {/* UID */}
             <div style={{ marginBottom: 24 }}>
               <span style={{
-                fontFamily: "'Jost', sans-serif",
+                fontFamily: "'Figtree', sans-serif",
                 fontSize: 12,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
                 color: 'rgba(26,43,60,0.5)',
               }}>ID Prenotazione</span>
               <p style={{
-                fontFamily: "'Jost', sans-serif",
+                fontFamily: "'Figtree', sans-serif",
                 fontSize: 12,
                 color: 'rgba(26,43,60,0.6)',
                 margin: '8px 0 0 0',
@@ -1078,10 +1078,10 @@ export default function CalendarioPage() {
                 gap: 8,
                 padding: '14px 24px',
                 backgroundColor: '#FF5A5F',
-                color: '#fff',
+                color: 'white',
                 textDecoration: 'none',
                 borderRadius: 4,
-                fontFamily: "'Jost', sans-serif",
+                fontFamily: "'Figtree', sans-serif",
                 fontSize: 14,
                 fontWeight: 500,
                 marginTop: 32,

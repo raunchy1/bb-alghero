@@ -16,14 +16,14 @@ export default function RoomDetailPage() {
 
   if (!room) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-[#f5f4ef]">
+      <main className="min-h-screen flex items-center justify-center bg-ivory">
         <div className="text-center">
-          <h1 className="text-4xl font-normal tracking-tight text-[#1a1716] mb-4">
+          <h1 className="text-4xl font-normal tracking-tight text-navy mb-4">
             {lang === 'it' ? 'Camera non trovata' : 'Room not found'}
           </h1>
           <Link
             href="/rooms"
-            className="text-[#9e9790] hover:text-[#1a1716] transition-colors text-sm tracking-[0.15em] uppercase"
+            className="text-[#9e9790] hover:text-navy transition-colors text-sm tracking-[0.15em] uppercase"
           >
             &larr; {lang === 'it' ? 'Torna alle camere' : 'Back to rooms'}
           </Link>
@@ -33,7 +33,7 @@ export default function RoomDetailPage() {
   }
 
   return (
-    <main className="bg-[#f5f4ef]">
+    <main className="bg-ivory">
       {/* ─── HERO (70vh) ─── */}
       <section className="relative h-[70vh] w-full overflow-hidden">
         <Image
@@ -49,11 +49,11 @@ export default function RoomDetailPage() {
           <div className="max-w-[1624px] mx-auto">
             <Link
               href="/rooms"
-              className="inline-block text-[#f5f4ef]/60 text-sm tracking-[0.15em] uppercase mb-4 hover:text-[#f5f4ef] transition-colors duration-300"
+              className="inline-block text-ivory/60 text-sm tracking-[0.15em] uppercase mb-4 hover:text-ivory transition-colors duration-300"
             >
               &larr; {lang === 'it' ? 'Le camere' : 'Rooms'}
             </Link>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-normal tracking-tighter text-[#f5f4ef] leading-[0.95]">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-normal tracking-tighter text-ivory leading-[0.95]">
               {t(room.name)}
             </h1>
           </div>
@@ -67,25 +67,25 @@ export default function RoomDetailPage() {
             <p className="text-xs tracking-[0.25em] uppercase text-[#9e9790] mb-1">
               {lang === 'it' ? 'Ospiti' : 'Guests'}
             </p>
-            <p className="text-lg text-[#1a1716]">{room.capacity.guests}</p>
+            <p className="text-lg text-navy">{room.capacity.guests}</p>
           </div>
           <div>
             <p className="text-xs tracking-[0.25em] uppercase text-[#9e9790] mb-1">
               {lang === 'it' ? 'Letti' : 'Beds'}
             </p>
-            <p className="text-lg text-[#1a1716]">{room.capacity.beds}</p>
+            <p className="text-lg text-navy">{room.capacity.beds}</p>
           </div>
           <div>
             <p className="text-xs tracking-[0.25em] uppercase text-[#9e9790] mb-1">
               {lang === 'it' ? 'Bagno' : 'Bathroom'}
             </p>
-            <p className="text-lg text-[#1a1716]">{room.capacity.bathrooms}</p>
+            <p className="text-lg text-navy">{room.capacity.bathrooms}</p>
           </div>
           <div>
             <p className="text-xs tracking-[0.25em] uppercase text-[#9e9790] mb-1">
               {lang === 'it' ? 'Superficie' : 'Size'}
             </p>
-            <p className="text-lg text-[#1a1716]">{room.size} m²</p>
+            <p className="text-lg text-navy">{room.size} m²</p>
           </div>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function RoomDetailPage() {
           <p className="text-xs tracking-[0.25em] uppercase text-[#9e9790] mb-6">
             {lang === 'it' ? 'La camera' : 'The room'}
           </p>
-          <p className="text-xl md:text-2xl font-normal text-[#1a1716] leading-relaxed tracking-tight">
+          <p className="text-xl md:text-2xl font-normal text-navy leading-relaxed tracking-tight">
             {t(room.description)}
           </p>
         </div>
@@ -112,7 +112,7 @@ export default function RoomDetailPage() {
             {room.images.map((img, i) => (
               <div
                 key={i}
-                className={`relative overflow-hidden rounded-lg ${
+                className={`relative overflow-hidden rounded-none ${
                   i === 0 ? 'md:col-span-2 aspect-[16/9]' : 'aspect-[4/5]'
                 }`}
               >
@@ -145,7 +145,7 @@ export default function RoomDetailPage() {
                 ) : (
                   <span className="text-[#094730] text-sm">&#10003;</span>
                 )}
-                <span className="text-[#1a1716] text-base">{amenity}</span>
+                <span className="text-navy text-base">{amenity}</span>
               </div>
             ))}
           </div>
@@ -164,7 +164,7 @@ export default function RoomDetailPage() {
         <div className="max-w-[1624px] mx-auto">
           <Link
             href="/rooms"
-            className="inline-flex items-center text-[#9e9790] hover:text-[#1a1716] transition-colors duration-300 text-sm tracking-[0.15em] uppercase"
+            className="inline-flex items-center text-[#9e9790] hover:text-navy transition-colors duration-300 text-sm tracking-[0.15em] uppercase"
           >
             &larr;
             <span className="ml-2">

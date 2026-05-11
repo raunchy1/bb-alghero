@@ -8,7 +8,7 @@ const inputStyle: React.CSSProperties = {
   border: '1px solid rgba(26,43,60,0.15)',
   borderRadius: 4,
   padding: '10px 14px',
-  fontFamily: "'Jost', sans-serif",
+  fontFamily: "'Figtree', sans-serif",
   fontSize: 14,
   outline: 'none',
   transition: 'border-color 0.2s',
@@ -54,7 +54,7 @@ export default function AdminLoginPage() {
     <div
       style={{
         minHeight: '100vh',
-        backgroundColor: '#FAF8F4',
+        backgroundColor: 'oklch(97% 0.008 75)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -65,10 +65,10 @@ export default function AdminLoginPage() {
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <h1
             style={{
-              fontFamily: "'Cormorant Garamond', serif",
+              fontFamily: "'Cormorant', serif",
               fontStyle: 'italic',
               fontSize: 28,
-              color: '#1A2B3C',
+              color: 'oklch(22% 0.01 75)',
               fontWeight: 500,
               margin: 0,
               marginBottom: 8,
@@ -78,9 +78,9 @@ export default function AdminLoginPage() {
           </h1>
           <p
             style={{
-              fontFamily: "'Jost', sans-serif",
+              fontFamily: "'Figtree', sans-serif",
               fontSize: 12,
-              color: '#C4935A',
+              color: 'oklch(58% 0.12 42)',
               textTransform: 'uppercase',
               letterSpacing: '0.15em',
               margin: 0,
@@ -102,9 +102,9 @@ export default function AdminLoginPage() {
               <label
                 style={{
                   display: 'block',
-                  fontFamily: "'Jost', sans-serif",
+                  fontFamily: "'Figtree', sans-serif",
                   fontSize: 12,
-                  color: '#1A2B3C',
+                  color: 'oklch(22% 0.01 75)',
                   marginBottom: 6,
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
@@ -128,9 +128,9 @@ export default function AdminLoginPage() {
               <label
                 style={{
                   display: 'block',
-                  fontFamily: "'Jost', sans-serif",
+                  fontFamily: "'Figtree', sans-serif",
                   fontSize: 12,
-                  color: '#1A2B3C',
+                  color: 'oklch(22% 0.01 75)',
                   marginBottom: 6,
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
@@ -151,7 +151,7 @@ export default function AdminLoginPage() {
             </div>
 
             {error && (
-              <p style={{ color: '#ef4444', fontFamily: "'Jost', sans-serif", fontSize: 13, margin: '0 0 16px 0' }}>
+              <p style={{ color: '#ef4444', fontFamily: "'Figtree', sans-serif", fontSize: 13, margin: '0 0 16px 0' }}>
                 {error}
               </p>
             )}
@@ -161,12 +161,12 @@ export default function AdminLoginPage() {
               disabled={loading}
               style={{
                 width: '100%',
-                backgroundColor: '#C4935A',
-                color: '#fff',
+                backgroundColor: 'oklch(58% 0.12 42)',
+                color: 'white',
                 border: 'none',
                 borderRadius: 2,
                 padding: '12px 24px',
-                fontFamily: "'Jost', sans-serif",
+                fontFamily: "'Figtree', sans-serif",
                 fontSize: 13,
                 letterSpacing: '0.05em',
                 cursor: loading ? 'not-allowed' : 'pointer',

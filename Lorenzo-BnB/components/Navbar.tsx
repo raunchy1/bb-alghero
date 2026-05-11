@@ -75,7 +75,7 @@ export default function Navbar() {
           'fixed top-0 left-0 right-0 z-50 transition-all duration-400',
           isTransparent
             ? 'bg-transparent'
-            : 'bg-[rgba(250,248,244,0.97)] backdrop-blur-[20px] border-b border-[rgba(26,43,60,0.08)]'
+            : 'bg-ivory border-b border-navy/8'
         )}
         style={{ height: 90 }}
       >
@@ -129,7 +129,7 @@ export default function Navbar() {
                 href="/book"
                 className={clsx(
                   'magnetic-btn hidden lg:inline-flex items-center justify-center px-7 py-3 text-[12px] font-sans font-medium uppercase tracking-[0.2em] transition-all duration-300',
-                  'bg-gold text-white hover:bg-[#b8854e]'
+                  'bg-gold text-white hover:opacity-85'
                 )}
               >
                 {t({ it: 'Prenota', en: 'Book' })}
@@ -139,12 +139,14 @@ export default function Navbar() {
               <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
                 className={clsx(
-                  'lg:hidden p-1 transition-colors duration-200',
+                  'lg:hidden p-3 -mr-3 min-w-[44px] min-h-[44px] flex items-center justify-center transition-colors duration-200',
                   isTransparent ? 'text-white' : 'text-navy'
                 )}
                 aria-label="Toggle menu"
+                aria-expanded={isMobileOpen}
+                aria-controls="mobile-menu"
               >
-                {isMobileOpen ? <X size={26} strokeWidth={1.5} /> : <Menu size={26} strokeWidth={1.5} />}
+                {isMobileOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
               </button>
             </div>
           </div>
@@ -160,21 +162,29 @@ export default function Navbar() {
           <Link href="/" className="font-serif italic text-[22px] font-light text-white tracking-tight">
             La Suite N4
           </Link>
-          <button onClick={() => setIsMobileOpen(false)} className="p-1 text-white" aria-label="Close menu">
-            <X size={26} strokeWidth={1.5} />
+          <button 
+            onClick={() => setIsMobileOpen(false)} 
+            className="p-3 -mr-3 min-w-[44px] min-h-[44px] flex items-center justify-center text-white active:scale-95 transition-transform" 
+            aria-label="Close menu"
+          >
+            <X size={24} strokeWidth={1.5} />
           </button>
         </div>
 
-        <div className="flex-1 flex flex-col justify-center items-center px-8 gap-6">
+        <div 
+          id="mobile-menu"
+          className="flex-1 flex flex-col justify-center items-center px-8 gap-2"
+        >
           {navLinks.map((link, i) => (
             <Link
               key={link.href}
               href={link.href}
               style={{ animationDelay: `${i * 80}ms`, animationFillMode: 'forwards' }}
               className={clsx(
-                'font-serif italic text-4xl text-white/80 hover:text-white transition-colors text-center',
+                'font-serif italic text-4xl text-white/80 hover:text-white transition-colors text-center py-3 min-h-[60px] flex items-center justify-center',
                 isMobileOpen ? 'animate-fade-up' : 'opacity-0'
               )}
+              onClick={() => setIsMobileOpen(false)}
             >
               {t(link.label)}
             </Link>
@@ -183,13 +193,14 @@ export default function Navbar() {
           <div className="pt-8 mt-4 border-t border-white/10 w-full flex flex-col gap-4 items-center">
             <Link
               href="/book"
-              className="inline-flex items-center justify-center w-full max-w-xs px-8 py-4 text-[12px] font-medium uppercase tracking-[0.2em] bg-gold text-white"
+              className="inline-flex items-center justify-center w-full max-w-xs px-8 py-4 min-h-[52px] text-[12px] font-medium uppercase tracking-[0.2em] bg-gold text-white active:scale-95 transition-transform"
+              onClick={() => setIsMobileOpen(false)}
             >
               {t({ it: 'Prenota ora', en: 'Book now' })}
             </Link>
             <button
               onClick={() => setLang(nextLang[lang])}
-              className="text-[13px] uppercase tracking-[0.15em] text-white/40 hover:text-white transition-colors"
+              className="text-[13px] uppercase tracking-[0.15em] text-white/40 hover:text-white transition-colors py-2 px-4 min-h-[44px]"
             >
               {lang === 'it' ? 'English' : 'Italiano'}
             </button>

@@ -41,12 +41,12 @@ export default function CTASection({
       {/* Content */}
       <div className="relative z-10 container-luxury section-pad text-center">
         {/* Turquoise accent line */}
-        <div className="w-10 h-0.5 bg-turquoise mx-auto mb-8" />
+        <div className="w-10 h-0.5 bg-gold mx-auto mb-8" />
 
-        <h2 className="text-display-lg font-bold text-cream mb-4 text-balance">
+        <h2 className="text-display-lg font-bold text-ivory mb-4 text-balance">
           {title}
         </h2>
-        <p className="text-cream/60 text-base max-w-md mx-auto mb-10">
+        <p className="text-ivory/60 text-base max-w-md mx-auto mb-10">
           {subtitle}
         </p>
 
@@ -65,10 +65,10 @@ export default function CTASection({
         </div>
 
         {/* Trust row */}
-        <div className="flex flex-wrap items-center justify-center gap-5 mt-14 text-cream/40 text-xs font-medium">
+        <div className="flex flex-wrap items-center justify-center gap-5 mt-14 text-ivory/40 text-xs font-medium">
           <span className="flex items-center gap-1.5">
             <div className="flex gap-0.5">
-              {[...Array(5)].map((_, i) => <Star key={i} size={11} className="fill-coral-light text-coral-light" />)}
+              {[...Array(5)].map((_, i) => <Star key={i} size={11} className="fill-gold text-gold" />)}
             </div>
             {listingData.host.rating} rating
           </span>

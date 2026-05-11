@@ -173,8 +173,8 @@ export default function ExplorePage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
-                className="group bg-white border border-[rgba(26,43,60,0.08)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)]"
-                style={{ borderRadius: 2 }}
+                className="group bg-white border border-border overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-navy"
+                
               >
                 {/* Image */}
                 <div className="relative overflow-hidden" style={{ paddingTop: '66%' }}>

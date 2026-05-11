@@ -4,19 +4,30 @@
 
 @layer base {
   :root {
-    --color-ivory: #FAF8F4;
-    --color-navy: #1A2B3C;
-    --color-gold: #C4935A;
-    --color-sage: #8A9E8C;
-    --color-sand: #F0EDE8;
-    /* Legacy */
-    --color-primary: #094730;
-    --color-secondary: #0a5a46;
-    --color-cream: #f5f4ef;
-    --color-dark: #1a1716;
-    --color-charcoal: #272220;
-    --color-light-grey: #eee7df;
-    --color-grey: #9e9790;
+    /* ─── Mediterranean Palette (OKLCH) ─── */
+    --color-surface: oklch(97% 0.008 75);
+    --color-surface-secondary: oklch(94% 0.012 80);
+    --color-terra: oklch(58% 0.12 42);
+    --color-sea: oklch(52% 0.13 240);
+    --color-ink: oklch(22% 0.01 75);
+    --color-ink-muted: oklch(52% 0.01 75);
+    --color-border-subtle: oklch(88% 0.01 75);
+
+    /* Legacy aliases for safety during transition */
+    --color-ivory: var(--color-surface);
+    --color-navy: var(--color-ink);
+    --color-gold: var(--color-terra);
+    --color-sand: var(--color-surface-secondary);
+
+    /* Semantic spacing */
+    --space-xs: 0.25rem;   /* 4px */
+    --space-sm: 0.5rem;    /* 8px */
+    --space-md: 1rem;      /* 16px */
+    --space-lg: 1.5rem;    /* 24px */
+    --space-xl: 2rem;      /* 32px */
+    --space-2xl: 3rem;     /* 48px */
+    --space-3xl: 4rem;     /* 64px */
+    --space-4xl: 6rem;     /* 96px */
   }
 
   html {
@@ -38,11 +49,11 @@
   }
 
   body {
-    background: var(--color-ivory);
-    color: var(--color-navy);
-    font-family: var(--font-jost), sans-serif;
-    font-size: 0.875rem;
-    line-height: 1.75;
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-figtree), sans-serif;
+    font-size: 1rem;
+    line-height: 1.65;
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior-y: contain;
   }
@@ -52,14 +63,14 @@
   }
 
   ::selection {
-    background: var(--color-gold);
+    background: var(--color-terra);
     color: white;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
     line-height: 1.05;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
   }
 
   h1, h2, h3 {
@@ -69,6 +80,79 @@
   a {
     text-underline-offset: 2px;
   }
+}
+
+/* ─── Premium Motion Utilities ─── */
+@layer utilities {
+  .text-shimmer {
+    background: linear-gradient(90deg, var(--color-ink) 0%, var(--color-terra) 50%, var(--color-ink) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textShimmer 4s linear infinite;
+  }
+
+  .glow-terra {
+    box-shadow: 0 0 20px oklch(58% 0.12 42 / 0.3), 0 0 60px oklch(58% 0.12 42 / 0.1);
+  }
+
+  .glow-text-terra {
+    text-shadow: 0 0 20px oklch(58% 0.12 42 / 0.5), 0 0 40px oklch(58% 0.12 42 / 0.3);
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+}
+
+/* ─── Shimmer Button Base ─── */
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: translateX(-100%);
+  transition: transform 0s;
+}
+.shimmer-btn:hover::after {
+  transform: translateX(100%);
+  transition: transform 0.6s ease;
+}
+
+/* ─── Magnetic Button Hover ─── */
+.magnetic-hover {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Tilt Card Glare ─── */
+.tilt-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.15), transparent 50%);
+  mix-blend-mode: overlay;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.group:hover .tilt-glare {
+  opacity: 1;
 }
 
 /* ─── Film Grain Overlay ─── */
@@ -88,7 +172,7 @@
   position:fixed; top:-50%; left:-50%;
   width:200%; height:200%;
   pointer-events:none; z-index:9998;
-  opacity:0.03;
+  opacity:0.025;
   animation:grain 0.8s steps(1) infinite;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
@@ -99,7 +183,7 @@
   top: 0;
   left: 0;
   height: 2px;
-  background: var(--color-gold);
+  background: var(--color-terra);
   z-index: 9999;
   transform-origin: left;
   will-change: transform;
@@ -112,7 +196,7 @@
   left: 0;
   width: 8px;
   height: 8px;
-  background: var(--color-gold);
+  background: var(--color-terra);
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
@@ -125,7 +209,7 @@
   left: 0;
   width: 40px;
   height: 40px;
-  border: 1.5px solid var(--color-gold);
+  border: 1.5px solid var(--color-terra);
   border-radius: 50%;
   pointer-events: none;
   z-index: 99998;
@@ -143,7 +227,7 @@
 }
 
 @layer components {
-  /* Container */
+  /* Containers */
   .container-hut {
     @apply max-w-hut mx-auto px-4 md:px-8;
   }
@@ -161,7 +245,7 @@
   }
   .rolling-link span {
     display: block;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.32, 1);
   }
   .rolling-link:hover span:first-child {
     transform: translateY(-100%);
@@ -189,14 +273,14 @@
 
   .btn-primary {
     @apply btn;
-    background: var(--color-gold);
+    background: var(--color-terra);
     color: white;
   }
 
   .btn-outline {
     @apply inline-flex items-center justify-center gap-2 px-4 py-2.5;
-    border: 1.5px solid var(--color-navy);
-    color: var(--color-navy);
+    border: 1.5px solid var(--color-ink);
+    color: var(--color-ink);
     border-radius: 0;
     font-size: 0.875rem;
     font-weight: 500;
@@ -204,7 +288,7 @@
     transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
   }
   .btn-outline:hover {
-    background: var(--color-navy);
+    background: var(--color-ink);
     color: white;
   }
 
@@ -220,13 +304,13 @@
   }
   .btn-outline-light:hover {
     background: white;
-    color: var(--color-navy);
+    color: var(--color-ink);
   }
 
   .btn-light {
     @apply inline-flex items-center justify-center gap-2 px-4 py-2.5;
     background: white;
-    color: var(--color-navy);
+    color: var(--color-ink);
     border-radius: 0;
     font-size: 0.875rem;
     font-weight: 500;
@@ -235,13 +319,13 @@
 
   .btn-dark {
     @apply btn;
-    background: var(--color-navy);
+    background: var(--color-ink);
     color: white;
   }
 
   .btn-ghost {
     @apply inline-flex items-center gap-1;
-    color: var(--color-navy);
+    color: var(--color-ink);
     font-size: 0.875rem;
     font-weight: 500;
     transition: opacity 0.2s;
@@ -273,17 +357,17 @@
   .section-pad { @apply py-20 sm:py-28 lg:py-36; }
   .section-pad-lg { @apply py-24 sm:py-32 lg:py-44; }
 
-  /* Card */
+  /* Card — BAN 3: no generic rounded-rect shadow. Use border + subtle hover. */
   .card {
     @apply overflow-hidden;
     border-radius: 0;
     background: white;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s ease;
+    border: 1px solid var(--color-border-subtle);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.32, 1), border-color 0.3s ease;
   }
   .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+    border-color: var(--color-terra);
   }
 
   .img-cover { @apply object-cover w-full h-full; }
@@ -291,7 +375,7 @@
   .badge {
     @apply inline-flex items-center gap-1 px-2.5 py-1;
     border-radius: 0;
-    background: var(--color-navy);
+    background: var(--color-ink);
     color: white;
     font-size: 0.75rem;
     font-weight: 500;
@@ -299,26 +383,26 @@
 
   .input-field {
     @apply w-full px-4 py-3 text-sm outline-none transition-all duration-200;
-    border: 1.5px solid var(--color-sand);
+    border: 1.5px solid var(--color-border-subtle);
     border-radius: 0;
     background: white;
-    color: var(--color-navy);
+    color: var(--color-ink);
   }
-  .input-field:focus { border-color: var(--color-gold); }
-  .input-field::placeholder { color: #999; }
+  .input-field:focus { border-color: var(--color-terra); }
+  .input-field::placeholder { color: oklch(52% 0.01 75 / 0.6); }
 
   .input-luxury {
     @apply w-full px-4 py-3.5 text-sm outline-none transition-colors;
-    border: 1px solid var(--color-sand);
+    border: 1px solid var(--color-border-subtle);
     border-radius: 0;
-    background: var(--color-ivory);
-    color: var(--color-navy);
+    background: var(--color-surface);
+    color: var(--color-ink);
   }
-  .input-luxury:focus { border-color: var(--color-gold); }
+  .input-luxury:focus { border-color: var(--color-terra); box-shadow: 0 1px 0 0 var(--color-terra); }
 
   .divider {
     @apply w-10 h-px my-6;
-    background: var(--color-gold);
+    background: var(--color-terra);
   }
 
   .section-label {
@@ -326,37 +410,36 @@
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--color-gold);
+    color: var(--color-terra);
     margin-bottom: 0.75rem;
   }
 
   .img-zoom { @apply overflow-hidden; }
   .img-zoom img {
-    transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.32, 1);
   }
   .img-zoom:hover img { transform: scale(1.05); }
 
-  .bg-blur {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
+  /* BAN 4: No glassmorphism / backdrop-filter blur as decoration.
+     If a component needs an overlay, use a solid opaque background instead. */
+  /* .bg-blur REMOVED */
 
-  /* Animated gold underline */
-  .gold-underline {
+  /* Animated terra underline */
+  .terra-underline {
     position: relative;
     display: inline;
   }
-  .gold-underline::after {
+  .terra-underline::after {
     content: '';
     position: absolute;
     bottom: -2px;
     left: 0;
     width: 0;
     height: 1px;
-    background: var(--color-gold);
-    transition: width 0.4s cubic-bezier(0.16,1,0.3,1);
+    background: var(--color-terra);
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.32, 1);
   }
-  .gold-underline:hover::after {
+  .terra-underline:hover::after {
     width: 100%;
   }
 }
@@ -373,6 +456,16 @@
     scrollbar-width: none;
   }
   .scrollbar-hide::-webkit-scrollbar { display: none; }
+
+  /* GPU acceleration helpers */
+  .gpu { transform: translateZ(0); backface-visibility: hidden; }
+  .will-change-transform { will-change: transform; }
+  .will-change-opacity { will-change: opacity; }
+
+  /* Easing tokens */
+  .ease-out-expo { transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1); }
+  .ease-out-quart { transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1); }
+  .ease-out-quint { transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
 }
 
 /* Scrollbar */
@@ -439,12 +532,12 @@
     left: 0;
     right: 0;
     height: 64px;
-    background: #1A2B3C;
+    background: oklch(22% 0.01 75);
     z-index: 50;
     justify-content: space-around;
     align-items: center;
     padding-bottom: env(safe-area-inset-bottom);
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid oklch(97% 0.008 75 / 0.08);
   }
   .admin-content {
     padding-bottom: 80px !important;
@@ -457,5 +550,57 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .grain { display: none !important; }
+}
+
+/* Mobile specific optimizations */
+@media (max-width: 768px) {
+  .grain { 
+    display: none !important; 
+  }
+  
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  img {
+    content-visibility: auto;
+  }
+  
+  [style*="transform: translateY"] {
+    will-change: auto !important;
+  }
+}
+
+/* High DPI / Retina optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  img {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .h-screen-safe {
+    height: -webkit-fill-available;
+  }
+  
+  .safe-bottom-ios {
+    padding-bottom: max(env(safe-area-inset-bottom), 20px);
+  }
+}
+
+/* Android specific fixes */
+@supports not (-webkit-touch-callout: none) {
+  .h-screen-safe {
+    height: 100vh;
+    height: 100dvh;
   }
 }

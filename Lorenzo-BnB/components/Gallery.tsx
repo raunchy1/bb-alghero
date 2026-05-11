@@ -61,8 +61,8 @@ export default function Gallery({ images, variant = 'grid' }: GalleryProps) {
             className={clsx(
               'px-4 py-2 text-xs font-medium tracking-widest uppercase transition-all duration-200',
               activeCategory === cat
-                ? 'bg-ocean text-sand'
-                : 'bg-white border border-sand-dark text-ocean hover:border-ocean'
+                ? 'bg-navy text-ivory'
+                : 'bg-white border border-border text-navy hover:border-navy'
             )}
           >
             {getCategoryLabel(cat)}
@@ -86,7 +86,7 @@ export default function Gallery({ images, variant = 'grid' }: GalleryProps) {
                   className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-ocean/0 group-hover:bg-ocean/20 transition-colors duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/20 transition-colors duration-300 flex items-center justify-center">
                   <ZoomIn size={24} className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               </div>
@@ -117,11 +117,11 @@ export default function Gallery({ images, variant = 'grid' }: GalleryProps) {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes={index === 0 ? '(max-width: 768px) 100vw, 50vw' : '(max-width: 768px) 50vw, 25vw'}
                   loading={index === 0 ? 'eager' : 'lazy'} />
-                <div className="absolute inset-0 bg-ocean/0 group-hover:bg-ocean/20 transition-colors duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/20 transition-colors duration-300 flex items-center justify-center">
                   <ZoomIn size={20} className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 {index === 4 && filtered.length > 5 && (
-                  <div className="absolute inset-0 bg-ocean/60 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-navy/60 flex items-center justify-center">
                     <div className="text-center text-white">
                       <p className="text-2xl font-serif">+{filtered.length - 5}</p>
                       <p className="text-xs tracking-widest uppercase mt-1">{t({ it: 'altre foto', en: 'more photos' })}</p>
@@ -142,7 +142,7 @@ export default function Gallery({ images, variant = 'grid' }: GalleryProps) {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 loading="lazy" />
-              <div className="absolute inset-0 bg-ocean/0 group-hover:bg-ocean/30 transition-colors duration-300 flex items-end p-4">
+              <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/30 transition-colors duration-300 flex items-end p-4">
                 <p className="text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   {image.alt}
                 </p>

@@ -47,7 +47,7 @@ export default function Hero() {
           {/* Stats row */}
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-white/70 text-sm mb-8 animate-fade-up animate-delay-100">
             <span className="flex items-center gap-1.5">
-              <Star size={13} className="text-coral-light fill-coral-light" />
+              <Star size={13} className="text-gold fill-gold" />
               <span className="text-white font-semibold">{listingData.host.rating}</span>
               <span>· {listingData.host.reviewCount} {t({ it: 'recensioni', en: 'reviews' })}</span>
             </span>

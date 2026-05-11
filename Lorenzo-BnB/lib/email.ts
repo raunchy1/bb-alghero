@@ -62,7 +62,7 @@ export function getBookingConfirmationTemplate(
         <div style="padding: 40px; background: #FAF8F4;">
           <h2 style="color: #1A2B3C; font-style: italic; margin-bottom: 24px;">Grazie per la tua prenotazione, ${guestName}!</h2>
           
-          <div style="background: #fff; padding: 24px; border-left: 3px solid #C4935A; margin-bottom: 24px;">
+          <div style="background: #fff; padding: 24px; margin-bottom: 24px;">
             <h3 style="margin: 0 0 16px 0; color: #1A2B3C; font-size: 16px;">Dettagli Prenotazione #${bookingId}</h3>
             <p style="margin: 8px 0; font-size: 15px;"><strong>Camera:</strong> ${roomName}</p>
             <p style="margin: 8px 0; font-size: 15px;"><strong>Check-in:</strong> ${checkInDate} (dalle 15:00)</p>

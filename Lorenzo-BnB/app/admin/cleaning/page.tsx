@@ -64,7 +64,7 @@ export default function CleaningPage() {
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-        <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontSize: 32, margin: 0 }}>
+        <h1 style={{ fontFamily: "'Cormorant', serif", fontStyle: 'italic', fontSize: 32, margin: 0 }}>
           Gestione Pulizie
         </h1>
         <div style={{ display: 'flex', gap: 8 }}>
@@ -139,7 +139,7 @@ export default function CleaningPage() {
                       flex: 1,
                       padding: '8px',
                       backgroundColor: '#3b82f6',
-                      color: '#fff',
+                      color: 'white',
                       border: 'none',
                       borderRadius: 4,
                       fontSize: 13,
@@ -155,7 +155,7 @@ export default function CleaningPage() {
                     flex: 1,
                     padding: '8px',
                     backgroundColor: '#22c55e',
-                    color: '#fff',
+                    color: 'white',
                     border: 'none',
                     borderRadius: 4,
                     fontSize: 13,

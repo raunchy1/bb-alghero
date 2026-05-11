@@ -8,7 +8,7 @@ const inputStyle: React.CSSProperties = {
   border: '1px solid rgba(26,43,60,0.15)',
   borderRadius: 4,
   padding: '10px 14px',
-  fontFamily: "'Jost', sans-serif",
+  fontFamily: "'Figtree', sans-serif",
   fontSize: 14,
   outline: 'none',
   boxSizing: 'border-box' as const,
@@ -16,7 +16,7 @@ const inputStyle: React.CSSProperties = {
 
 const labelStyle: React.CSSProperties = {
   display: 'block',
-  fontFamily: "'Jost', sans-serif",
+  fontFamily: "'Figtree', sans-serif",
   fontSize: 11,
   textTransform: 'uppercase',
   letterSpacing: '0.05em',
@@ -179,10 +179,10 @@ export default function ImpostazioniPage() {
     <div>
       <h1
         style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant', serif",
           fontStyle: 'italic',
           fontSize: 32,
-          color: '#1A2B3C',
+          color: 'oklch(22% 0.01 75)',
           fontWeight: 500,
           margin: '0 0 24px 0',
         }}
@@ -201,7 +201,7 @@ export default function ImpostazioniPage() {
             backgroundColor: '#fff',
             border: `1px solid ${toast.type === 'success' ? '#16a34a' : '#ef4444'}`,
             color: toast.type === 'success' ? '#16a34a' : '#ef4444',
-            fontFamily: "'Jost', sans-serif",
+            fontFamily: "'Figtree', sans-serif",
             fontSize: 13,
             zIndex: 1000,
             display: 'flex',
@@ -217,7 +217,7 @@ export default function ImpostazioniPage() {
 
       {/* Section 1: Change Password */}
       <div style={sectionStyle}>
-        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, color: '#1A2B3C', margin: '0 0 20px 0' }}>
+        <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 22, color: 'oklch(22% 0.01 75)', margin: '0 0 20px 0' }}>
           Cambia Password
         </h2>
         <div style={{ display: 'grid', gap: 16, maxWidth: 400 }}>
@@ -236,12 +236,12 @@ export default function ImpostazioniPage() {
           <button
             onClick={handleChangePassword}
             style={{
-              backgroundColor: '#C4935A',
-              color: '#fff',
+              backgroundColor: 'oklch(58% 0.12 42)',
+              color: 'white',
               border: 'none',
               borderRadius: 2,
               padding: '12px 24px',
-              fontFamily: "'Jost', sans-serif",
+              fontFamily: "'Figtree', sans-serif",
               fontSize: 13,
               letterSpacing: '0.05em',
               cursor: 'pointer',
@@ -257,7 +257,7 @@ export default function ImpostazioniPage() {
 
       {/* Section 2: Airbnb iCal Sync */}
       <div style={sectionStyle}>
-        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, color: '#1A2B3C', margin: '0 0 20px 0' }}>
+        <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 22, color: 'oklch(22% 0.01 75)', margin: '0 0 20px 0' }}>
           Sincronizzazione Calendario Airbnb
         </h2>
 
@@ -269,10 +269,10 @@ export default function ImpostazioniPage() {
           borderRadius: 4, padding: '20px 24px',
           marginBottom: 24,
         }}>
-          <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, fontWeight: 600, color: '#1A2B3C', marginBottom: 12, marginTop: 0 }}>
+          <p style={{ fontFamily: "'Figtree', sans-serif", fontSize: 14, fontWeight: 600, color: 'oklch(22% 0.01 75)', marginBottom: 12, marginTop: 0 }}>
             Come ottenere il link iCal da Airbnb:
           </p>
-          <ol style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, color: '#555', lineHeight: 2, paddingLeft: 20, margin: 0 }}>
+          <ol style={{ fontFamily: "'Figtree', sans-serif", fontSize: 14, color: '#555', lineHeight: 2, paddingLeft: 20, margin: 0 }}>
             <li>Vai su <strong>airbnb.com</strong> e accedi al tuo account</li>
             <li>Clicca su <strong>Annunci</strong> → seleziona il tuo annuncio</li>
             <li>Vai su <strong>Disponibilità</strong></li>
@@ -306,8 +306,8 @@ export default function ImpostazioniPage() {
               display: 'inline-flex', alignItems: 'center', gap: 8,
               padding: '12px 24px',
               border: '1px solid rgba(26,43,60,0.2)',
-              background: 'transparent', color: '#1A2B3C',
-              fontFamily: "'Jost', sans-serif", fontSize: 13,
+              background: 'transparent', color: 'oklch(22% 0.01 75)',
+              fontFamily: "'Figtree', sans-serif", fontSize: 13,
               cursor: icalUrl && !icalLoading ? 'pointer' : 'not-allowed',
               borderRadius: 2, opacity: !icalUrl || icalLoading ? 0.5 : 1,
             }}
@@ -323,7 +323,7 @@ export default function ImpostazioniPage() {
               display: 'inline-flex', alignItems: 'center', gap: 8,
               padding: '12px 32px',
               background: '#C4935A', color: 'white',
-              border: 'none', fontFamily: "'Jost', sans-serif",
+              border: 'none', fontFamily: "'Figtree', sans-serif",
               fontSize: 13, letterSpacing: '0.05em',
               cursor: icalUrl && !icalLoading ? 'pointer' : 'not-allowed',
               borderRadius: 2, opacity: !icalUrl || icalLoading ? 0.5 : 1,
@@ -344,13 +344,13 @@ export default function ImpostazioniPage() {
           }}>
             {icalStatus.ok === true && <CheckCircle size={18} color="#22c55e" />}
             {icalStatus.ok === false && <XCircle size={18} color="#ef4444" />}
-            <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 14 }}>{icalStatus.message}</span>
+            <span style={{ fontFamily: "'Figtree', sans-serif", fontSize: 14 }}>{icalStatus.message}</span>
           </div>
         )}
 
         {/* Last sync */}
         {lastSync && (
-          <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 12, color: '#888', marginBottom: 20, marginTop: 0 }}>
+          <p style={{ fontFamily: "'Figtree', sans-serif", fontSize: 12, color: '#888', marginBottom: 20, marginTop: 0 }}>
             Ultima sincronizzazione: {lastSync}
           </p>
         )}
@@ -358,22 +358,22 @@ export default function ImpostazioniPage() {
         {/* Booked dates preview */}
         {bookedDates.length > 0 && (
           <div style={{ background: '#FAF8F4', border: '1px solid rgba(26,43,60,0.08)', borderRadius: 4, padding: 24 }}>
-            <h3 style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, fontWeight: 600, color: '#1A2B3C', marginTop: 0, marginBottom: 16 }}>
+            <h3 style={{ fontFamily: "'Figtree', sans-serif", fontSize: 14, fontWeight: 600, color: 'oklch(22% 0.01 75)', marginTop: 0, marginBottom: 16 }}>
               Date prenotate da Airbnb
-              <span style={{ color: '#C4935A', marginLeft: 8 }}>({bookedDates.length} date)</span>
+              <span style={{ color: 'oklch(58% 0.12 42)', marginLeft: 8 }}>({bookedDates.length} date)</span>
             </h3>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
               {bookedDates.slice(0, 30).map(date => (
                 <span key={date} style={{
                   background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)',
                   color: '#dc2626', padding: '4px 10px', borderRadius: 40,
-                  fontFamily: "'Jost', sans-serif", fontSize: 12,
+                  fontFamily: "'Figtree', sans-serif", fontSize: 12,
                 }}>
                   {new Date(date + 'T00:00:00').toLocaleDateString('it-IT', { day: 'numeric', month: 'short' })}
                 </span>
               ))}
               {bookedDates.length > 30 && (
-                <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 12, color: '#888', padding: '4px 0' }}>
+                <span style={{ fontFamily: "'Figtree', sans-serif", fontSize: 12, color: '#888', padding: '4px 0' }}>
                   +{bookedDates.length - 30} altre date
                 </span>
               )}
@@ -384,7 +384,7 @@ export default function ImpostazioniPage() {
 
       {/* Section 3: SEO */}
       <div style={sectionStyle}>
-        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, color: '#1A2B3C', margin: '0 0 20px 0' }}>
+        <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 22, color: 'oklch(22% 0.01 75)', margin: '0 0 20px 0' }}>
           SEO
         </h2>
         <div style={{ display: 'grid', gap: 16, maxWidth: 600 }}>
@@ -407,7 +407,7 @@ export default function ImpostazioniPage() {
 
       {/* Section 4: Language */}
       <div style={sectionStyle}>
-        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, color: '#1A2B3C', margin: '0 0 20px 0' }}>
+        <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 22, color: 'oklch(22% 0.01 75)', margin: '0 0 20px 0' }}>
           Lingua Predefinita
         </h2>
         <div style={{ display: 'flex', gap: 0 }}>
@@ -420,7 +420,7 @@ export default function ImpostazioniPage() {
                 border: '1px solid rgba(26,43,60,0.15)',
                 backgroundColor: language === lang ? '#C4935A' : '#fff',
                 color: language === lang ? '#fff' : '#1A2B3C',
-                fontFamily: "'Jost', sans-serif",
+                fontFamily: "'Figtree', sans-serif",
                 fontSize: 13,
                 cursor: 'pointer',
                 transition: 'all 0.2s',
@@ -434,7 +434,7 @@ export default function ImpostazioniPage() {
 
       {/* Section 5: Notification Email */}
       <div style={sectionStyle}>
-        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, color: '#1A2B3C', margin: '0 0 20px 0' }}>
+        <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 22, color: 'oklch(22% 0.01 75)', margin: '0 0 20px 0' }}>
           Notifiche Prenotazioni
         </h2>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
@@ -464,7 +464,7 @@ export default function ImpostazioniPage() {
               }}
             />
           </button>
-          <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, color: '#1A2B3C' }}>
+          <span style={{ fontFamily: "'Figtree', sans-serif", fontSize: 14, color: 'oklch(22% 0.01 75)' }}>
             {notificationsEnabled ? 'Notifiche attive' : 'Notifiche disattivate'}
           </span>
         </div>
@@ -488,12 +488,12 @@ export default function ImpostazioniPage() {
       <button
         onClick={handleSaveSettings}
         style={{
-          backgroundColor: '#C4935A',
-          color: '#fff',
+          backgroundColor: 'oklch(58% 0.12 42)',
+          color: 'white',
           border: 'none',
           borderRadius: 2,
           padding: '12px 24px',
-          fontFamily: "'Jost', sans-serif",
+          fontFamily: "'Figtree', sans-serif",
           fontSize: 13,
           letterSpacing: '0.05em',
           cursor: 'pointer',

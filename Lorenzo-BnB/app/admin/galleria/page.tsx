@@ -85,10 +85,10 @@ export default function GalleriaPage() {
     <div>
       <h1
         style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant', serif",
           fontStyle: 'italic',
           fontSize: 32,
-          color: '#1A2B3C',
+          color: 'oklch(22% 0.01 75)',
           fontWeight: 500,
           margin: '0 0 24px 0',
         }}
@@ -107,7 +107,7 @@ export default function GalleriaPage() {
             backgroundColor: '#fff',
             border: `1px solid ${toast.type === 'success' ? '#16a34a' : '#ef4444'}`,
             color: toast.type === 'success' ? '#16a34a' : '#ef4444',
-            fontFamily: "'Jost', sans-serif",
+            fontFamily: "'Figtree', sans-serif",
             fontSize: 13,
             zIndex: 1000,
             display: 'flex',
@@ -124,7 +124,7 @@ export default function GalleriaPage() {
       {/* Upload section */}
       <div style={{ backgroundColor: '#fff', border: '1px solid rgba(26,43,60,0.08)', padding: 24, marginBottom: 24 }}>
         <div style={{ display: 'flex', gap: 12, marginBottom: 16, alignItems: 'center' }}>
-          <label style={{ fontFamily: "'Jost', sans-serif", fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(26,43,60,0.4)' }}>
+          <label style={{ fontFamily: "'Figtree', sans-serif", fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(26,43,60,0.4)' }}>
             Categoria:
           </label>
           <select
@@ -134,7 +134,7 @@ export default function GalleriaPage() {
               border: '1px solid rgba(26,43,60,0.15)',
               borderRadius: 4,
               padding: '8px 12px',
-              fontFamily: "'Jost', sans-serif",
+              fontFamily: "'Figtree', sans-serif",
               fontSize: 13,
               outline: 'none',
             }}
@@ -166,7 +166,7 @@ export default function GalleriaPage() {
           }}
         >
           <Upload size={32} strokeWidth={1.5} color="#C4935A" style={{ marginBottom: 12 }} />
-          <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, color: 'rgba(26,43,60,0.5)', margin: 0 }}>
+          <p style={{ fontFamily: "'Figtree', sans-serif", fontSize: 14, color: 'rgba(26,43,60,0.5)', margin: 0 }}>
             Trascina le foto qui o clicca per selezionare
           </p>
           <input
@@ -195,7 +195,7 @@ export default function GalleriaPage() {
               borderRadius: 20,
               backgroundColor: filter === cat.key ? '#C4935A' : 'transparent',
               color: filter === cat.key ? '#fff' : '#1A2B3C',
-              fontFamily: "'Jost', sans-serif",
+              fontFamily: "'Figtree', sans-serif",
               fontSize: 12,
               cursor: 'pointer',
               transition: 'all 0.2s',
@@ -208,9 +208,9 @@ export default function GalleriaPage() {
 
       {/* Photo grid */}
       {loading ? (
-        <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, color: 'rgba(26,43,60,0.5)' }}>Caricamento...</p>
+        <p style={{ fontFamily: "'Figtree', sans-serif", fontSize: 14, color: 'rgba(26,43,60,0.5)' }}>Caricamento...</p>
       ) : filtered.length === 0 ? (
-        <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, color: 'rgba(26,43,60,0.5)' }}>Nessuna foto in questa categoria</p>
+        <p style={{ fontFamily: "'Figtree', sans-serif", fontSize: 14, color: 'rgba(26,43,60,0.5)' }}>Nessuna foto in questa categoria</p>
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
           {filtered.map((photo) => (
@@ -230,9 +230,9 @@ export default function GalleriaPage() {
                   border: '1px solid #C4935A',
                   borderRadius: 12,
                   backgroundColor: 'rgba(255,255,255,0.9)',
-                  fontFamily: "'Jost', sans-serif",
+                  fontFamily: "'Figtree', sans-serif",
                   fontSize: 10,
-                  color: '#C4935A',
+                  color: 'oklch(58% 0.12 42)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
                 }}
@@ -250,7 +250,7 @@ export default function GalleriaPage() {
                   height: 28,
                   borderRadius: '50%',
                   backgroundColor: 'rgba(239,68,68,0.9)',
-                  color: '#fff',
+                  color: 'white',
                   border: 'none',
                   cursor: 'pointer',
                   display: 'flex',

@@ -114,7 +114,7 @@ function CheckInContent() {
         <h1 style={{ color: '#1A2B3C', marginBottom: 16 }}>Check-in Completato!</h1>
         <p style={{ color: '#666', lineHeight: 1.6 }}>
           Grazie {booking.guestName}! Il tuo check-in è stato registrato.<br />
-          All'arrivo, potrai accedere direttamente alla tua camera.<br />
+          All&apos;arrivo, potrai accedere direttamente alla tua camera.<br />
           <br />
           <strong>Camera:</strong> {booking.room.name}<br />
           <strong>Check-in:</strong> {new Date(booking.checkIn).toLocaleDateString('it-IT')} dalle 15:00

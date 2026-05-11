@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { Home, BedDouble, Image, Calendar, CreditCard, FileText, Settings, LogOut } from 'lucide-react'
+import { Home, BedDouble, Image, Calendar, CreditCard, FileText, Settings, LogOut, Sparkles } from 'lucide-react'
 import { ReactNode } from 'react'
 
 const navItems = [
@@ -11,6 +11,7 @@ const navItems = [
   { icon: Image, label: 'Galleria', href: '/admin/galleria' },
   { icon: Calendar, label: 'Calendario', href: '/admin/calendario' },
   { icon: CreditCard, label: 'Pagamenti', href: '/admin/pagamenti' },
+  { icon: Sparkles, label: 'Stripe Setup', href: '/admin/stripe-setup' },
   { icon: FileText, label: 'Contenuti', href: '/admin/contenuti' },
   { icon: Settings, label: 'Impostazioni', href: '/admin/impostazioni' },
 ]
@@ -40,13 +41,13 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     <div style={{ display: 'flex', minHeight: '100vh', maxWidth: '100vw', overflow: 'hidden' }}>
       {/* Desktop Sidebar */}
       <aside className="admin-sidebar" style={{
-        width: 260, minWidth: 260, backgroundColor: '#1A2B3C',
+        width: 260, minWidth: 260, backgroundColor: 'oklch(22% 0.01 75)',
         display: 'flex', flexDirection: 'column', padding: '32px 0',
       }}>
         <div style={{ padding: '0 28px', marginBottom: 48 }}>
           <h1 style={{
-            fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic',
-            fontSize: 22, color: '#C4935A', fontWeight: 500, margin: 0,
+            fontFamily: "'Cormorant', serif", fontStyle: 'italic',
+            fontSize: 22, color: 'oklch(58% 0.12 42)', fontWeight: 500, margin: 0,
           }}>
             La Suite N4
           </h1>
@@ -60,7 +61,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
               <Link key={item.href} href={item.href} style={{
                 display: 'flex', alignItems: 'center', gap: 12,
                 padding: '10px 16px', borderRadius: 6, textDecoration: 'none',
-                fontFamily: "'Jost', sans-serif", fontSize: 14,
+                fontFamily: "'Figtree', sans-serif", fontSize: 14,
                 color: isActive ? '#C4935A' : 'rgba(255,255,255,0.5)',
                 backgroundColor: isActive ? 'rgba(196,147,90,0.1)' : 'transparent',
                 transition: 'all 0.2s',
@@ -76,7 +77,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           <button onClick={handleLogout} style={{
             display: 'flex', alignItems: 'center', gap: 12,
             padding: '10px 16px', borderRadius: 6, border: 'none',
-            background: 'transparent', fontFamily: "'Jost', sans-serif",
+            background: 'transparent', fontFamily: "'Figtree', sans-serif",
             fontSize: 14, color: 'rgba(255,255,255,0.5)', cursor: 'pointer', width: '100%',
           }}>
             <LogOut size={18} strokeWidth={1.5} />
@@ -86,12 +87,12 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
       </aside>
 
       {/* Main Content */}
-      <main className="admin-content" style={{ flex: 1, backgroundColor: '#FAF8F4', minWidth: 0 }}>
+      <main className="admin-content" style={{ flex: 1, backgroundColor: 'oklch(97% 0.008 75)', minWidth: 0 }}>
         <div style={{ padding: '24px 20px 0' }} className="md:!px-8">
-          <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, color: '#1A2B3C', margin: 0, marginBottom: 8 }}>
+          <p style={{ fontFamily: "'Figtree', sans-serif", fontSize: 14, color: 'oklch(22% 0.01 75)', margin: 0, marginBottom: 8 }}>
             Benvenuto, Admin
           </p>
-          <div style={{ width: 40, height: 2, backgroundColor: '#C4935A', marginBottom: 24 }} />
+          <div style={{ width: 40, height: 2, backgroundColor: 'oklch(58% 0.12 42)', marginBottom: 24 }} />
         </div>
         <div style={{ padding: '0 20px 32px' }} className="md:!px-8">{children}</div>
       </main>
@@ -109,7 +110,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             }}>
               <Icon size={20} strokeWidth={1.5} color={isActive ? '#C4935A' : 'rgba(255,255,255,0.4)'} />
               <span style={{
-                fontFamily: "'Jost', sans-serif", fontSize: 10,
+                fontFamily: "'Figtree', sans-serif", fontSize: 10,
                 color: isActive ? '#C4935A' : 'rgba(255,255,255,0.4)',
                 fontWeight: isActive ? 500 : 400,
               }}>

@@ -48,8 +48,8 @@ export default function AmenityGrid({ amenities, variant = 'grid', showAll = tru
           const Icon = iconMap[amenity.icon] || CheckCircle2
           return (
             <div key={amenity.id} className="flex items-center gap-3">
-              <Icon size={16} className="text-sunset flex-shrink-0" />
-              <span className="text-sm text-ocean">{amenity.name}</span>
+              <Icon size={16} className="text-gold flex-shrink-0" />
+              <span className="text-sm text-navy">{amenity.name}</span>
             </div>
           )
         })}
@@ -69,7 +69,7 @@ export default function AmenityGrid({ amenities, variant = 'grid', showAll = tru
     <div className="space-y-12">
       {Object.entries(grouped).map(([category, items]) => (
         <div key={category}>
-          <h3 className="text-xs font-medium tracking-widest uppercase text-stone mb-5">
+          <h3 className="text-xs font-medium tracking-widest uppercase text-muted mb-5">
             {categoryLabels[category] || category}
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -79,14 +79,12 @@ export default function AmenityGrid({ amenities, variant = 'grid', showAll = tru
                 <div
                   key={amenity.id}
                   className={clsx(
-                    'flex flex-col items-start gap-3 p-5 bg-white border border-sand-dark',
-                    'transition-all duration-300 hover:border-ocean hover:shadow-card group'
+                    'flex flex-col items-start gap-3 p-5 bg-white border border-border',
+                    'transition-all duration-300 hover:border-navy  group'
                   )}
                 >
-                  <div className="w-10 h-10 bg-sand flex items-center justify-center group-hover:bg-ocean transition-colors duration-300">
-                    <Icon size={18} className="text-ocean group-hover:text-sand transition-colors duration-300" />
-                  </div>
-                  <span className="text-sm text-ocean font-medium leading-tight">{amenity.name}</span>
+                  <Icon size={18} className="text-navy group-hover:text-gold transition-colors duration-300" />
+                  <span className="text-sm text-navy font-medium leading-tight">{amenity.name}</span>
                 </div>
               )
             })}

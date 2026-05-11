@@ -1,0 +1,103 @@
+{
+  "name": "La Suite N4 Alghero - Camere Esclusive",
+  "short_name": "La Suite N4",
+  "description": "Camere esclusive nel cuore di Alghero, Sardegna. Design raffinato, comfort assoluto.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color":="#1A2B3C",
+  "theme_color":="#1A2B3C",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "it",
+  "dir": "ltr",
+  "categories": ["travel", "hotels", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/home-mobile.jpg",
+      "sizes": "750x1334",
+      "type": "image/jpeg",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/screenshots/home-desktop.jpg",
+      "sizes": "1280x800",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Prenota Ora",
+      "short_name": "Prenota",
+      "description": "Prenota il tuo soggiorno",
+      "url": "/book",
+      "icons": [{ "src": "/icons/book-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Le Camere",
+      "short_name": "Camere",
+      "description": "Scopri le nostre camere",
+      "url": "/rooms",
+      "icons": [{ "src": "/icons/rooms-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Contatti",
+      "short_name": "Contatti",
+      "description": "Contattaci su WhatsApp",
+      "url": "/contact",
+      "icons": [{ "src": "/icons/contact-96x96.png", "sizes": "96x96" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

@@ -44,29 +44,29 @@ export default function AdminBookingsPage() {
       case 'paid': return 'bg-green-100 text-green-800'
       case 'pending': return 'bg-yellow-100 text-yellow-800'
       case 'cancelled': return 'bg-red-100 text-red-800'
-      default: return 'bg-gray-100 text-gray-800'
+      default: return 'bg-sand text-gray-800'
     }
   }
 
   if (loading) {
-    return <div className="text-grey text-sm">Caricamento...</div>
+    return <div className="text-muted text-sm">Caricamento...</div>
   }
 
   return (
     <div>
       <h1 className="text-display-sm text-dark mb-1">Prenotazioni</h1>
-      <p className="text-grey text-sm mb-8">Tutte le prenotazioni della struttura</p>
+      <p className="text-muted text-sm mb-8">Tutte le prenotazioni della struttura</p>
 
-      <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+      <div className="bg-white rounded-none  overflow-hidden">
         {bookings.length === 0 ? (
-          <div className="px-6 py-8 text-center text-grey text-sm">
+          <div className="px-6 py-8 text-center text-muted text-sm">
             Nessuna prenotazione ancora
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-left text-xs text-grey uppercase tracking-wider border-b border-light-grey">
+                <tr className="text-left text-xs text-muted uppercase tracking-wider border-b border-light-grey">
                   <th className="px-6 py-3 font-medium">ID</th>
                   <th className="px-6 py-3 font-medium">Camera</th>
                   <th className="px-6 py-3 font-medium">Ospite</th>
@@ -80,26 +80,26 @@ export default function AdminBookingsPage() {
               <tbody className="divide-y divide-light-grey">
                 {bookings.map((booking) => (
                   <tr key={booking.id} className="hover:bg-cream/50 transition-colors">
-                    <td className="px-6 py-3.5 text-grey">#{booking.id}</td>
+                    <td className="px-6 py-3.5 text-muted">#{booking.id}</td>
                     <td className="px-6 py-3.5 text-dark font-medium">
                       {booking.room?.name || `Camera ${booking.roomId}`}
                     </td>
                     <td className="px-6 py-3.5 text-dark">
                       <div>{booking.guestName || '—'}</div>
                       {booking.guestEmail && (
-                        <div className="text-xs text-grey">{booking.guestEmail}</div>
+                        <div className="text-xs text-muted">{booking.guestEmail}</div>
                       )}
                     </td>
-                    <td className="px-6 py-3.5 text-grey">
+                    <td className="px-6 py-3.5 text-muted">
                       {new Date(booking.checkIn).toLocaleDateString('it-IT')}
                     </td>
-                    <td className="px-6 py-3.5 text-grey">
+                    <td className="px-6 py-3.5 text-muted">
                       {new Date(booking.checkOut).toLocaleDateString('it-IT')}
                     </td>
-                    <td className="px-6 py-3.5 text-grey">{booking.nights}</td>
+                    <td className="px-6 py-3.5 text-muted">{booking.nights}</td>
                     <td className="px-6 py-3.5 text-dark font-medium">€{booking.totalPrice.toFixed(2)}</td>
                     <td className="px-6 py-3.5">
-                      <span className={`inline-block px-2.5 py-1 rounded-md text-xs font-medium ${statusColor(booking.paymentStatus)}`}>
+                      <span className={`inline-block px-2.5 py-1 rounded-none text-xs font-medium ${statusColor(booking.paymentStatus)}`}>
                         {booking.paymentStatus}
                       </span>
                     </td>

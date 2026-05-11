@@ -8,7 +8,7 @@ const inputStyle: React.CSSProperties = {
   border: '1px solid rgba(26,43,60,0.15)',
   borderRadius: 4,
   padding: '10px 14px',
-  fontFamily: "'Jost', sans-serif",
+  fontFamily: "'Figtree', sans-serif",
   fontSize: 14,
   outline: 'none',
   boxSizing: 'border-box' as const,
@@ -22,7 +22,7 @@ const textareaStyle: React.CSSProperties = {
 
 const labelStyle: React.CSSProperties = {
   display: 'block',
-  fontFamily: "'Jost', sans-serif",
+  fontFamily: "'Figtree', sans-serif",
   fontSize: 11,
   textTransform: 'uppercase',
   letterSpacing: '0.05em',
@@ -88,10 +88,10 @@ export default function ContenutiPage() {
     <div>
       <h1
         style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant', serif",
           fontStyle: 'italic',
           fontSize: 32,
-          color: '#1A2B3C',
+          color: 'oklch(22% 0.01 75)',
           fontWeight: 500,
           margin: '0 0 24px 0',
         }}
@@ -110,7 +110,7 @@ export default function ContenutiPage() {
             backgroundColor: '#fff',
             border: `1px solid ${toast.type === 'success' ? '#16a34a' : '#ef4444'}`,
             color: toast.type === 'success' ? '#16a34a' : '#ef4444',
-            fontFamily: "'Jost', sans-serif",
+            fontFamily: "'Figtree', sans-serif",
             fontSize: 13,
             zIndex: 1000,
             display: 'flex',
@@ -135,7 +135,7 @@ export default function ContenutiPage() {
               border: 'none',
               borderBottom: activeTab === tab.key ? '2px solid #C4935A' : '2px solid transparent',
               backgroundColor: 'transparent',
-              fontFamily: "'Jost', sans-serif",
+              fontFamily: "'Figtree', sans-serif",
               fontSize: 13,
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
@@ -311,12 +311,12 @@ export default function ContenutiPage() {
       <button
         onClick={handleSave}
         style={{
-          backgroundColor: '#C4935A',
-          color: '#fff',
+          backgroundColor: 'oklch(58% 0.12 42)',
+          color: 'white',
           border: 'none',
           borderRadius: 2,
           padding: '12px 24px',
-          fontFamily: "'Jost', sans-serif",
+          fontFamily: "'Figtree', sans-serif",
           fontSize: 13,
           letterSpacing: '0.05em',
           cursor: 'pointer',

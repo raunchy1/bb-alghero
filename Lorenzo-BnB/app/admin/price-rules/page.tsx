@@ -84,7 +84,7 @@ export default function PriceRulesPage() {
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-        <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', fontSize: 32, margin: 0 }}>
+        <h1 style={{ fontFamily: "'Cormorant', serif", fontStyle: 'italic', fontSize: 32, margin: 0 }}>
           Regole Prezzi
         </h1>
         <button
@@ -94,8 +94,8 @@ export default function PriceRulesPage() {
             alignItems: 'center',
             gap: 8,
             padding: '10px 20px',
-            backgroundColor: '#C4935A',
-            color: '#fff',
+            backgroundColor: 'oklch(58% 0.12 42)',
+            color: 'white',
             border: 'none',
             borderRadius: 4,
             cursor: 'pointer',
@@ -173,7 +173,7 @@ export default function PriceRulesPage() {
             </div>
           </div>
           <div style={{ marginTop: 16 }}>
-            <button type="submit" style={{ padding: '10px 24px', backgroundColor: '#C4935A', color: '#fff', border: 'none', borderRadius: 4 }}>
+            <button type="submit" style={{ padding: '10px 24px', backgroundColor: 'oklch(58% 0.12 42)', color: 'white', border: 'none', borderRadius: 4 }}>
               Salva Regola
             </button>
           </div>

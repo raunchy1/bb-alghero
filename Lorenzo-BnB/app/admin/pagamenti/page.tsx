@@ -15,14 +15,14 @@ const inputStyle: React.CSSProperties = {
   border: '1px solid rgba(26,43,60,0.15)',
   borderRadius: 4,
   padding: '10px 14px',
-  fontFamily: "'Jost', sans-serif",
+  fontFamily: "'Figtree', sans-serif",
   fontSize: 14,
   outline: 'none',
   boxSizing: 'border-box' as const,
 }
 
 const sectionLabel: React.CSSProperties = {
-  fontFamily: "'Jost', sans-serif",
+  fontFamily: "'Figtree', sans-serif",
   fontSize: 11,
   textTransform: 'uppercase',
   letterSpacing: '0.1em',
@@ -103,9 +103,9 @@ export default function PagamentiPage() {
       <h1
         className="text-[28px] md:text-[32px]"
         style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant', serif",
           fontStyle: 'italic',
-          color: '#1A2B3C',
+          color: 'oklch(22% 0.01 75)',
           fontWeight: 500,
           margin: '0 0 24px 0',
         }}
@@ -124,7 +124,7 @@ export default function PagamentiPage() {
             backgroundColor: '#fff',
             border: `1px solid ${toast.type === 'success' ? '#16a34a' : '#ef4444'}`,
             color: toast.type === 'success' ? '#16a34a' : '#ef4444',
-            fontFamily: "'Jost', sans-serif",
+            fontFamily: "'Figtree', sans-serif",
             fontSize: 13,
             zIndex: 1000,
             display: 'flex',
@@ -138,11 +138,11 @@ export default function PagamentiPage() {
         </div>
       )}
 
-      {/* Section 1: Stripe Config */}
+      {/* Section 1: Stripe Config - Simplified with link to new setup page */}
       <div style={{ backgroundColor: '#fff', border: '1px solid rgba(26,43,60,0.08)', padding: 16, marginBottom: 24, boxSizing: 'border-box' as const, maxWidth: '100%' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
           <CreditCard size={20} strokeWidth={1.5} color="#C4935A" />
-          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, color: '#1A2B3C', margin: 0 }}>
+          <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 22, color: 'oklch(22% 0.01 75)', margin: 0 }}>
             Connetti Stripe
           </h2>
         </div>
@@ -155,14 +155,31 @@ export default function PagamentiPage() {
             backgroundColor: 'rgba(196,147,90,0.03)',
           }}
         >
-          <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 13, color: '#1A2B3C', margin: 0, lineHeight: 1.6 }}>
-            Per configurare i pagamenti, accedi alla{' '}
-            <a href="https://dashboard.stripe.com/apikeys" target="_blank" rel="noreferrer" style={{ color: '#C4935A' }}>
-              Dashboard Stripe
-            </a>{' '}
-            e copia le chiavi API dalla sezione Developers &gt; API Keys.
-            Usa le chiavi di test per provare e quelle live per i pagamenti reali.
+          <p style={{ fontFamily: "'Figtree', sans-serif", fontSize: 13, color: 'oklch(22% 0.01 75)', margin: 0, lineHeight: 1.6 }}>
+            Configura Stripe nella nuova pagina dedicata. Lì puoi:
           </p>
+          <ul style={{ fontFamily: "'Figtree', sans-serif", fontSize: 13, color: 'oklch(22% 0.01 75)', margin: '8px 0', paddingLeft: 20 }}>
+            <li>Inserire chiavi di test e live</li>
+            <li>Testare i pagamenti con 1 EUR</li>
+            <li>Cambiare tra modalità test e live</li>
+            <li>Configurare il webhook</li>
+          </ul>
+          <a 
+            href="/admin/stripe-setup"
+            style={{ 
+              display: 'inline-block',
+              marginTop: 10,
+              padding: '10px 20px',
+              backgroundColor: 'oklch(58% 0.12 42)',
+              color: 'white',
+              textDecoration: 'none',
+              borderRadius: 4,
+              fontSize: 13,
+              fontWeight: 500
+            }}
+          >
+            Vai a Stripe Setup →
+          </a>
         </div>
 
         <div style={{ display: 'grid', gap: 16, marginBottom: 20 }}>
@@ -206,12 +223,12 @@ export default function PagamentiPage() {
         <button
           onClick={handleSaveStripe}
           style={{
-            backgroundColor: '#C4935A',
-            color: '#fff',
+            backgroundColor: 'oklch(58% 0.12 42)',
+            color: 'white',
             border: 'none',
             borderRadius: 2,
             padding: '12px 24px',
-            fontFamily: "'Jost', sans-serif",
+            fontFamily: "'Figtree', sans-serif",
             fontSize: 13,
             letterSpacing: '0.05em',
             cursor: 'pointer',
@@ -226,7 +243,7 @@ export default function PagamentiPage() {
 
       {/* Section 2: Payment Methods */}
       <div style={{ backgroundColor: '#fff', border: '1px solid rgba(26,43,60,0.08)', padding: 16, marginBottom: 24, boxSizing: 'border-box' as const, maxWidth: '100%' }}>
-        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, color: '#1A2B3C', margin: '0 0 20px 0' }}>
+        <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 22, color: 'oklch(22% 0.01 75)', margin: '0 0 20px 0' }}>
           Metodi di Pagamento
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -237,7 +254,7 @@ export default function PagamentiPage() {
             { key: 'bonifico', label: 'Bonifico' },
           ].map((m) => (
             <div key={m.key} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', border: '1px solid rgba(26,43,60,0.08)' }}>
-              <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, color: '#1A2B3C' }}>{m.label}</span>
+              <span style={{ fontFamily: "'Figtree', sans-serif", fontSize: 14, color: 'oklch(22% 0.01 75)' }}>{m.label}</span>
               <button
                 onClick={() => setPaymentMethods((prev) => ({ ...prev, [m.key]: !prev[m.key as keyof typeof prev] }))}
                 style={{
@@ -273,7 +290,7 @@ export default function PagamentiPage() {
       <div style={{ backgroundColor: '#fff', border: '1px solid rgba(26,43,60,0.08)', padding: 16, marginBottom: 24, boxSizing: 'border-box' as const, maxWidth: '100%' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
           <Building2 size={20} strokeWidth={1.5} color="#C4935A" />
-          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, color: '#1A2B3C', margin: 0 }}>
+          <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 22, color: 'oklch(22% 0.01 75)', margin: 0 }}>
             Dati Bonifico
           </h2>
         </div>
@@ -313,7 +330,7 @@ export default function PagamentiPage() {
             backgroundColor: 'rgba(196,147,90,0.03)',
           }}
         >
-          <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 13, color: '#1A2B3C', margin: 0 }}>
+          <p style={{ fontFamily: "'Figtree', sans-serif", fontSize: 13, color: 'oklch(22% 0.01 75)', margin: 0 }}>
             Questi dati verranno mostrati ai clienti nella pagina di prenotazione e contatti.
           </p>
         </div>
@@ -321,15 +338,15 @@ export default function PagamentiPage() {
 
       {/* Section 4: Pricing */}
       <div style={{ backgroundColor: '#fff', border: '1px solid rgba(26,43,60,0.08)', padding: 24 }}>
-        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, color: '#1A2B3C', margin: '0 0 20px 0' }}>
+        <h2 style={{ fontFamily: "'Cormorant', serif", fontSize: 22, color: 'oklch(22% 0.01 75)', margin: '0 0 20px 0' }}>
           Tariffe Suite
         </h2>
         <div style={{ display: 'grid', gap: 12 }}>
           {rooms.map((room) => (
             <div key={room.id} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '12px 0', borderBottom: '1px solid rgba(26,43,60,0.05)' }}>
-              <span style={{ flex: 1, fontFamily: "'Jost', sans-serif", fontSize: 14, color: '#1A2B3C' }}>{room.name}</span>
+              <span style={{ flex: 1, fontFamily: "'Figtree', sans-serif", fontSize: 14, color: 'oklch(22% 0.01 75)' }}>{room.name}</span>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, color: 'rgba(26,43,60,0.5)' }}>&euro;</span>
+                <span style={{ fontFamily: "'Figtree', sans-serif", fontSize: 14, color: 'rgba(26,43,60,0.5)' }}>&euro;</span>
                 <input
                   type="number"
                   value={roomPrices[room.id] || 0}
@@ -338,7 +355,7 @@ export default function PagamentiPage() {
                   onFocus={(e) => { e.currentTarget.style.borderColor = '#C4935A' }}
                   onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(26,43,60,0.15)' }}
                 />
-                <span style={{ fontFamily: "'Jost', sans-serif", fontSize: 12, color: 'rgba(26,43,60,0.4)' }}>/ notte</span>
+                <span style={{ fontFamily: "'Figtree', sans-serif", fontSize: 12, color: 'rgba(26,43,60,0.4)' }}>/ notte</span>
                 <button
                   onClick={() => handleSavePrice(room)}
                   style={{
@@ -346,9 +363,9 @@ export default function PagamentiPage() {
                     border: '1px solid rgba(26,43,60,0.2)',
                     borderRadius: 2,
                     padding: '8px 16px',
-                    fontFamily: "'Jost', sans-serif",
+                    fontFamily: "'Figtree', sans-serif",
                     fontSize: 12,
-                    color: '#1A2B3C',
+                    color: 'oklch(22% 0.01 75)',
                     cursor: 'pointer',
                     transition: 'all 0.2s',
                   }}

@@ -28,7 +28,7 @@ function StarRating({ rating }: { rating: number }) {
           key={i}
           size={12}
           className={clsx(
-            i < rating ? 'text-sunset fill-sunset' : 'text-sand-dark'
+            i < rating ? 'text-gold fill-gold' : 'text-border'
           )}
         />
       ))}
@@ -50,30 +50,30 @@ export default function ReviewCards({ reviews, limit = 6, variant = 'grid' }: Re
         <div
           key={review.id}
           className={clsx(
-            'bg-white border border-sand-dark p-6 flex flex-col',
-            'transition-all duration-300 hover:shadow-luxury',
+            'bg-white border border-border p-6 flex flex-col',
+            'transition-all duration-300 ',
             variant === 'carousel' && 'flex-shrink-0 w-80 snap-start'
           )}
         >
           {/* Header */}
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-sand-dark flex items-center justify-center">
-              <span className="font-serif text-ocean text-sm">{review.author.charAt(0)}</span>
+            <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 bg-sand flex items-center justify-center">
+              <span className="font-serif text-navy text-sm">{review.author.charAt(0)}</span>
             </div>
             <div>
-              <p className="text-sm font-medium text-ocean">{review.author}</p>
-              <p className="text-xs text-stone">{review.location}</p>
+              <p className="text-sm font-medium text-navy">{review.author}</p>
+              <p className="text-xs text-muted">{review.location}</p>
             </div>
           </div>
 
           {/* Rating + Date */}
           <div className="flex items-center justify-between mb-4">
             <StarRating rating={review.rating} />
-            <span className="text-xs text-stone">{review.date}</span>
+            <span className="text-xs text-muted">{review.date}</span>
           </div>
 
           {/* Text */}
-          <p className="text-sm text-stone leading-relaxed flex-1 line-clamp-4">
+          <p className="text-sm text-muted leading-relaxed flex-1 line-clamp-4">
             &ldquo;{t(review.text)}&rdquo;
           </p>
         </div>

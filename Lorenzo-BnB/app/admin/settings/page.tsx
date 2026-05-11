@@ -79,17 +79,17 @@ export default function AdminSettingsPage() {
   }
 
   if (loading) {
-    return <div className="text-grey text-sm">Caricamento...</div>
+    return <div className="text-muted text-sm">Caricamento...</div>
   }
 
   return (
     <div>
       <h1 className="text-display-sm text-dark mb-1">Impostazioni</h1>
-      <p className="text-grey text-sm mb-8">Configurazione della struttura</p>
+      <p className="text-muted text-sm mb-8">Configurazione della struttura</p>
 
       <form onSubmit={handleSave} className="max-w-2xl space-y-6">
         {/* Property */}
-        <div className="bg-white rounded-xl p-6 shadow-sm space-y-4">
+        <div className="bg-white rounded-none p-6  space-y-4">
           <h2 className="text-sm font-semibold text-dark">Struttura</h2>
 
           <div>
@@ -98,7 +98,7 @@ export default function AdminSettingsPage() {
               type="text"
               value={settings.propertyName}
               onChange={(e) => setSettings({ ...settings, propertyName: e.target.value })}
-              className="w-full bg-white border border-light-grey rounded-lg px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors"
+              className="w-full bg-white border border-light-grey rounded-none px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors"
             />
           </div>
 
@@ -109,15 +109,15 @@ export default function AdminSettingsPage() {
               value={settings.whatsappNumber}
               onChange={(e) => setSettings({ ...settings, whatsappNumber: e.target.value })}
               placeholder="+39..."
-              className="w-full bg-white border border-light-grey rounded-lg px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors"
+              className="w-full bg-white border border-light-grey rounded-none px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors"
             />
           </div>
         </div>
 
         {/* Stripe */}
-        <div className="bg-white rounded-xl p-6 shadow-sm space-y-4">
+        <div className="bg-white rounded-none p-6  space-y-4">
           <h2 className="text-sm font-semibold text-dark">Pagamenti — Stripe</h2>
-          <p className="text-xs text-grey">Inserisci le chiavi Stripe per attivare i pagamenti online</p>
+          <p className="text-xs text-muted">Inserisci le chiavi Stripe per attivare i pagamenti online</p>
 
           <div>
             <label className="block text-xs font-medium text-dark mb-1.5">Stripe Publishable Key</label>
@@ -126,7 +126,7 @@ export default function AdminSettingsPage() {
               value={settings.stripePublicKey}
               onChange={(e) => setSettings({ ...settings, stripePublicKey: e.target.value })}
               placeholder="pk_live_..."
-              className="w-full bg-white border border-light-grey rounded-lg px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors font-mono"
+              className="w-full bg-white border border-light-grey rounded-none px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors font-mono"
             />
           </div>
 
@@ -137,13 +137,13 @@ export default function AdminSettingsPage() {
               value={settings.stripeSecretKey}
               onChange={(e) => setSettings({ ...settings, stripeSecretKey: e.target.value })}
               placeholder={hasStripeSecret ? '••••••' : 'sk_live_...'}
-              className="w-full bg-white border border-light-grey rounded-lg px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors font-mono"
+              className="w-full bg-white border border-light-grey rounded-none px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors font-mono"
             />
           </div>
         </div>
 
         {/* Admin credentials */}
-        <div className="bg-white rounded-xl p-6 shadow-sm space-y-4">
+        <div className="bg-white rounded-none p-6  space-y-4">
           <h2 className="text-sm font-semibold text-dark">Accesso Admin</h2>
 
           <div>
@@ -152,7 +152,7 @@ export default function AdminSettingsPage() {
               type="email"
               value={settings.adminEmail}
               onChange={(e) => setSettings({ ...settings, adminEmail: e.target.value })}
-              className="w-full bg-white border border-light-grey rounded-lg px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors"
+              className="w-full bg-white border border-light-grey rounded-none px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors"
             />
           </div>
 
@@ -163,7 +163,7 @@ export default function AdminSettingsPage() {
               value={settings.adminPassword}
               onChange={(e) => setSettings({ ...settings, adminPassword: e.target.value })}
               placeholder="Lascia vuoto per non modificare"
-              className="w-full bg-white border border-light-grey rounded-lg px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors"
+              className="w-full bg-white border border-light-grey rounded-none px-4 py-3 text-sm focus:border-primary focus:outline-none transition-colors"
             />
           </div>
         </div>
@@ -173,7 +173,7 @@ export default function AdminSettingsPage() {
           <button
             type="submit"
             disabled={saving}
-            className="bg-primary text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-secondary transition-colors disabled:opacity-50"
+            className="bg-primary text-white px-6 py-3 rounded-none text-sm font-medium hover:bg-secondary transition-colors disabled:opacity-50"
           >
             {saving ? 'Salvataggio...' : 'Salva impostazioni'}
           </button>

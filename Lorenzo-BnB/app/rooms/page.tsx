@@ -10,14 +10,14 @@ export default function RoomsPage() {
   const { t, lang } = useLanguage()
 
   return (
-    <main className="bg-[#f5f4ef]">
+    <main className="bg-ivory">
       {/* ─── HEADER ─── */}
       <section className="pt-32 pb-16 md:pt-44 md:pb-24 px-6 md:px-12">
         <div className="max-w-[1624px] mx-auto">
           <p className="text-xs tracking-[0.25em] uppercase text-[#9e9790] mb-4">
             {lang === 'it' ? 'Le camere' : 'Our rooms'}
           </p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-normal tracking-tighter text-[#1a1716] leading-[0.95]">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-normal tracking-tighter text-navy leading-[0.95]">
             {lang === 'it' ? 'Le nostre camere' : 'Our rooms'}
           </h1>
         </div>
@@ -40,7 +40,7 @@ export default function RoomsPage() {
                   href={`/rooms/${room.slug}`}
                   className="group w-full lg:w-1/2"
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-none">
                     <Image
                       src={room.hero}
                       alt={t(room.name)}
@@ -56,7 +56,7 @@ export default function RoomsPage() {
                   <p className="text-xs tracking-[0.25em] uppercase text-[#9e9790] mb-4">
                     {lang === 'it' ? `Camera ${index + 1}` : `Room ${index + 1}`}
                   </p>
-                  <h2 className="text-3xl md:text-4xl font-normal tracking-tight text-[#1a1716] mb-4 leading-tight">
+                  <h2 className="text-3xl md:text-4xl font-normal tracking-tight text-navy mb-4 leading-tight">
                     {t(room.name)}
                   </h2>
                   <p className="text-[#9e9790] text-base md:text-lg leading-relaxed mb-8 max-w-lg">
@@ -64,26 +64,26 @@ export default function RoomsPage() {
                   </p>
 
                   <div className="flex flex-wrap gap-3 mb-6">
-                    <span className="inline-flex items-center px-4 py-2 bg-[#1a1716]/5 rounded-full text-sm text-[#1a1716]">
+                    <span className="inline-flex items-center px-4 py-2 bg-navy/5 rounded-full text-sm text-navy">
                       {room.capacity.guests} {lang === 'it' ? 'ospiti' : 'guests'}
                     </span>
-                    <span className="inline-flex items-center px-4 py-2 bg-[#1a1716]/5 rounded-full text-sm text-[#1a1716]">
+                    <span className="inline-flex items-center px-4 py-2 bg-navy/5 rounded-full text-sm text-navy">
                       {room.capacity.beds}
                     </span>
-                    <span className="inline-flex items-center px-4 py-2 bg-[#1a1716]/5 rounded-full text-sm text-[#1a1716]">
+                    <span className="inline-flex items-center px-4 py-2 bg-navy/5 rounded-full text-sm text-navy">
                       {room.size} m²
                     </span>
-                    <span className="inline-flex items-center px-4 py-2 bg-[#1a1716]/5 rounded-full text-sm text-[#1a1716]">
+                    <span className="inline-flex items-center px-4 py-2 bg-navy/5 rounded-full text-sm text-navy">
                       {room.capacity.bathrooms} {lang === 'it' ? 'bagno' : 'bathroom'}
                     </span>
                   </div>
 
                   <div className="flex flex-col gap-2 mb-10">
-                    <div className="flex items-center gap-2 text-sm text-[#1a1716]">
+                    <div className="flex items-center gap-2 text-sm text-navy">
                       <Sun size={16} strokeWidth={1.2} color="#C4935A" />
                       <span>{lang === 'it' ? 'Terrazza panoramica privata' : 'Private panoramic terrace'}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-[#1a1716]">
+                    <div className="flex items-center gap-2 text-sm text-navy">
                       <Coffee size={16} strokeWidth={1.2} color="#C4935A" />
                       <span>{lang === 'it' ? 'Colazione disponibile su richiesta' : 'Breakfast available on request'}</span>
                     </div>
@@ -91,7 +91,7 @@ export default function RoomsPage() {
 
                   <Link
                     href={`/rooms/${room.slug}`}
-                    className="inline-flex items-center text-[#1a1716] text-sm tracking-[0.15em] uppercase group/link"
+                    className="inline-flex items-center text-navy text-sm tracking-[0.15em] uppercase group/link"
                   >
                     <span className="border-b border-[#1a1716]/30 group-hover/link:border-[#1a1716] transition-colors duration-300">
                       {lang === 'it' ? 'Scopri' : 'Discover'}
@@ -110,7 +110,7 @@ export default function RoomsPage() {
       {/* ─── CTA ─── */}
       <section className="py-28 md:py-44 px-6 md:px-12">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-normal tracking-tighter text-[#1a1716] mb-6 leading-tight">
+          <h2 className="text-3xl md:text-5xl font-normal tracking-tighter text-navy mb-6 leading-tight">
             {lang === 'it' ? 'Prenota il tuo soggiorno' : 'Book your stay'}
           </h2>
           <p className="text-[#9e9790] text-lg mb-10">
@@ -120,7 +120,7 @@ export default function RoomsPage() {
             href={property.contact.airbnbUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-10 py-5 bg-[#1a1716] text-[#f5f4ef] text-sm tracking-[0.15em] uppercase rounded-lg hover:bg-[#272220] transition-colors duration-300"
+            className="inline-block px-10 py-5 bg-navy text-ivory text-sm tracking-[0.15em] uppercase rounded-none hover:bg-navy/80 transition-colors duration-300"
           >
             {lang === 'it' ? 'Prenota su Airbnb' : 'Book on Airbnb'}
           </a>

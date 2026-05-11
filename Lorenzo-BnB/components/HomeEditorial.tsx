@@ -7,10 +7,10 @@ export default function HomeEditorial() {
   const { t } = useLanguage()
   return (
     <>
-      <p className="text-stone leading-relaxed mb-6">
+      <p className="text-muted leading-relaxed mb-6">
         {t(listingData.description.short)}
       </p>
-      <p className="text-stone leading-relaxed mb-10 text-sm">
+      <p className="text-muted leading-relaxed mb-10 text-sm">
         {t(listingData.description.house)}
       </p>
     </>

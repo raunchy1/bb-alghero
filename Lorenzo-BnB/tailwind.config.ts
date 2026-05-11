@@ -9,33 +9,31 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ivory: '#FAF8F4',
-        navy: '#1A2B3C',
-        gold: '#C4935A',
-        sage: '#8A9E8C',
-        sand: '#F0EDE8',
+        // ─── Mediterranean Palette (OKLCH) ───
+        // 60% — surfaces
+        ivory: 'oklch(97% 0.008 75)',
+        sand: 'oklch(94% 0.012 80)',
+        // 30% — text & borders
+        navy: 'oklch(22% 0.01 75)',
+        muted: 'oklch(52% 0.01 75)',
+        border: 'oklch(88% 0.01 75)',
+        // 10% — accents (terra cotta used sparingly)
+        gold: 'oklch(58% 0.12 42)',
+        sea: 'oklch(52% 0.13 240)',
+        // Pure white for cards / overlays when needed
         white: '#FFFFFF',
-        // Keep old colors for non-redesigned pages
-        primary: '#094730',
-        secondary: '#0a5a46',
-        cream: '#f5f4ef',
-        dark: '#1a1716',
-        charcoal: '#272220',
-        'light-grey': '#eee7df',
-        grey: '#9e9790',
-        'dark-grey': '#2d2725',
-        error: '#940f0b',
       },
       fontFamily: {
-        sans: ['var(--font-jost)', 'sans-serif'],
+        sans: ['var(--font-figtree)', 'sans-serif'],
         serif: ['var(--font-cormorant)', 'Georgia', 'serif'],
       },
       fontSize: {
-        'display-2xl': ['clamp(2.5rem,6vw,5.5rem)', { lineHeight: '1.05', letterSpacing: '-0.03em', fontWeight: '400' }],
-        'display-xl':  ['clamp(2rem,5vw,5rem)',      { lineHeight: '1.05', letterSpacing: '-0.03em', fontWeight: '400' }],
-        'display-lg':  ['clamp(1.75rem,4vw,3.5rem)', { lineHeight: '1.1',  letterSpacing: '-0.03em', fontWeight: '400' }],
-        'display-md':  ['clamp(1.5rem,3vw,2.75rem)', { lineHeight: '1.1',  letterSpacing: '-0.02em', fontWeight: '400' }],
-        'display-sm':  ['clamp(1.25rem,2.5vw,2rem)', { lineHeight: '1.15', letterSpacing: '-0.02em', fontWeight: '400' }],
+        'display-2xl': ['clamp(2.5rem, 5vw + 1rem, 5rem)', { lineHeight: '1.05', letterSpacing: '-0.03em', fontWeight: '400' }],
+        'display-xl':  ['clamp(2rem, 4vw + 1rem, 4rem)',      { lineHeight: '1.05', letterSpacing: '-0.03em', fontWeight: '400' }],
+        'display-lg':  ['clamp(1.75rem, 3.5vw + 1rem, 3.5rem)', { lineHeight: '1.1',  letterSpacing: '-0.03em', fontWeight: '400' }],
+        'display-md':  ['clamp(1.5rem, 3vw + 0.5rem, 2.75rem)', { lineHeight: '1.1',  letterSpacing: '-0.02em', fontWeight: '400' }],
+        'display-sm':  ['clamp(1.25rem, 2.5vw + 0.5rem, 2rem)', { lineHeight: '1.15', letterSpacing: '-0.02em', fontWeight: '400' }],
+        body: ['1rem', { lineHeight: '1.65' }],
       },
       spacing: {
         'xs': '8px',
@@ -55,16 +53,23 @@ const config: Config = {
         '9xl': '96rem',
       },
       borderRadius: {
-        'card': '8px',
-        'btn': '4px',
+        // Editorial sharp corners — no generic rounded rectangles
+        card: '0px',
+        btn: '0px',
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out forwards',
-        'fade-up': 'fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) forwards',
-        'scale-in': 'scaleIn 0.5s cubic-bezier(0.16,1,0.3,1) forwards',
-        'clip-reveal': 'clipReveal 0.9s cubic-bezier(0.16,1,0.3,1) forwards',
+        'fade-up': 'fadeUp 0.7s cubic-bezier(0.16, 1, 0.32, 1) forwards',
+        'scale-in': 'scaleIn 0.5s cubic-bezier(0.16, 1, 0.32, 1) forwards',
+        'clip-reveal': 'clipReveal 0.9s cubic-bezier(0.16, 1, 0.32, 1) forwards',
         'marquee': 'marquee 30s linear infinite',
         'scroll-dot': 'scrollDot 2s ease-in-out infinite',
+        'shimmer': 'shimmer 2s infinite',
+        'float': 'float 6s ease-in-out infinite',
+        'float-delayed': 'float 6s ease-in-out 2s infinite',
+        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+        'text-shimmer': 'textShimmer 3s linear infinite',
+        'border-dance': 'borderDance 4s linear infinite',
       },
       keyframes: {
         fadeIn: {
@@ -93,11 +98,32 @@ const config: Config = {
           '51%':  { transform: 'translateY(-10px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-12px)' },
+        },
+        pulseGlow: {
+          '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+          '50%': { opacity: '0.8', transform: 'scale(1.05)' },
+        },
+        textShimmer: {
+          '0%': { backgroundPosition: '-200% center' },
+          '100%': { backgroundPosition: '200% center' },
+        },
+        borderDance: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
       },
       boxShadow: {
-        'card':    '0 2px 16px rgba(0,0,0,0.06)',
-        'card-lg': '0 8px 40px rgba(0,0,0,0.12)',
-        'nav':     '0 1px 8px rgba(0,0,0,0.06)',
+        // BAN 3: no generic drop shadows on rounded rectangles.
+        // Only an extremely subtle lift shadow for minimal depth when absolutely needed.
+        'lift': '0 1px 3px oklch(22% 0.01 75 / 0.04)',
       },
       transitionDuration: {
         '400': '400ms',

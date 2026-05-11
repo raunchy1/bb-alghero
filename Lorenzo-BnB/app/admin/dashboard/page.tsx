@@ -34,7 +34,7 @@ const cardStyle: React.CSSProperties = {
 }
 
 const labelStyle: React.CSSProperties = {
-  fontFamily: "'Jost', sans-serif",
+  fontFamily: "'Figtree', sans-serif",
   fontSize: 11,
   textTransform: 'uppercase',
   letterSpacing: '0.1em',
@@ -43,9 +43,9 @@ const labelStyle: React.CSSProperties = {
 }
 
 const numberStyle: React.CSSProperties = {
-  fontFamily: "'Cormorant Garamond', serif",
+  fontFamily: "'Cormorant', serif",
   fontSize: 36,
-  color: '#1A2B3C',
+  color: 'oklch(22% 0.01 75)',
   fontWeight: 500,
   margin: 0,
 }
@@ -55,10 +55,10 @@ const actionBtnStyle: React.CSSProperties = {
   alignItems: 'center',
   gap: 8,
   border: '1px solid #C4935A',
-  color: '#C4935A',
+  color: 'oklch(58% 0.12 42)',
   backgroundColor: 'transparent',
   padding: '10px 20px',
-  fontFamily: "'Jost', sans-serif",
+  fontFamily: "'Figtree', sans-serif",
   fontSize: 12,
   textTransform: 'uppercase',
   letterSpacing: '0.1em',
@@ -108,7 +108,7 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <p style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, color: 'rgba(26,43,60,0.5)' }}>
+      <p style={{ fontFamily: "'Figtree', sans-serif", fontSize: 14, color: 'rgba(26,43,60,0.5)' }}>
         Caricamento...
       </p>
     )
@@ -118,10 +118,10 @@ export default function DashboardPage() {
     <div>
       <h1
         style={{
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Cormorant', serif",
           fontStyle: 'italic',
           fontSize: 32,
-          color: '#1A2B3C',
+          color: 'oklch(22% 0.01 75)',
           fontWeight: 500,
           margin: '0 0 24px 0',
         }}
@@ -164,23 +164,56 @@ export default function DashboardPage() {
         </Link>
       </div>
 
+      {/* Test Payment Banner */}
+      <div style={{ 
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', 
+        borderRadius: 8, 
+        padding: '16px 20px',
+        marginBottom: 24,
+        color: 'white'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
+          <div>
+            <p style={{ margin: 0, fontWeight: 600, fontSize: 14 }}>🧪 Testează Plata Stripe</p>
+            <p style={{ margin: '4px 0 0 0', fontSize: 12, opacity: 0.9 }}>Fă un test cu 1 EUR pentru a verifica integrarea</p>
+          </div>
+          <a 
+            href="/test-plata" 
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              background: 'white',
+              color: '#764ba2',
+              padding: '10px 20px',
+              borderRadius: 6,
+              fontSize: 12,
+              fontWeight: 600,
+              textDecoration: 'none',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            Testează Acum →
+          </a>
+        </div>
+      </div>
+
       {/* Recent Bookings Table */}
       <div style={{ backgroundColor: '#fff', border: '1px solid rgba(26,43,60,0.08)' }}>
         <div style={{ padding: '16px 24px', borderBottom: '1px solid rgba(26,43,60,0.08)' }}>
-          <h2 style={{ fontFamily: "'Jost', sans-serif", fontSize: 14, color: '#1A2B3C', fontWeight: 600, margin: 0 }}>
+          <h2 style={{ fontFamily: "'Figtree', sans-serif", fontSize: 14, color: 'oklch(22% 0.01 75)', fontWeight: 600, margin: 0 }}>
             Prenotazioni recenti
           </h2>
         </div>
 
         {recentBookings.length === 0 ? (
-          <div style={{ padding: '48px 24px', textAlign: 'center', fontFamily: "'Jost', sans-serif", fontSize: 14, color: 'rgba(26,43,60,0.4)' }}>
+          <div style={{ padding: '48px 24px', textAlign: 'center', fontFamily: "'Figtree', sans-serif", fontSize: 14, color: 'rgba(26,43,60,0.4)' }}>
             Nessuna prenotazione ancora
           </div>
         ) : (
           <>
             {/* Desktop table */}
             <div className="hidden sm:block overflow-x-auto">
-              <table style={{ width: '100%', minWidth: 500, borderCollapse: 'collapse', fontFamily: "'Jost', sans-serif", fontSize: 14 }}>
+              <table style={{ width: '100%', minWidth: 500, borderCollapse: 'collapse', fontFamily: "'Figtree', sans-serif", fontSize: 14 }}>
                 <thead>
                   <tr style={{ borderBottom: '1px solid rgba(26,43,60,0.08)' }}>
                     {['Ospite', 'Camera', 'Check-in', 'Totale', 'Stato'].map((h) => (
@@ -193,10 +226,10 @@ export default function DashboardPage() {
                     const s = statusLabel(booking.paymentStatus)
                     return (
                       <tr key={booking.id} style={{ borderBottom: '1px solid rgba(26,43,60,0.05)' }}>
-                        <td style={{ padding: '12px 16px', color: '#1A2B3C', fontWeight: 500 }}>{booking.guestName || '--'}</td>
+                        <td style={{ padding: '12px 16px', color: 'oklch(22% 0.01 75)', fontWeight: 500 }}>{booking.guestName || '--'}</td>
                         <td style={{ padding: '12px 16px', color: 'rgba(26,43,60,0.6)', maxWidth: 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{booking.room?.name || `Camera ${booking.roomId}`}</td>
                         <td style={{ padding: '12px 16px', color: 'rgba(26,43,60,0.6)' }}>{new Date(booking.checkIn).toLocaleDateString('it-IT')}</td>
-                        <td style={{ padding: '12px 16px', color: '#1A2B3C', fontWeight: 500 }}>&euro;{booking.totalPrice.toFixed(2)}</td>
+                        <td style={{ padding: '12px 16px', color: 'oklch(22% 0.01 75)', fontWeight: 500 }}>&euro;{booking.totalPrice.toFixed(2)}</td>
                         <td style={{ padding: '12px 16px' }}><span style={{ display: 'inline-block', padding: '4px 10px', fontSize: 11, fontWeight: 500, backgroundColor: s.bg, color: s.color, borderRadius: 4 }}>{s.text}</span></td>
                       </tr>
                     )
@@ -209,10 +242,10 @@ export default function DashboardPage() {
               {recentBookings.map((booking) => {
                 const s = statusLabel(booking.paymentStatus)
                 return (
-                  <div key={booking.id} style={{ background: '#FAF8F4', border: '1px solid rgba(26,43,60,0.08)', borderRadius: 4, padding: 16, fontFamily: "'Jost', sans-serif" }}>
+                  <div key={booking.id} style={{ background: '#FAF8F4', border: '1px solid rgba(26,43,60,0.08)', borderRadius: 4, padding: 16, fontFamily: "'Figtree', sans-serif" }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                      <span style={{ fontWeight: 600, fontSize: 14, color: '#1A2B3C' }}>{booking.guestName || '--'}</span>
-                      <span style={{ color: '#C4935A', fontWeight: 600, fontSize: 14 }}>&euro;{booking.totalPrice.toFixed(2)}</span>
+                      <span style={{ fontWeight: 600, fontSize: 14, color: 'oklch(22% 0.01 75)' }}>{booking.guestName || '--'}</span>
+                      <span style={{ color: 'oklch(58% 0.12 42)', fontWeight: 600, fontSize: 14 }}>&euro;{booking.totalPrice.toFixed(2)}</span>
                     </div>
                     <p style={{ fontSize: 13, color: '#666', margin: '4px 0' }}>{booking.room?.name || `Camera ${booking.roomId}`}</p>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 8 }}>

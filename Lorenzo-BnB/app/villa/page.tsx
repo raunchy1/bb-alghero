@@ -48,15 +48,15 @@ export default function VillaPage() {
       </section>
 
       {/* Quick Stats */}
-      <section className="bg-white border-b border-sand-dark">
+      <section className="bg-white border-b border-border">
         <div className="container-luxury">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-sand-dark">
             {stats.map(({ icon: Icon, value, label }) => (
               <div key={label} className="flex items-center gap-3 py-4 px-4 sm:py-6 sm:px-8">
-                <Icon size={20} className="text-sunset flex-shrink-0" />
+                <Icon size={20} className="text-gold flex-shrink-0" />
                 <div>
-                  <p className="font-serif text-2xl text-ocean leading-none">{value}</p>
-                  <p className="text-xs text-stone mt-0.5">{label}</p>
+                  <p className="font-serif text-2xl text-navy leading-none">{value}</p>
+                  <p className="text-xs text-muted mt-0.5">{label}</p>
                 </div>
               </div>
             ))}
@@ -72,25 +72,25 @@ export default function VillaPage() {
             <div className="lg:col-span-2 space-y-12">
               {/* About */}
               <div>
-                <p className="text-xs font-medium tracking-widest uppercase text-stone mb-4">{t({ it: 'La Casa', en: 'The Villa' })}</p>
-                <h2 className="font-serif text-display-sm text-ocean mb-6">Lorenzo's B&amp;B</h2>
+                <p className="text-xs font-medium tracking-widest uppercase text-muted mb-4">{t({ it: 'La Casa', en: 'The Villa' })}</p>
+                <h2 className="font-serif text-display-sm text-navy mb-6">Lorenzo&apos;s B&amp;B</h2>
                 <div className="divider" />
                 <VillaDescription />
               </div>
 
               {/* Bedrooms */}
               <div>
-                <p className="text-xs font-medium tracking-widest uppercase text-stone mb-4">{t({ it: 'Sistemazione notte', en: 'Sleeping arrangements' })}</p>
-                <h2 className="font-serif text-display-sm text-ocean mb-6">{t({ it: 'Camere', en: 'Bedrooms' })}</h2>
+                <p className="text-xs font-medium tracking-widest uppercase text-muted mb-4">{t({ it: 'Sistemazione notte', en: 'Sleeping arrangements' })}</p>
+                <h2 className="font-serif text-display-sm text-navy mb-6">{t({ it: 'Camere', en: 'Bedrooms' })}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {listingData.rooms.bedroomDetails.map((room) => (
-                    <div key={room.name} className="border border-sand-dark p-5">
+                    <div key={room.name} className="border border-border p-5">
                       <div className="w-8 h-8 bg-sand flex items-center justify-center mb-3">
-                        <BedDouble size={16} className="text-sunset" />
+                        <BedDouble size={16} className="text-gold" />
                       </div>
-                      <h4 className="font-medium text-ocean text-sm mb-1">{room.name}</h4>
-                      <p className="text-xs text-stone mb-2">{room.bedType} · {t({ it: 'Piano', en: 'Floor' })} {room.floor}</p>
-                      <p className="text-xs text-stone leading-relaxed">{room.description}</p>
+                      <h4 className="font-medium text-navy text-sm mb-1">{room.name}</h4>
+                      <p className="text-xs text-muted mb-2">{room.bedType} · {t({ it: 'Piano', en: 'Floor' })} {room.floor}</p>
+                      <p className="text-xs text-muted leading-relaxed">{room.description}</p>
                     </div>
                   ))}
                 </div>
@@ -98,8 +98,8 @@ export default function VillaPage() {
 
               {/* Photos Grid */}
               <div>
-                <p className="text-xs font-medium tracking-widest uppercase text-stone mb-4">{t({ it: 'Gli spazi', en: 'The spaces' })}</p>
-                <h2 className="font-serif text-display-sm text-ocean mb-6">{t({ it: 'Interno ed esterno', en: 'Interior and exterior' })}</h2>
+                <p className="text-xs font-medium tracking-widest uppercase text-muted mb-4">{t({ it: 'Gli spazi', en: 'The spaces' })}</p>
+                <h2 className="font-serif text-display-sm text-navy mb-6">{t({ it: 'Interno ed esterno', en: 'Interior and exterior' })}</h2>
                 <div className="grid grid-cols-2 gap-3">
                   {listingData.images.gallery.slice(0, 6).map((image) => (
                     <div key={image.id} className="relative aspect-[4/3] overflow-hidden group">
@@ -120,25 +120,25 @@ export default function VillaPage() {
 
               {/* Neighborhood */}
               <div>
-                <p className="text-xs font-medium tracking-widest uppercase text-stone mb-4">{t({ it: 'Posizione', en: 'Location' })}</p>
-                <h2 className="font-serif text-display-sm text-ocean mb-6">{t({ it: 'Il quartiere', en: 'The neighborhood' })}</h2>
+                <p className="text-xs font-medium tracking-widest uppercase text-muted mb-4">{t({ it: 'Posizione', en: 'Location' })}</p>
+                <h2 className="font-serif text-display-sm text-navy mb-6">{t({ it: 'Il quartiere', en: 'The neighborhood' })}</h2>
                 <div className="divider" />
                 <VillaNeighborhood />
-                <div className="relative aspect-video bg-sand-dark overflow-hidden">
+                <div className="relative aspect-video bg-sand overflow-hidden">
                   <iframe
                     src={`https://maps.google.com/maps?q=${listingData.location.coordinates.lat},${listingData.location.coordinates.lng}&z=13&output=embed`}
                     className="w-full h-full border-0" loading="lazy" title="Villa location"
                   />
                 </div>
-                <p className="text-xs text-stone mt-3">
+                <p className="text-xs text-muted mt-3">
                   {t({ it: "L'indirizzo esatto viene fornito dopo la conferma della prenotazione.", en: 'The exact address is provided after booking confirmation.' })}
                 </p>
               </div>
 
               {/* Amenities */}
               <div>
-                <p className="text-xs font-medium tracking-widest uppercase text-stone mb-4">{t({ it: 'Cosa è incluso', en: "What's included" })}</p>
-                <h2 className="font-serif text-display-sm text-ocean mb-6">{t({ it: 'Servizi', en: 'Amenities' })}</h2>
+                <p className="text-xs font-medium tracking-widest uppercase text-muted mb-4">{t({ it: 'Cosa è incluso', en: "What's included" })}</p>
+                <h2 className="font-serif text-display-sm text-navy mb-6">{t({ it: 'Servizi', en: 'Amenities' })}</h2>
                 <AmenityGrid amenities={listingData.amenities} variant="compact" showAll={true} />
                 <div className="mt-6">
                   <Link href="/amenities" className="btn-outline text-sm">
@@ -151,10 +151,10 @@ export default function VillaPage() {
             {/* Booking Sidebar */}
             <div>
               <BookingWidget variant="sidebar" />
-              <div className="mt-6 p-4 bg-sand border border-sand-dark text-center">
-                <p className="text-xs text-stone mb-3">{t({ it: 'Disponibile anche su', en: 'Also available on' })}</p>
+              <div className="mt-6 p-4 bg-sand border border-border text-center">
+                <p className="text-xs text-muted mb-3">{t({ it: 'Disponibile anche su', en: 'Also available on' })}</p>
                 <a href={listingData.airbnbUrl} target="_blank" rel="noopener noreferrer"
-                  className="text-xs font-medium tracking-widest uppercase text-ocean hover:text-sunset transition-colors">
+                  className="text-xs font-medium tracking-widest uppercase text-navy hover:text-gold transition-colors">
                   {t({ it: 'Prenota su Airbnb →', en: 'Book on Airbnb →' })}
                 </a>
               </div>

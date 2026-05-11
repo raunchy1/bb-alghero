@@ -6,6 +6,7 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import WhatsAppButton from './WhatsAppButton'
 import CustomCursor from './CustomCursor'
+import PageTransition from './PageTransition'
 import { usePathname } from 'next/navigation'
 import Lenis from 'lenis'
 
@@ -22,11 +23,12 @@ export default function LayoutWrapper({ children }: { children: ReactNode }) {
       smoothWheel: true,
     })
 
+    let rafId: number
     function raf(time: number) {
       lenis.raf(time)
-      requestAnimationFrame(raf)
+      rafId = requestAnimationFrame(raf)
     }
-    requestAnimationFrame(raf)
+    rafId = requestAnimationFrame(raf)
 
     // Scroll progress
     const handleScroll = () => {
@@ -39,6 +41,7 @@ export default function LayoutWrapper({ children }: { children: ReactNode }) {
     window.addEventListener('scroll', handleScroll, { passive: true })
 
     return () => {
+      cancelAnimationFrame(rafId)
       lenis.destroy()
       window.removeEventListener('scroll', handleScroll)
     }
@@ -60,7 +63,9 @@ export default function LayoutWrapper({ children }: { children: ReactNode }) {
       <CustomCursor />
 
       <Navbar />
-      <main>{children}</main>
+      <main>
+        <PageTransition>{children}</PageTransition>
+      </main>
       <Footer />
       <WhatsAppButton />
     </LanguageProvider>
